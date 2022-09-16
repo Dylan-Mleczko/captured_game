@@ -4,14 +4,38 @@
 
 ## Teamwork plan/summary
 
-<!-- [[StartTeamworkPlan]] PLEASE LEAVE THIS LINE UNTOUCHED -->
+Sprint 1 (Week 9):
+Thomas - Start floor and wall shaders, floor procedural generation
+Dylan - Player and piece movement
+Kelsey - First floor map
 
-<!-- Fill this section by Milestone 1 (see specification for details) -->
+Sprint 2 (Mid-Sem Break):
+Thomas - Continue work on shaders and floor procedural generation
+Dylan - Key / door / trapdoor logic and animation
+Kelsey - Torch and dust particle system
 
-Here you should be discussing how you will be delegating tasks among team members, as well
-as protocols and processes you will use to keep the project organised. Keep it updated
-throughout the duration of the project. By the final submission it should contain
-a summary of who completed what. (You should of course remove and replace this paragraph!)
+Sprint 3 (Week 10):
+Thomas - Continue work on shaders and floor procedural generation
+Dylan - Menu and saving functionality
+Kelsey - Asset sourcing
+
+Sprint 4 (Week 11):
+Testing 1
+Evaluation
+Make game play video
+Thomas - Polish lighting
+Dylan - Write letter / journal entries
+Kelsey - Sound design
+
+Sprint 5 (Week 12):
+Make changes from evaluation
+Thomas - Post-processing
+Dylan - Title screen
+Kelsey - Environment decoration
+
+Sprint 6 (SWOT VAC):
+Testing 2
+Report
 
 <!-- [[EndTeamworkPlan]] PLEASE LEAVE THIS LINE UNTOUCHED -->
 
