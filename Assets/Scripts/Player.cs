@@ -36,7 +36,7 @@ public class Player : MonoBehaviour {
         if (Input.GetKey(KeyCode.D)) {
             transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
         }
-        transform.Rotate(Input.GetAxis("Mouse Y") * mouseSensitivity, Input.GetAxis("Mouse X") * mouseSensitivity, 0);
+        transform.Rotate(Input.GetAxis("Mouse Y") * -mouseSensitivity, Input.GetAxis("Mouse X") * mouseSensitivity, 0);
     }
 
 }
