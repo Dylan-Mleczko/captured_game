@@ -261,7 +261,6 @@ GameObject:
   - component: {fileID: 285120970}
   - component: {fileID: 285120969}
   - component: {fileID: 285120968}
-  - component: {fileID: 285120972}
   m_Layer: 0
   m_Name: Plane (3)
   m_TagString: Untagged
@@ -348,22 +347,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
---- !u!54 &285120972
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 285120967}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &368448233
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,11 +584,11 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!1 &1175672724
 GameObject:
@@ -667,7 +650,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -699,6 +682,7 @@ GameObject:
   - component: {fileID: 1363432192}
   - component: {fileID: 1363432191}
   - component: {fileID: 1363432195}
+  - component: {fileID: 1363432196}
   m_Layer: 0
   m_Name: Rook
   m_TagString: Untagged
@@ -798,6 +782,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 5
   speed: 20
+--- !u!54 &1363432196
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363432190}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 46
+  m_CollisionDetection: 0
 --- !u!1 &1365485977
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,7 +842,6 @@ GameObject:
   - component: {fileID: 1604868379}
   - component: {fileID: 1604868378}
   - component: {fileID: 1604868377}
-  - component: {fileID: 1604868381}
   m_Layer: 0
   m_Name: Plane (4)
   m_TagString: Untagged
@@ -929,22 +928,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 90, y: 180, z: 0}
---- !u!54 &1604868381
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1604868376}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1807687378
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,7 +940,6 @@ GameObject:
   - component: {fileID: 1807687381}
   - component: {fileID: 1807687380}
   - component: {fileID: 1807687379}
-  - component: {fileID: 1807687383}
   m_Layer: 0
   m_Name: Plane (1)
   m_TagString: Untagged
@@ -1044,22 +1026,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!54 &1807687383
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1807687378}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1811316180
 GameObject:
   m_ObjectHideFlags: 0
@@ -1072,7 +1038,6 @@ GameObject:
   - component: {fileID: 1811316183}
   - component: {fileID: 1811316182}
   - component: {fileID: 1811316181}
-  - component: {fileID: 1811316185}
   m_Layer: 0
   m_Name: Plane (2)
   m_TagString: Untagged
@@ -1159,22 +1124,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 90, y: -90, z: 0}
---- !u!54 &1811316185
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1811316180}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &2021141701
 GameObject:
   m_ObjectHideFlags: 0

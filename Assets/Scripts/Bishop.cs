@@ -8,10 +8,6 @@ public class Bishop : MonoBehaviour {
     int xDirection = 1;
     int zDirection = 1;
 
-    void Start() {
-        
-    }
-
     void Update() {
         Move();
     }
@@ -19,13 +15,13 @@ public class Bishop : MonoBehaviour {
     void OnCollisionEnter(Collision collision) {
         Vector3 normal = collision.contacts[0].normal;
         if (normal == transform.forward) {
-            zDirection = -1;
-        } else if (normal == -transform.forward) {
             zDirection = 1;
+        } else if (normal == -transform.forward) {
+            zDirection = -1;
         } if (normal == transform.right) {
-            xDirection = -1;
-        } else if (normal == -transform.right) {
             xDirection = 1;
+        } else if (normal == -transform.right) {
+            xDirection = -1;
         }
     }
 
