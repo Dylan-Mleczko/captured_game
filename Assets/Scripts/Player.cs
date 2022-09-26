@@ -8,6 +8,8 @@ public class Player : MonoBehaviour {
     [SerializeField] float sprintMultipler;
     [SerializeField] float mouseSensitivity;
     CursorLockMode lockMode;
+    public Queue<Vector3> trail;
+    bool isQueenChasing;
  
     void Awake () {
         lockMode = CursorLockMode.Locked;
@@ -15,11 +17,13 @@ public class Player : MonoBehaviour {
     }
 
     void Start() {
-        
+        trail = new Queue<Vector3>();
+        isQueenChasing = false;
     }
 
     void Update() {
         Move();
+        LeaveTrail();
     }
 
     void Move() {
@@ -37,6 +41,12 @@ public class Player : MonoBehaviour {
             transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
         }
         transform.Rotate(Input.GetAxis("Mouse Y") * -mouseSensitivity, Input.GetAxis("Mouse X") * mouseSensitivity, 0);
+    }
+
+    void LeaveTrail() {
+        if (isQueenChasing) {
+            trail.Enqueue(transform.position);
+        }
     }
 
 }
