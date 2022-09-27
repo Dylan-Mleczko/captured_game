@@ -7,7 +7,10 @@ public class Player : MonoBehaviour {
     [SerializeField] float moveSpeed;
     [SerializeField] float sprintMultipler;
     [SerializeField] float mouseSensitivity;
+    [SerializeField] float interactionDistance;
+    
     CursorLockMode lockMode;
+
     public Queue<Vector3> trail;
     bool isQueenChasing;
  
@@ -24,6 +27,7 @@ public class Player : MonoBehaviour {
     void Update() {
         Move();
         LeaveTrail();
+        Interact();
     }
 
     void Move() {
@@ -46,6 +50,14 @@ public class Player : MonoBehaviour {
     void LeaveTrail() {
         if (isQueenChasing) {
             trail.Enqueue(transform.position);
+        }
+    }
+
+    void Interact() {
+        RaycastHit hit;
+        Ray visibleObject = Physics.Raycast(new Ray(transform.position, transform.forward), out hit) && hit.distance < interactionDistance ? hit.transform.gameObject.GetComponent<Interactable>() : null;
+        if (Input.GetMouseButtonDown(0) && visibleObject != null) {
+            visibleObject.InteractWith();
         }
     }
 
