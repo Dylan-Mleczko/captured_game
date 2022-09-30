@@ -5,10 +5,10 @@ using UnityEngine;
 public class DoorController : MonoBehaviour
 {
 
-    int keyCount = 0;
+    bool hasKey;
 
     void Start() {
-        
+        hasKey = false;
     }
 
 

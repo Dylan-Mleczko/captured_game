@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent<Collider>]
-public class Interactable : MonoBehaviour
-{
+[RequireComponent(typeof(Collider))]
+public class Interactable : MonoBehaviour {
 
     [SerializeField] GameObject[] interactableObjects;
-    public string interactMessage;
+    public GameObject text;
 
-    void InteractWith() {
-        foreach(GameObject object in interactableObjects) {
-            object.GetComponent<Interaction>().InteractWith();
+    public void InteractWith() {
+        for (int i = 0; i < interactableObjects.Length; i++) {
+            interactableObjects[i].GetComponent<Interaction>().InteractWith();
         }
     }
 

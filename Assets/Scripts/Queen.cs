@@ -6,11 +6,11 @@ public class Queen : MonoBehaviour {
 
     [SerializeField] GameObject player;
     [SerializeField] float speed;
-    Rigidbody rigidbody;
+    Rigidbody rb;
     Queue<Vector3> trail;
 
     void Start() {
-        rigidbody = gameObject.GetComponent<Rigidbody>();
+        rb = gameObject.GetComponent<Rigidbody>();
         trail = player.GetComponent<Player>().trail;
     }
 
@@ -20,7 +20,7 @@ public class Queen : MonoBehaviour {
 
     void Move() {
         Vector3 position = trail.Dequeue();
-        rigidbody.velocity = (new Vector3(position.x - transform.position.x, 0.0f, position.z - transform.position.z)).normalized * speed;
+        rb.velocity = (new Vector3(position.x - transform.position.x, 0.0f, position.z - transform.position.z)).normalized * speed;
     }
 
 }

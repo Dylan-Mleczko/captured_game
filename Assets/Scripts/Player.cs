@@ -13,6 +13,8 @@ public class Player : MonoBehaviour {
 
     public Queue<Vector3> trail;
     bool isQueenChasing;
+
+    GameObject currentText;
  
     void Awake () {
         lockMode = CursorLockMode.Locked;
@@ -27,7 +29,7 @@ public class Player : MonoBehaviour {
     void Update() {
         Move();
         LeaveTrail();
-        Interact();
+        Look();
     }
 
     void Move() {
@@ -53,11 +55,18 @@ public class Player : MonoBehaviour {
         }
     }
 
-    void Interact() {
+    void Look() {
         RaycastHit hit;
-        Ray visibleObject = Physics.Raycast(new Ray(transform.position, transform.forward), out hit) && hit.distance < interactionDistance ? hit.transform.gameObject.GetComponent<Interactable>() : null;
-        if (Input.GetMouseButtonDown(0) && visibleObject != null) {
-            visibleObject.InteractWith();
+        Interactable visibleObject = Physics.Raycast(new Ray(transform.position, transform.forward), out hit) && hit.distance < interactionDistance ? hit.transform.gameObject.GetComponent<Interactable>() : null;
+        if (visibleObject != null) {
+            currentText = visibleObject.text;
+            currentText.SetActive(true);
+            if (Input.GetMouseButtonDown(0)) {
+                visibleObject.InteractWith();
+            }
+        } else if (currentText != null) {
+            currentText.SetActive(false);
+            currentText = null;
         }
     }
 
