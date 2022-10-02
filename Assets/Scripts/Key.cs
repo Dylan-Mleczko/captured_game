@@ -8,6 +8,7 @@ public class Key : MonoBehaviour, Interaction {
 
     public void InteractWith() {
         key.SetActive(true);
+        Door.hasKey = true;
         Destroy(gameObject);
     }
 
