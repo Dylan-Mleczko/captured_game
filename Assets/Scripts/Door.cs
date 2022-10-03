@@ -13,7 +13,6 @@ public class Door : MonoBehaviour, Interaction {
     }
 
     public void InteractWith() {
-        Debug.Log("HELLO");
         if (hasKey) {
             anim.Play();
             hasKey = false;
