@@ -11,6 +11,8 @@ public class Player : MonoBehaviour {
     
     CursorLockMode lockMode;
 
+    public bool playerEnabled;
+
     public Queue<Vector3> trail;
     bool isQueenChasing;
 
@@ -22,14 +24,17 @@ public class Player : MonoBehaviour {
     }
 
     void Start() {
+        playerEnabled = true;
         trail = new Queue<Vector3>();
         isQueenChasing = false;
     }
 
     void Update() {
-        Move();
+        if (playerEnabled) {
+            Move();
+            Look();
+        }
         LeaveTrail();
-        Look();
     }
 
     void Move() {
