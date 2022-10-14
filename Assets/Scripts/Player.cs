@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    [SerializeField] Camera playerCamera;
     [SerializeField] float moveSpeed;
     [SerializeField] float sprintMultipler;
     [SerializeField] float mouseSensitivity;
     [SerializeField] float interactionDistance;
 
+    private CharacterController characterController;
+    private float rotationX;
     public bool playerEnabled;
-
     public Queue<Vector3> trail;
     bool isQueenChasing;
-
     GameObject currentText;
 
     void Start() {
         PlayMode();
+        characterController = GetComponent<CharacterController>();
+        rotationX = 0;
         trail = new Queue<Vector3>();
         isQueenChasing = false;
     }
@@ -31,23 +34,31 @@ public class Player : MonoBehaviour {
     }
 
     void Move() {
-        double speedMultipler = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) ? sprintMultipler : 1;
+        float speedMultipler = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) ? sprintMultipler : 1;
+        float currentSpeed = moveSpeed * speedMultipler;
         if (Input.GetKey(KeyCode.W)) {
-            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+            characterController.Move(transform.TransformDirection(Vector3.forward) * currentSpeed * Time.deltaTime);
+            //transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.S)) {
-            transform.Translate(Vector3.back * moveSpeed * Time.deltaTime);
+            characterController.Move(transform.TransformDirection(Vector3.back) * currentSpeed * Time.deltaTime);
+            //transform.Translate(Vector3.back * moveSpeed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.A)) {
-            transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+            characterController.Move(transform.TransformDirection(Vector3.left) * currentSpeed * Time.deltaTime);
+            //transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.D)) {
-            transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+            characterController.Move(transform.TransformDirection(Vector3.right) * currentSpeed * Time.deltaTime);
+            //transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.Q)) {
             InteractMode();
         }
-        transform.Rotate(Input.GetAxis("Mouse Y") * -mouseSensitivity, Input.GetAxis("Mouse X") * mouseSensitivity, 0);
+        rotationX += -Input.GetAxis("Mouse Y") * mouseSensitivity;
+        rotationX = Mathf.Clamp(rotationX, -45.0f, 45.0f);
+        playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * mouseSensitivity, 0);
     }
 
     void LeaveTrail() {
