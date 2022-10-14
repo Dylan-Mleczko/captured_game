@@ -4594,7 +4594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   safeScreen: {fileID: 263798766}
-  playerObject: {fileID: 0}
+  playerObject: {fileID: 432569768}
   screenObjects:
   - {fileID: 28622836}
   - {fileID: 383718218}
@@ -5400,7 +5400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteText: {fileID: 1328141598}
-  playerObject: {fileID: 0}
+  playerObject: {fileID: 432569768}
 --- !u!1 &984516874
 GameObject:
   m_ObjectHideFlags: 0
