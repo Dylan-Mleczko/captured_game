@@ -15,7 +15,7 @@ public class Note : MonoBehaviour, Interaction {
     }
 
     public void InteractWith() {
-        playerComponent.playerEnabled = false;
+        playerComponent.InteractMode();
         noteText.SetActive(true);
         if (newNote) {
             DataManager.handle.data.notes++;

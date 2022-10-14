@@ -8,8 +8,6 @@ public class Player : MonoBehaviour {
     [SerializeField] float sprintMultipler;
     [SerializeField] float mouseSensitivity;
     [SerializeField] float interactionDistance;
-    
-    CursorLockMode lockMode;
 
     public bool playerEnabled;
 
@@ -17,14 +15,9 @@ public class Player : MonoBehaviour {
     bool isQueenChasing;
 
     GameObject currentText;
- 
-    void Awake () {
-        lockMode = CursorLockMode.Locked;
-        Cursor.lockState = lockMode;
-    }
 
     void Start() {
-        playerEnabled = true;
+        PlayMode();
         trail = new Queue<Vector3>();
         isQueenChasing = false;
     }
@@ -51,6 +44,9 @@ public class Player : MonoBehaviour {
         if (Input.GetKey(KeyCode.D)) {
             transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
         }
+        if (Input.GetKey(KeyCode.Q)) {
+            InteractMode();
+        }
         transform.Rotate(Input.GetAxis("Mouse Y") * -mouseSensitivity, Input.GetAxis("Mouse X") * mouseSensitivity, 0);
     }
 
@@ -73,6 +69,16 @@ public class Player : MonoBehaviour {
             currentText.SetActive(false);
             currentText = null;
         }
+    }
+
+    public void PlayMode() {
+        playerEnabled = true;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void InteractMode() {
+        playerEnabled = false;
+        Cursor.lockState = CursorLockMode.None;
     }
 
 }

@@ -26,7 +26,7 @@ public class Safe : MonoBehaviour, Interaction {
     }
 
     public void InteractWith() {
-        playerComponent.playerEnabled = false;
+        playerComponent.InteractMode();
         safeScreen.SetActive(true);
     }
 
@@ -39,6 +39,7 @@ public class Safe : MonoBehaviour, Interaction {
     public void CheckCode() {
         if (combination[0] == 1 && combination[1] == 8 && combination[2] == 5 && combination[3] == 1) {
             safeScreen.SetActive(false);
+            playerComponent.InteractMode();
             anim.Play();
         } else {
             ResetCode();
