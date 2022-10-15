@@ -37,6 +37,10 @@ public class Floor : MonoBehaviour
             }
         }
         ripples = remainingRipples;
+        foreach (GameObject tile in tiles)
+        {
+            tile.GetComponent<Renderer>().sharedMaterial.SetFloat("_Position", spread);
+        }
         Debug.Log(spread);
         Debug.Log(lifetime);
     }
