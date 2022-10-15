@@ -11,13 +11,9 @@ public class Floor : MonoBehaviour
     [Header("Construction")]
     [SerializeField][Min(0)] private float tileSize;
     [SerializeField][Min(1)] private int tileCountX = 1;
-    [SerializeField][Min(1)] private int tileCountY = 1;
+    [SerializeField][Min(1)] private int tileCountY = 1 ;
 
     private GameObject[,] tiles;
-
-    // =============== PROPERTIES =================
-    // ================ FUNCTIONS =================
-    // ================ FLOOR ====================
 
     private void Awake()
     {
@@ -49,15 +45,23 @@ public class Floor : MonoBehaviour
         tile.AddComponent<MeshRenderer>().material = material;
 
         Vector3[] vertices = new Vector3[4];
+        Vector2[] uvs = new Vector2[vertices.Length];
+
         vertices[0] = new Vector3(x * tileSize, 0, y * tileSize);
         vertices[1] = new Vector3(x * tileSize, 0, (y + 1) * tileSize);
         vertices[2] = new Vector3((x + 1) * tileSize, 0, y * tileSize);
         vertices[3] = new Vector3((x + 1) * tileSize, 0, (y + 1) * tileSize);
 
+        for (int i = 0; i < uvs.Length; i++)
+        {
+            uvs[i] = new Vector2(vertices[i].x, vertices[i].z);
+        }
+
         int[] tris = new int[] { 0, 1, 2, 1, 3, 2 };
 
         mesh.vertices = vertices;
         mesh.triangles = tris;
+        mesh.uv = uvs;
 
         tile.AddComponent<BoxCollider>();
 
