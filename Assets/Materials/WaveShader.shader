@@ -6,6 +6,8 @@ Shader "Unlit/WaveShader"
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
+        // _Other ("Metallic", Range(0,1)) = 0.0
+		_Position ("Position", Range(0, 1)) = 0.0
 	}
 	SubShader
 	{
@@ -20,7 +22,7 @@ Shader "Unlit/WaveShader"
 			#include "UnityCG.cginc"
 
 			uniform sampler2D _MainTex;
-			uniform float4x4 _CustomMVP; // For task 9 (challenge) - see corresponding CustomMVP.cs file
+			// uniform float3(j)
 
 			struct vertIn
 			{

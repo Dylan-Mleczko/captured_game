@@ -13,11 +13,32 @@ public class Floor : MonoBehaviour
     [SerializeField][Min(1)] private int tileCountX = 1;
     [SerializeField][Min(1)] private int tileCountY = 1 ;
 
+    [Header("Rippling")]
+    [SerializeField][Min(0)] private int lifetime = 5;
+    [SerializeField][Min(0)] private float spread = 0.4f;
+
     private GameObject[,] tiles;
+    private List<Vector3> ripples = new List<Vector3>();
 
     private void Awake()
     {
         GenerateFloorTiles(tileCountX, tileCountY);
+        AddRipple(new Vector2(2, 2));
+    }
+
+    void Update()
+    {
+        // ensure old ripples disappear
+        List<Vector3> remainingRipples = new List<Vector3>();
+        foreach (Vector3 ripple in ripples)
+        {
+            if (ripple.z - Time.time <= lifetime) {
+                remainingRipples.Add(ripple);
+            }
+        }
+        ripples = remainingRipples;
+        Debug.Log(spread);
+        Debug.Log(lifetime);
     }
 
     private void GenerateFloorTiles(int tileCountX, int tileCountY)
@@ -66,5 +87,14 @@ public class Floor : MonoBehaviour
         tile.AddComponent<BoxCollider>();
 
         return tile;
+    }
+
+    public void AddRipple(Vector2 rippleOrigin) {
+        // create the ripple at the given position using the creation time as the current time
+        ripples.Add(new Vector3(rippleOrigin.x, rippleOrigin.y, Time.time));
+    }
+
+    public List<Vector3> getRipples() {
+        return ripples;
     }
 }
