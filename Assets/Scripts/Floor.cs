@@ -23,7 +23,19 @@ public class Floor : MonoBehaviour
     private void Awake()
     {
         GenerateFloorTiles(tileCountX, tileCountY);
+        Vector2 origin = new Vector2(5, 5);
+        foreach (GameObject tile in tiles)
+        {
+            // tile.GetComponent<Renderer>().sharedMaterial.SetVector("_Ripples", new Vector2[] {origin});
+            tile.GetComponent<Renderer>().sharedMaterial.SetVector("_Ripples", origin);
+            tile.GetComponent<Renderer>().sharedMaterial.SetFloat("_Spread", spread);
+        }
+        // foreach (GameObject tile in tiles)
+        // {
+        //     tile.GetComponent<Renderer>().sharedMaterial.SetVector("Ripples", Vector2[]{0, 0});
+        // }
         AddRipple(new Vector2(2, 2));
+
     }
 
     void Update()
@@ -37,10 +49,7 @@ public class Floor : MonoBehaviour
             }
         }
         ripples = remainingRipples;
-        foreach (GameObject tile in tiles)
-        {
-            tile.GetComponent<Renderer>().sharedMaterial.SetFloat("_Position", spread);
-        }
+
         Debug.Log(spread);
         Debug.Log(lifetime);
     }

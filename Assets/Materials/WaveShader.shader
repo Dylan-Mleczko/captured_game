@@ -2,11 +2,9 @@ Shader "Unlit/WaveShader"
 {
 	Properties
 	{
-        _Color ("Color", Color) = (1,1,1,1)
-        _MainTex ("Albedo (RGB)", 2D) = "white" {}
-        _Glossiness ("Smoothness", Range(0,1)) = 0.5
-        _Metallic ("Metallic", Range(0,1)) = 0.0
-		_Position ("Position", Float) = 0.0
+        _Texture ("Texture", 2D) = "white" {}
+		_Spread ("Spread", Float) = 1.0
+		// _Ripples ("Ripples", float2) = (0.0, 0.0)
 	}
 	SubShader
 	{
@@ -20,8 +18,9 @@ Shader "Unlit/WaveShader"
 
 			#include "UnityCG.cginc"
 
-			uniform sampler2D _MainTex;
-			uniform float _Position;
+			uniform sampler2D _Texture;
+			uniform float2 _Ripples;
+			uniform Float _Spread;
 
 			struct vertIn
 			{
@@ -39,12 +38,16 @@ Shader "Unlit/WaveShader"
 			vertOut vert(vertIn v)
 			{
 				// Displace the original vertex in model space
-				float4 displacement = float4(0.0f, _Position + sin(sqrt(pow(v.vertex.x, 2) + pow(v.vertex.z, 2)) + _Time.y), 0.0f, 0.0f);
+				// for (unit i = 0; i < _Ripples.Length; i++) {
+
+				// }
+				Float height = pow(2, -_Spread * (sqrt(pow(v.vertex.x - _Ripples.x, 2) + pow(v.vertex.z - _Ripples.y, 2))));
+				Float period = sin(sqrt(pow(v.vertex.x - _Ripples.x, 2) + pow(v.vertex.z - _Ripples.y, 2)) - 3*_Time.y);
+				float4 displacement = float4(0.0f, height * period, 0.0f, 0.0f);
 				v.vertex += displacement;
 
 				vertOut o;
 
-				// Task 8 - Need to apply wave transformation between MV and P!
 				// Apply the model and view matrix to the vertex (but not the projection matrix yet)
 				v.vertex = mul(UNITY_MATRIX_MV, v.vertex);
 				
@@ -58,7 +61,7 @@ Shader "Unlit/WaveShader"
 			// Implementation of the fragment shader
 			fixed4 frag(vertOut v) : SV_Target
 			{
-				fixed4 col = tex2D(_MainTex, v.uv);
+				fixed4 col = tex2D(_Texture, v.uv);
 				return col;
 			}
 			ENDCG
