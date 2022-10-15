@@ -5,13 +5,13 @@ using UnityEngine;
 public class RippleManager : MonoBehaviour
 {
     // ripples defined by (x coor, z coor, lifetime of ripple)
-    private ArrayList<Vector3> ripples = new ArrayList<Vector2>();
+    List<Vector3> ripples = new List<Vector3>();
 
     // set ripples to have an influence for some number of seconds
     private const int rippleLife = 5;
 
     // ripple inverse distance effect
-    public const int rippleMultiplier = 0.5;
+    public const double rippleMultiplier = 0.5;
 
     void Start()
     {
@@ -21,7 +21,14 @@ public class RippleManager : MonoBehaviour
     void Update()
     {
         // ensure old ripples disappear
-        ripples = ripples.Where(x => x.z - _Time.y <= rippleLife).ToList();
+        List<Vector3> remainingRipples = new List<Vector3>();
+        foreach (Vector3 ripple in ripples)
+        {
+            if (ripple.z - _Time.y <= rippleLift) {
+                remainingRipples.Add(ripple);
+            }
+        }
+        ripples = remainingRipples;
     }
 
     public void AddRipple(Vector2 rippleOrigin) {
@@ -29,7 +36,7 @@ public class RippleManager : MonoBehaviour
         ripples.Add(new Vector3(rippleOrigin.x, rippleOrigin.z, _Time.y));
     }
 
-    public Vector3 getRipples() {
+    public List<Vector3> getRipples() {
         return ripples;
     }
 }
