@@ -129,43 +129,48 @@ public class Generator2D : MonoBehaviour
   {
     for (int i = 0; i < roomCount; i++)
     {
-      Vector2Int location = new Vector2Int(
-          random.Next(0, size.x),
-          random.Next(0, size.y)
-      );
+      int attempts = 0;
+      while (attempts < 5) {
+        attempts++;
+        Vector2Int location = new Vector2Int(
+            random.Next(0, size.x),
+            random.Next(0, size.y)
+        );
 
-      Vector2Int roomSize = new Vector2Int(
-          random.Next(1, roomMaxSize.x + 1),
-          random.Next(1, roomMaxSize.y + 1)
-      );
+        Vector2Int roomSize = new Vector2Int(
+            random.Next(1, roomMaxSize.x + 1),
+            random.Next(1, roomMaxSize.y + 1)
+        );
 
-      bool add = true;
-      Room newRoom = new Room(location, roomSize);
-      Room buffer = new Room(location + new Vector2Int(-1, -1), roomSize + new Vector2Int(2, 2));
+        bool add = true;
+        Room newRoom = new Room(location, roomSize);
+        Room buffer = new Room(location + new Vector2Int(-1, -1), roomSize + new Vector2Int(2, 2));
 
-      foreach (var room in rooms)
-      {
-        if (Room.Intersect(room, buffer))
+        foreach (var room in rooms)
+        {
+          if (Room.Intersect(room, buffer))
+          {
+            add = false;
+            break;
+          }
+        }
+
+        if (newRoom.bounds.xMin < 0 || newRoom.bounds.xMax >= size.x
+            || newRoom.bounds.yMin < 0 || newRoom.bounds.yMax >= size.y)
         {
           add = false;
-          break;
         }
-      }
 
-      if (newRoom.bounds.xMin < 0 || newRoom.bounds.xMax >= size.x
-          || newRoom.bounds.yMin < 0 || newRoom.bounds.yMax >= size.y)
-      {
-        add = false;
-      }
-
-      if (add)
-      {
-        rooms.Add(newRoom);
-        PlaceRoom(newRoom.bounds.position, newRoom.bounds.size, newRoom);
-
-        foreach (var pos in newRoom.bounds.allPositionsWithin)
+        if (add)
         {
-          grid[pos] = CellType.Room;
+          rooms.Add(newRoom);
+          PlaceRoom(newRoom.bounds.position, newRoom.bounds.size, newRoom);
+
+          foreach (var pos in newRoom.bounds.allPositionsWithin)
+          {
+            grid[pos] = CellType.Room;
+          }
+          break;
         }
       }
     }
@@ -264,9 +269,9 @@ public class Generator2D : MonoBehaviour
         }
 
         Hallway preHallway = null;
-        Hallway curHallway;
+        Hallway curHallway = null;
 
-        var ii = 0;
+        var started = false;
         foreach (var pos in path)
         {
           if (grid[pos] == CellType.Hallway)
@@ -282,19 +287,18 @@ public class Generator2D : MonoBehaviour
             }
 
             preHallway = curHallway;
-            if (ii == 0)
+            if (!started)
             {
+              started = true;
               Intersect(curHallway, startRoom);
               curHallway.cell.name = "pathStart";
             }
-            // else if (ii == path.Count - 1)
-            // {
-            //   Intersect(curHallway, endRoom);
-            //   curHallway.cell.name = "pathEnd";
-            // }
-            ii++;
           }
         }
+
+        Intersect(curHallway, endRoom);
+        curHallway.cell.name = "pathEnd";
+
         preHallway.UpdateGameObjectStatus();
 
 
@@ -327,6 +331,7 @@ public class Generator2D : MonoBehaviour
         if (i == size.x - 1) status[0] = true;
         if (j == 0) status[1] = true;
         if (j == size.y - 1) status[3] = true;
+
         obj.GetComponent<CellBehavior>().UpdateCell(status);
         obj.name = "room" + (i * size.y + j).ToString();
         statusList[i * size.y + j] = status;
@@ -365,8 +370,10 @@ public class Generator2D : MonoBehaviour
 
     for (int i = 0; i < room.bounds.size.x * room.bounds.size.y; i++)
     {
-      var roomPositionX = room.bounds.center.x - 0.5f * room.bounds.size.x + i / room.bounds.size.x * unitWidth;
-      var roomPositionY = room.bounds.center.y - 0.5f * room.bounds.size.y + i % room.bounds.size.y * unitLength;
+      var roomPositionX = room.bounds.center.x - 0.5f * room.bounds.size.x + i / room.bounds.size.y;
+      var roomPositionY = room.bounds.center.y - 0.5f * room.bounds.size.y + i % room.bounds.size.y;
+      // Debug.Log("room size: " + room.bounds.size.x + ", " + room.bounds.size.y);
+      // Debug.Log("cellname:" + hallwayCell.cell.name + ", roomname:" + room.cells[i].name + ", i:" + i + "pos:" + roomPositionX + ", " + roomPositionY);
 
       // hallway horizontal of room position
       if (Mathf.Abs(hallwayPositionX - roomPositionX) <= unitWidth && Mathf.Abs(hallwayPositionY - roomPositionY) <= float.Epsilon)
