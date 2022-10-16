@@ -3,8 +3,6 @@ Shader "Unlit/WaveShader"
 	Properties
 	{
         _Texture ("Texture", 2D) = "white" {}
-		_Spread ("Spread", Float) = 1.0
-		// _Ripples ("Ripples", float2) = (0.0, 0.0)
 	}
 	SubShader
 	{
@@ -19,6 +17,8 @@ Shader "Unlit/WaveShader"
 			#include "UnityCG.cginc"
 
 			uniform sampler2D _Texture;
+
+			// variables defined externally
 			uniform float2 _Ripples;
 			uniform Float _Spread;
 
@@ -41,8 +41,9 @@ Shader "Unlit/WaveShader"
 				// for (unit i = 0; i < _Ripples.Length; i++) {
 
 				// }
-				Float height = pow(2, -_Spread * (sqrt(pow(v.vertex.x - _Ripples.x, 2) + pow(v.vertex.z - _Ripples.y, 2))));
-				Float period = sin(sqrt(pow(v.vertex.x - _Ripples.x, 2) + pow(v.vertex.z - _Ripples.y, 2)) - 3*_Time.y);
+				Float distance = sqrt(pow(v.vertex.x - _Ripples.x, 2) + pow(v.vertex.z - _Ripples.y, 2));
+				Float height = 0.1 * pow(2, -0.2 * distance);
+				Float period = sin(distance - 10*_Time.y);
 				float4 displacement = float4(0.0f, height * period, 0.0f, 0.0f);
 				v.vertex += displacement;
 

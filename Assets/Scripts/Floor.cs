@@ -15,11 +15,11 @@ public class Floor : MonoBehaviour
 
     [Header("Rippling")]
     [SerializeField][Min(0)] private int lifetime = 5;
-    [SerializeField][Min(0)] private float spread = 10f;
+    [SerializeField][Min(0)] private float spread = 0.2f;
 
     private GameObject[,] tiles;
     // private List<Vector3> ripples = new List<Vector3>();
-    private Vector2 rippleOrigin = new Vector2(0, 0);
+    private Vector2 rippleOrigin = new Vector2(3, 3);
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class Floor : MonoBehaviour
         foreach (GameObject tile in tiles)
         {
             // tile.GetComponent<Renderer>().sharedMaterial.SetVector("_Ripples", new Vector2[] {origin});
-            // tile.GetComponent<Renderer>().sharedMaterial.SetVector("_Ripples", origin);
+            tile.GetComponent<Renderer>().sharedMaterial.SetVector("_Ripples", rippleOrigin);
             tile.GetComponent<Renderer>().sharedMaterial.SetFloat("_Spread", spread);
         }
         AddRipple(new Vector2(2, 2));
@@ -46,14 +46,13 @@ public class Floor : MonoBehaviour
         // }
         // ripples = remainingRipples;
 
-        Debug.Log(spread);
         Debug.Log(lifetime);
 
-        rippleOrigin += new Vector2(1, 1) * (1f * Time.deltaTime);
-        foreach (GameObject tile in tiles)
-        {
-            tile.GetComponent<Renderer>().sharedMaterial.SetVector("_Ripples", rippleOrigin);
-        }
+        // rippleOrigin += new Vector2(1, 1) * (1f * Time.deltaTime);
+        // foreach (GameObject tile in tiles)
+        // {
+        //     tile.GetComponent<Renderer>().sharedMaterial.SetVector("_Ripples", rippleOrigin);
+        // }
     }
 
     private void GenerateFloorTiles(int tileCountX, int tileCountY)
