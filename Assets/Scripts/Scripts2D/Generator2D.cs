@@ -287,6 +287,11 @@ public class Generator2D : MonoBehaviour
               Intersect(curHallway, startRoom);
               curHallway.cell.name = "pathStart";
             }
+            // else if (ii == path.Count - 1)
+            // {
+            //   Intersect(curHallway, endRoom);
+            //   curHallway.cell.name = "pathEnd";
+            // }
             ii++;
           }
         }
@@ -323,6 +328,7 @@ public class Generator2D : MonoBehaviour
         if (j == 0) status[1] = true;
         if (j == size.y - 1) status[3] = true;
         obj.GetComponent<CellBehavior>().UpdateCell(status);
+        obj.name = "room" + (i * size.y + j).ToString();
         statusList[i * size.y + j] = status;
       }
     }
@@ -349,58 +355,48 @@ public class Generator2D : MonoBehaviour
     return go;
   }
 
-  void Intersect(Hallway a, Room b)
+  // 
+  void Intersect(Hallway hallwayCell, Room room)
   {
-    for (int i = 0; i < b.bounds.size.x * b.bounds.size.y; i++)
+    var hallwayPositionX = hallwayCell.bounds.position.x;
+    var hallwayPositionY = hallwayCell.bounds.position.y;
+    var unitWidth = hallwayCell.bounds.size.x;
+    var unitLength = hallwayCell.bounds.size.y;
+
+    for (int i = 0; i < room.bounds.size.x * room.bounds.size.y; i++)
     {
-      var bPositionX = b.bounds.center.x + i % b.bounds.size.x;
-      var bPositionY = b.bounds.center.y + i / b.bounds.size.x;
-      if (Mathf.Abs(a.bounds.position.x - bPositionX) < a.bounds.size.x && Mathf.Abs(a.bounds.position.y - bPositionY) <= float.Epsilon)
+      var roomPositionX = room.bounds.center.x - 0.5f * room.bounds.size.x + i / room.bounds.size.x * unitWidth;
+      var roomPositionY = room.bounds.center.y - 0.5f * room.bounds.size.y + i % room.bounds.size.y * unitLength;
+
+      // hallway horizontal of room position
+      if (Mathf.Abs(hallwayPositionX - roomPositionX) <= unitWidth && Mathf.Abs(hallwayPositionY - roomPositionY) <= float.Epsilon)
       {
-        if (a.bounds.position.x - bPositionX > 0)
-        {
-          a.status[0] = false;
-          a.UpdateGameObjectStatus();
-          b.statusList[i][2] = false;
-          b.UpdateRoomCell(i);
-          b.cells[i].name = "roomStart";
-          break;
-        }
-        else
-        {
-          a.status[2] = false;
-          a.UpdateGameObjectStatus();
-          b.statusList[i][0] = false;
-          b.UpdateRoomCell(i);
-          b.cells[i].name = "roomStart";
-          break;
-        }
+        var right = hallwayPositionX < roomPositionX;
+        var hallCell = right ? 0 : 2;
+        var roomCell = right ? 2 : 0;
+
+        hallwayCell.status[hallCell] = false;
+        hallwayCell.UpdateGameObjectStatus();
+        room.statusList[i][roomCell] = false;
+        room.UpdateRoomCell(i);
+        room.cells[i].name = "roomStart";
+        break;
       }
-      else if (Mathf.Abs(a.bounds.position.y - bPositionY) < a.bounds.size.y && Mathf.Abs(a.bounds.position.x - bPositionX) <= float.Epsilon)
+      // hallway vertical of room position
+      else if (Mathf.Abs(hallwayPositionY - roomPositionY) <= unitLength && Mathf.Abs(hallwayPositionX - roomPositionX) <= float.Epsilon)
       {
-        if (a.bounds.position.y - bPositionY > 0)
-        {
-          // Debug.Log("Hello" + a.status[1].ToString());
-          a.status[1] = false;
-          a.UpdateGameObjectStatus();
-          b.statusList[i][3] = false;
-          b.UpdateRoomCell(i);
-          b.cells[i].name = "roomStart";
-          break;
-        }
-        else
-        {
-          a.status[3] = false;
-          a.UpdateGameObjectStatus();
-          b.statusList[i][1] = false;
-          b.UpdateRoomCell(i);
-          b.cells[i].name = "roomStart";
-          break;
-        }
+        var above = hallwayPositionY < roomPositionY;
+        var hallCell = above ? 3 : 1;
+        var roomCell = above ? 1 : 3;
+
+        hallwayCell.status[hallCell] = false;
+        hallwayCell.UpdateGameObjectStatus();
+        room.statusList[i][roomCell] = false;
+        room.UpdateRoomCell(i);
+        room.cells[i].name = "roomStart";
+        break;
       }
     }
-
-
   }
 
   Bounds getPrefabSize(GameObject obj)
