@@ -242,8 +242,8 @@ public class Generator2D : MonoBehaviour
         var pathCost = new DungeonPathfinder2D.PathCost();
 
         pathCost.cost = Vector2Int.Distance(b.Position, endPos);    //heuristic
-        pathCost.cost += Math.Min(Math.Abs(b.Position.x - startPos.x), Math.Abs(b.Position.x - endPos.x));
-        pathCost.cost += Math.Min(Math.Abs(b.Position.y - startPos.y), Math.Abs(b.Position.y - endPos.y));
+        pathCost.cost += Mathf.Min(Mathf.Abs(b.Position.x - startPos.x), Mathf.Abs(b.Position.x - endPos.x));
+        pathCost.cost += Mathf.Min(Mathf.Abs(b.Position.y - startPos.y), Mathf.Abs(b.Position.y - endPos.y));
 
         if (grid[b.Position] == CellType.Room)
         {
