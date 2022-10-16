@@ -17,6 +17,9 @@ public class Floor : MonoBehaviour
     [SerializeField][Min(0)] private int lifetime = 5;
     [SerializeField][Min(0)] private float spread = 0.2f;
 
+    [Header("Player")]
+    [SerializeField] private GameObject player = null;
+
     private GameObject[,] tiles;
     // private List<Vector3> ripples = new List<Vector3>();
     private Vector2 rippleOrigin = new Vector2(3, 3);
@@ -31,7 +34,6 @@ public class Floor : MonoBehaviour
             tile.GetComponent<Renderer>().sharedMaterial.SetFloat("_Spread", spread);
         }
         AddRipple(new Vector2(2, 2));
-
     }
 
     void Update()
@@ -46,6 +48,11 @@ public class Floor : MonoBehaviour
         // }
         // ripples = remainingRipples;
 
+        Debug.Log(player.transform.position.x + ", " + player.transform.position.z);
+        foreach (GameObject tile in tiles)
+        {
+            tile.GetComponent<Renderer>().sharedMaterial.SetVector("_Ripples", new Vector2(player.transform.position.x, player.transform.position.z));
+        }
         Debug.Log(lifetime);
 
         // rippleOrigin += new Vector2(1, 1) * (1f * Time.deltaTime);
@@ -73,7 +80,7 @@ public class Floor : MonoBehaviour
     {
         // TODO: add tileSize square size transformation
         GameObject tile = new GameObject(string.Format("X:{0}, Y:{1}", x, y));
-        tile.transform.parent = transform;
+        // tile.transform. = transform;
 
         Mesh mesh = new Mesh();
         tile.AddComponent<MeshFilter>().mesh = mesh;
@@ -99,6 +106,7 @@ public class Floor : MonoBehaviour
         mesh.uv = uvs;
 
         tile.AddComponent<BoxCollider>();
+        tile.transform.position = tile.transform.position + new Vector3(0.5f, 0, 0.5f);
 
         return tile;
     }
