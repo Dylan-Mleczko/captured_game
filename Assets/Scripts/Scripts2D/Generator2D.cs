@@ -42,10 +42,13 @@ public class Generator2D : MonoBehaviour
     public RectInt bounds;
 
     public GameObject cell;
+
+    public Vector2Int location;
     public bool[] status = { true, true, true, true };
     public Hallway(Vector2Int location, Vector2Int size)
     {
       bounds = new RectInt(location, size);
+      this.location = location;
     }
 
     public bool[] GetIntersectStatus(Hallway neighbor)
@@ -105,6 +108,8 @@ public class Generator2D : MonoBehaviour
   Random random;
   Grid2D<CellType> grid;
   List<Room> rooms;
+
+  List<Hallway> hallwayCells;
   Delaunay2D delaunay;
   HashSet<Prim.Edge> selectedEdges;
 
@@ -118,11 +123,16 @@ public class Generator2D : MonoBehaviour
     random = new Random(0);
     grid = new Grid2D<CellType>(size, Vector2Int.zero);
     rooms = new List<Room>();
+    hallwayCells = new List<Hallway>();
 
     PlaceRooms();
     Triangulate();
     CreateHallways();
     PathfindHallways();
+    foreach (Hallway cell in hallwayCells)
+    {
+      Debug.Log(cell.location.ToString());
+    }
   }
 
   void PlaceRooms()
@@ -130,7 +140,8 @@ public class Generator2D : MonoBehaviour
     for (int i = 0; i < roomCount; i++)
     {
       int attempts = 0;
-      while (attempts < 5) {
+      while (attempts < 5)
+      {
         attempts++;
         Vector2Int location = new Vector2Int(
             random.Next(0, size.x),
@@ -276,9 +287,15 @@ public class Generator2D : MonoBehaviour
         {
           if (grid[pos] == CellType.Hallway)
           {
-            curHallway = new Hallway(pos, new Vector2Int(1, 1));
-            curHallway.cell = PlaceHallway(pos);
 
+            // curHallway = hallwayCells.Find(x => x.location.x == pos.x && x.location.y == pos.y);
+            curHallway = hallwayCells.Find(x => x.location == pos);
+            if (curHallway == null)
+            {
+              curHallway = new Hallway(pos, new Vector2Int(1, 1));
+              hallwayCells.Add(curHallway);
+              curHallway.cell = PlaceHallway(pos);
+            }
             if (preHallway != null)
             {
               curHallway.GetIntersectStatus(preHallway);
