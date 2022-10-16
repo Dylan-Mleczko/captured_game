@@ -331,9 +331,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 50, y: 50}
-  roomCount: 50
+  roomCount: 40
   roomMaxSize: {x: 10, y: 5}
   cubePrefab: {fileID: 7415050535990569633, guid: 3fb4ddafbd160274ba8f07a1cf8cd5ee, type: 3}
+  roomPrefab: {fileID: 312182705375698465, guid: ec471309dd1f84b1d8a8e0723038d94b, type: 3}
+  hallwayPrefab: {fileID: 312182705375698465, guid: c0f6d2404ab734caba91acdb13835351, type: 3}
   redMaterial: {fileID: 2100000, guid: 71673d9873285904ab00282788add27f, type: 2}
   blueMaterial: {fileID: 2100000, guid: bd79999920190574a94044b2acad7316, type: 2}
 --- !u!4 &1923830711
