@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class Key : MonoBehaviour, Interaction {
 
-    [SerializeField] GameObject keyText;
-
     public void InteractWith() {
-        keyText.SetActive(true);
         Door.hasKey = true;
         Destroy(gameObject);
     }
