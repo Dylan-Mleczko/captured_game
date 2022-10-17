@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -575,8 +575,7 @@ MonoBehaviour:
   cubePrefab: {fileID: 7415050535990569633, guid: 3fb4ddafbd160274ba8f07a1cf8cd5ee, type: 3}
   roomPrefab: {fileID: 2869665108007887526, guid: 607ee4f71ce13d74aa8f4b0ecc3826ca, type: 3}
   hallwayPrefab: {fileID: 312182705375698465, guid: c0f6d2404ab734caba91acdb13835351, type: 3}
-  redMaterial: {fileID: 2100000, guid: 71673d9873285904ab00282788add27f, type: 2}
-  blueMaterial: {fileID: 2100000, guid: bd79999920190574a94044b2acad7316, type: 2}
+  pillarPrefab: {fileID: 100000, guid: b93fbb2e189612641be84b2521736734, type: 3}
 --- !u!4 &1923830711
 Transform:
   m_ObjectHideFlags: 0
@@ -611,3 +610,4 @@ MonoBehaviour:
   tileCountY: 50
   lifetime: 5
   spread: 10
+  player: {fileID: 1258459445}
