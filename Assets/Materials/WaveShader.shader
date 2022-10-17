@@ -43,7 +43,7 @@ Shader "Unlit/WaveShader"
 
 				// }
 				Float distance = sqrt(pow(v.vertex.x - _Ripples.x, 2) + pow(v.vertex.z - _Ripples.y, 2));
-				Float height = 0.1 * pow(2, -_Spread * distance);
+				Float height = 0.05 * pow(2, -_Spread * distance);
 				Float period = sin(distance - 10*_Time.y);
 				float4 displacement = float4(0.0f, height * period, 0.0f, 0.0f);
 				v.vertex += displacement;

@@ -55,6 +55,7 @@ public class Player : MonoBehaviour {
         if (Input.GetKey(KeyCode.Q)) {
             InteractMode();
         }
+        Debug.Log(characterController.transform.position.y);
         rotationX += -Input.GetAxis("Mouse Y") * mouseSensitivity;
         rotationX = Mathf.Clamp(rotationX, -45.0f, 45.0f);
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);

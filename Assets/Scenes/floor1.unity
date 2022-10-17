@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
       value: 25
@@ -197,6 +201,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 10f6c197dbc5b3d4bb207a1bd7921eba, type: 3}
       propertyPath: m_Name
       value: Doorway_A (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 10f6c197dbc5b3d4bb207a1bd7921eba, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 10f6c197dbc5b3d4bb207a1bd7921eba, type: 3}
       propertyPath: m_RootOrder
@@ -475,9 +483,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -668,6 +680,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_Name
       value: Wall_B (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
@@ -1515,6 +1531,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -1578,6 +1598,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B_Corner (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 153784, guid: 01311b99708e82145a709f95952e18b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 420012, guid: 01311b99708e82145a709f95952e18b6, type: 3}
       propertyPath: m_RootOrder
       value: 30
@@ -1636,6 +1660,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_Name
       value: Wall_B (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
@@ -1965,6 +1993,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door_A (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4aa5a7ef56dd26f4d8cdad18e6dd51d2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4aa5a7ef56dd26f4d8cdad18e6dd51d2, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -2018,7 +2050,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh70930
+  m_Name: pb_Mesh33334
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -2305,7 +2337,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh70984
+  m_Name: pb_Mesh33490
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -2687,6 +2719,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Doorway_C (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3faf544bbf9cefb4da44238798338db2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3faf544bbf9cefb4da44238798338db2, type: 3}
       propertyPath: m_RootOrder
       value: 66
@@ -2745,6 +2781,10 @@ PrefabInstance:
     - target: {fileID: 153784, guid: 01311b99708e82145a709f95952e18b6, type: 3}
       propertyPath: m_Name
       value: Wall_B_Corner (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 153784, guid: 01311b99708e82145a709f95952e18b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 420012, guid: 01311b99708e82145a709f95952e18b6, type: 3}
       propertyPath: m_RootOrder
@@ -3295,6 +3335,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
       value: 36
@@ -3774,7 +3818,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh70834
+  m_Name: pb_Mesh33138
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -3945,6 +3989,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
       value: 62
@@ -4008,6 +4056,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
       value: 40
@@ -4070,6 +4122,10 @@ PrefabInstance:
     - target: {fileID: 153784, guid: 01311b99708e82145a709f95952e18b6, type: 3}
       propertyPath: m_Name
       value: Wall_B_Corner (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 153784, guid: 01311b99708e82145a709f95952e18b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 420012, guid: 01311b99708e82145a709f95952e18b6, type: 3}
       propertyPath: m_RootOrder
@@ -4265,6 +4321,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B_Corner (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 153784, guid: 01311b99708e82145a709f95952e18b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 420012, guid: 01311b99708e82145a709f95952e18b6, type: 3}
       propertyPath: m_RootOrder
       value: 23
@@ -4459,6 +4519,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B_Corner (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 153784, guid: 01311b99708e82145a709f95952e18b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 420012, guid: 01311b99708e82145a709f95952e18b6, type: 3}
       propertyPath: m_RootOrder
       value: 38
@@ -4652,6 +4716,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
       value: 37
@@ -4714,6 +4782,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_Name
       value: Wall_B (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
@@ -4778,6 +4850,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B_Corner (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 153784, guid: 01311b99708e82145a709f95952e18b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 420012, guid: 01311b99708e82145a709f95952e18b6, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -4831,7 +4907,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh70786
+  m_Name: pb_Mesh32962
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -5535,7 +5611,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh70770
+  m_Name: pb_Mesh32936
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -5841,6 +5917,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
       value: 34
@@ -5904,6 +5984,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -5966,6 +6050,10 @@ PrefabInstance:
     - target: {fileID: 100002, guid: b0e0e89eed1bb7f4982f8a6092a384b6, type: 3}
       propertyPath: m_Name
       value: Door_C (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: b0e0e89eed1bb7f4982f8a6092a384b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b0e0e89eed1bb7f4982f8a6092a384b6, type: 3}
       propertyPath: m_RootOrder
@@ -6042,6 +6130,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Journal
       objectReference: {fileID: 0}
+    - target: {fileID: 6568243985624228591, guid: 623ad8820bc5e7844bd73c9285343894, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6670289353248905770, guid: 623ad8820bc5e7844bd73c9285343894, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -6106,6 +6198,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
       value: 59
@@ -6168,6 +6264,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_Name
       value: Wall_B (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
@@ -6447,9 +6547,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Doorway_C (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3faf544bbf9cefb4da44238798338db2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3faf544bbf9cefb4da44238798338db2, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3faf544bbf9cefb4da44238798338db2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6500,7 +6604,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh70894
+  m_Name: pb_Mesh33234
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -7086,6 +7190,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
       value: 57
@@ -7487,7 +7595,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh70738
+  m_Name: pb_Mesh32834
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -7915,6 +8023,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
       value: 27
@@ -8035,7 +8147,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh70862
+  m_Name: pb_Mesh33184
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -8206,6 +8318,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B_Corner (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 153784, guid: 01311b99708e82145a709f95952e18b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 420012, guid: 01311b99708e82145a709f95952e18b6, type: 3}
       propertyPath: m_RootOrder
       value: 54
@@ -8259,7 +8375,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh70948
+  m_Name: pb_Mesh33360
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -8429,6 +8545,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 4aa5a7ef56dd26f4d8cdad18e6dd51d2, type: 3}
       propertyPath: m_Name
       value: Door_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4aa5a7ef56dd26f4d8cdad18e6dd51d2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4aa5a7ef56dd26f4d8cdad18e6dd51d2, type: 3}
       propertyPath: m_RootOrder
@@ -9434,6 +9554,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
       value: 24
@@ -9496,6 +9620,10 @@ PrefabInstance:
     - target: {fileID: 153784, guid: 01311b99708e82145a709f95952e18b6, type: 3}
       propertyPath: m_Name
       value: Wall_B_Corner (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 153784, guid: 01311b99708e82145a709f95952e18b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 420012, guid: 01311b99708e82145a709f95952e18b6, type: 3}
       propertyPath: m_RootOrder
@@ -9904,6 +10032,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door_C (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: b0e0e89eed1bb7f4982f8a6092a384b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b0e0e89eed1bb7f4982f8a6092a384b6, type: 3}
       propertyPath: m_RootOrder
       value: 65
@@ -9963,9 +10095,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor_A
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b2f96746c6005c64888263f64272a556, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b2f96746c6005c64888263f64272a556, type: 3}
       propertyPath: m_RootOrder
-      value: 32
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b2f96746c6005c64888263f64272a556, type: 3}
       propertyPath: m_LocalScale.x
@@ -10029,6 +10165,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 3faf544bbf9cefb4da44238798338db2, type: 3}
       propertyPath: m_Name
       value: Doorway_C
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3faf544bbf9cefb4da44238798338db2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3faf544bbf9cefb4da44238798338db2, type: 3}
       propertyPath: m_RootOrder
@@ -10223,6 +10363,10 @@ PrefabInstance:
     - target: {fileID: 153784, guid: 01311b99708e82145a709f95952e18b6, type: 3}
       propertyPath: m_Name
       value: Wall_B_Corner
+      objectReference: {fileID: 0}
+    - target: {fileID: 153784, guid: 01311b99708e82145a709f95952e18b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 420012, guid: 01311b99708e82145a709f95952e18b6, type: 3}
       propertyPath: m_RootOrder
@@ -10552,6 +10696,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B_Corner (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 153784, guid: 01311b99708e82145a709f95952e18b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 420012, guid: 01311b99708e82145a709f95952e18b6, type: 3}
       propertyPath: m_RootOrder
       value: 35
@@ -10610,6 +10758,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_Name
       value: Wall_B (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
@@ -10943,6 +11095,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rook
       objectReference: {fileID: 0}
+    - target: {fileID: 6705584795808295229, guid: 64eda781dc6869a44abcc3c7baa65fb5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6705584795808295230, guid: 64eda781dc6869a44abcc3c7baa65fb5, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -10994,6 +11150,22 @@ PrefabInstance:
     - target: {fileID: 6705584796139102758, guid: 64eda781dc6869a44abcc3c7baa65fb5, type: 3}
       propertyPath: range
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6705584796809280079, guid: 64eda781dc6869a44abcc3c7baa65fb5, type: 3}
+      propertyPath: m_Size.x
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 6705584796809280079, guid: 64eda781dc6869a44abcc3c7baa65fb5, type: 3}
+      propertyPath: m_Size.y
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 6705584796809280079, guid: 64eda781dc6869a44abcc3c7baa65fb5, type: 3}
+      propertyPath: m_Size.z
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6705584796809280079, guid: 64eda781dc6869a44abcc3c7baa65fb5, type: 3}
+      propertyPath: m_Center.z
+      value: 0.02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -11145,6 +11317,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
       value: 61
@@ -11208,6 +11384,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
       value: 58
@@ -11270,6 +11450,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_Name
       value: Wall_B (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
@@ -11469,6 +11653,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -11522,7 +11710,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh70876
+  m_Name: pb_Mesh33216
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -11692,6 +11880,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_Name
       value: Wall_B (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
@@ -12235,6 +12427,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B_Corner (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 153784, guid: 01311b99708e82145a709f95952e18b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 420012, guid: 01311b99708e82145a709f95952e18b6, type: 3}
       propertyPath: m_RootOrder
       value: 55
@@ -12293,6 +12489,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_Name
       value: Wall_B (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
@@ -12970,6 +13170,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
       value: 26
@@ -13167,6 +13371,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_Name
       value: Wall_B (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
@@ -14168,7 +14376,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh92602
+  m_Name: pb_Mesh33468
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -14338,6 +14546,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 10f6c197dbc5b3d4bb207a1bd7921eba, type: 3}
       propertyPath: m_Name
       value: Doorway_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 10f6c197dbc5b3d4bb207a1bd7921eba, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 10f6c197dbc5b3d4bb207a1bd7921eba, type: 3}
       propertyPath: m_RootOrder
@@ -17763,6 +17975,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door_C
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: b0e0e89eed1bb7f4982f8a6092a384b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b0e0e89eed1bb7f4982f8a6092a384b6, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -18045,6 +18261,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_B_Corner (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 153784, guid: 01311b99708e82145a709f95952e18b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 420012, guid: 01311b99708e82145a709f95952e18b6, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -18251,6 +18471,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_Name
       value: Wall_B (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ce73a35450ff20d4ab05c1f0c3cec2dc, type: 3}
       propertyPath: m_RootOrder
@@ -18583,6 +18807,10 @@ PrefabInstance:
     - target: {fileID: 153784, guid: 01311b99708e82145a709f95952e18b6, type: 3}
       propertyPath: m_Name
       value: Wall_B_Corner (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 153784, guid: 01311b99708e82145a709f95952e18b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 420012, guid: 01311b99708e82145a709f95952e18b6, type: 3}
       propertyPath: m_RootOrder
