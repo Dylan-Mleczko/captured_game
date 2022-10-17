@@ -5,6 +5,8 @@ using UnityEngine;
 public class BrokenWall : MonoBehaviour, Interaction {
 
     public static bool hasPickaxe;
+    [SerializeField] GameObject wall1;
+    [SerializeField] GameObject wall2;
 
     void Start() {
         hasPickaxe = false;
@@ -12,7 +14,8 @@ public class BrokenWall : MonoBehaviour, Interaction {
 
     public void InteractWith() {
         if (hasPickaxe) {
-            hasPickaxe = false;
+            wall1.SetActive(false);
+            wall2.SetActive(true);
         }
     }
 

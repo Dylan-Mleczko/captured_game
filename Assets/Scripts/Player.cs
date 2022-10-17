@@ -38,19 +38,15 @@ public class Player : MonoBehaviour {
         float currentSpeed = moveSpeed * speedMultipler;
         if (Input.GetKey(KeyCode.W)) {
             characterController.Move(transform.TransformDirection(Vector3.forward) * currentSpeed * Time.deltaTime);
-            //transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.S)) {
             characterController.Move(transform.TransformDirection(Vector3.back) * currentSpeed * Time.deltaTime);
-            //transform.Translate(Vector3.back * moveSpeed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.A)) {
             characterController.Move(transform.TransformDirection(Vector3.left) * currentSpeed * Time.deltaTime);
-            //transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.D)) {
             characterController.Move(transform.TransformDirection(Vector3.right) * currentSpeed * Time.deltaTime);
-            //transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.Q)) {
             InteractMode();
@@ -71,6 +67,9 @@ public class Player : MonoBehaviour {
         RaycastHit hit;
         Interactable visibleObject = Physics.Raycast(new Ray(transform.position, transform.forward), out hit) && hit.distance < interactionDistance ? hit.transform.gameObject.GetComponent<Interactable>() : null;
         if (visibleObject != null) {
+            if (visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().isOpen) {
+                return;
+            }
             currentText = visibleObject.text;
             currentText.SetActive(true);
             if (Input.GetMouseButtonDown(0)) {

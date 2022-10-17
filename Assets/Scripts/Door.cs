@@ -5,17 +5,20 @@ using UnityEngine;
 public class Door : MonoBehaviour, Interaction {
 
     public static bool hasKey;
-    Animation anim;
+    public bool isOpen;
+    Animator anim;
 
     void Start() {
         hasKey = false;
-        anim = gameObject.GetComponent<Animation>();
+        isOpen = false;
+        anim = gameObject.GetComponent<Animator>();
     }
 
     public void InteractWith() {
         if (hasKey) {
-            anim.Play();
+            anim.SetBool("open", true);
             hasKey = false;
+            isOpen = true;
         }
     }
 
