@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 312182705375698494}
   - component: {fileID: 2285722050822856905}
   m_Layer: 0
-  m_Name: Cell
+  m_Name: CellWithTorch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
