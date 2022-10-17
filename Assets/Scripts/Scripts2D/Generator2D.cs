@@ -51,6 +51,7 @@ public class Generator2D : MonoBehaviour
       this.location = location;
     }
 
+
     public bool[] GetIntersectStatus(Hallway neighbor)
     {
       if (Mathf.Abs(this.bounds.position.x - neighbor.bounds.position.x) <= this.bounds.size.x && Mathf.Abs(this.bounds.position.y - neighbor.bounds.position.y) <= float.Epsilon)
@@ -88,6 +89,17 @@ public class Generator2D : MonoBehaviour
 
   }
 
+  class Pillar
+  {
+    public Vector2 location;
+    public Pillar(Vector2 location)
+    {
+      this.location = location;
+    }
+
+  }
+
+
   [SerializeField]
   Vector2Int size;
   [SerializeField]
@@ -101,9 +113,8 @@ public class Generator2D : MonoBehaviour
   [SerializeField]
   GameObject hallwayPrefab;
   [SerializeField]
-  Material redMaterial;
-  [SerializeField]
-  Material blueMaterial;
+  GameObject pillarPrefab;
+
 
   Random random;
   Grid2D<CellType> grid;
@@ -334,10 +345,20 @@ public class Generator2D : MonoBehaviour
     return go;
   }
 
+  GameObject PlacePillar(Vector2 location)
+  {
+    GameObject go = Instantiate(pillarPrefab, new Vector3(location.x, 0, location.y), Quaternion.identity);
+    var prefabSize = go.gameObject.GetComponent<Renderer>().bounds.size;
+    go.GetComponent<Transform>().localScale = new Vector3(1 / (4 * prefabSize.x), 1 / prefabSize.y, 1 / (4 * prefabSize.z));
+    return go;
+  }
+
   void PlaceRoom(Vector2Int location, Vector2Int size, Room room)
   {
     GameObject[] objs = new GameObject[size.x * size.y];
     bool[][] statusList = new bool[size.x * size.y][];
+    List<Pillar> pillars = new List<Pillar>();
+
     for (int i = 0; i < size.x; i++)
     {
       for (int j = 0; j < size.y; j++)
@@ -346,10 +367,26 @@ public class Generator2D : MonoBehaviour
         objs[i * size.y + j] = obj;
         bool[] status = { false, false, false, false };
 
-        if (i == 0) status[2] = true;
-        if (i == size.x - 1) status[0] = true;
-        if (j == 0) status[1] = true;
-        if (j == size.y - 1) status[3] = true;
+        if (i == 0)
+        {
+          PlacePillar(new Vector2(location.x + i - 0.45f, location.y + j - 0.45f));
+          status[2] = true;
+        }
+        if (i == size.x - 1)
+        {
+          PlacePillar(new Vector2(location.x + i + 0.45f, location.y + j + 0.45f));
+          status[0] = true;
+        }
+        if (j == 0)
+        {
+          PlacePillar(new Vector2(location.x + i + 0.45f, location.y + j - 0.45f));
+          status[1] = true;
+        }
+        if (j == size.y - 1)
+        {
+          PlacePillar(new Vector2(location.x + i - 0.45f, location.y + j + 0.45f));
+          status[3] = true;
+        }
 
         obj.GetComponent<CellBehavior>().UpdateCell(status);
         obj.name = "room" + (i * size.y + j).ToString();
