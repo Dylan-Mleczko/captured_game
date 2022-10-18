@@ -100,20 +100,13 @@ public class Generator2D : MonoBehaviour
   }
 
 
-  [SerializeField]
-  Vector2Int size;
-  [SerializeField]
-  int roomCount;
-  [SerializeField]
-  Vector2Int roomMaxSize;
-  [SerializeField]
-  GameObject cubePrefab;
-  [SerializeField]
-  GameObject roomPrefab;
-  [SerializeField]
-  GameObject hallwayPrefab;
-  [SerializeField]
-  GameObject pillarPrefab;
+  [SerializeField]Vector2Int size;
+  [SerializeField]int roomCount;
+  [SerializeField]Vector2Int roomMaxSize;
+  [SerializeField]GameObject cubePrefab;
+  [SerializeField]GameObject roomPrefab;
+  [SerializeField]GameObject hallwayPrefab;
+  [SerializeField]GameObject pillarPrefab;
 
 
   Random random;

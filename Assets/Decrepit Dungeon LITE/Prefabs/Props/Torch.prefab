@@ -109,8 +109,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 416354}
-  - component: {fileID: 19804880}
-  - component: {fileID: 19980778}
   m_Layer: 0
   m_Name: Flame
   m_TagString: Untagged
