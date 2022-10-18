@@ -5493,9 +5493,14 @@ MonoBehaviour:
   roomMaxSize: {x: 10, y: 5}
   cubePrefab: {fileID: 7415050535990569633, guid: 3fb4ddafbd160274ba8f07a1cf8cd5ee, type: 3}
   roomPrefab: {fileID: 2869665108007887526, guid: 607ee4f71ce13d74aa8f4b0ecc3826ca, type: 3}
-  hallwayPrefab: {fileID: 312182705375698465, guid: c0f6d2404ab734caba91acdb13835351, type: 3}
+  hallwayPrefab: {fileID: 312182705375698465, guid: f3c3822e8060346ae900c1ebb15121f4, type: 3}
   pillarPrefab: {fileID: 100000, guid: b93fbb2e189612641be84b2521736734, type: 3}
   roomLightPrefab: {fileID: 3685455785965242589, guid: 8c1186c70053b407bb55b2ae5b7fd355, type: 3}
+  miniRooms:
+  - {fileID: 3710619931392930979, guid: 23a90eb56d5e349fcbbf11adec5ff2e8, type: 3}
+  - {fileID: 1021405432791857211, guid: 65a438aa1b8224d82a67e8f41a058eb8, type: 3}
+  - {fileID: 8908545061822324869, guid: c09140b256f524680993d8c34e99944d, type: 3}
+  - {fileID: 8048833584008984151, guid: 2a0ed7182158d4e778f5cb42a77a8049, type: 3}
 --- !u!4 &1923830711
 Transform:
   m_ObjectHideFlags: 0
