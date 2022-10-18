@@ -100,20 +100,14 @@ public class Generator2D : MonoBehaviour
   }
 
 
-  [SerializeField]
-  Vector2Int size;
-  [SerializeField]
-  int roomCount;
-  [SerializeField]
-  Vector2Int roomMaxSize;
-  [SerializeField]
-  GameObject cubePrefab;
-  [SerializeField]
-  GameObject roomPrefab;
-  [SerializeField]
-  GameObject hallwayPrefab;
-  [SerializeField]
-  GameObject pillarPrefab;
+  [SerializeField] Vector2Int size;
+  [SerializeField] int roomCount;
+  [SerializeField] Vector2Int roomMaxSize;
+  [SerializeField] GameObject cubePrefab;
+  [SerializeField] GameObject roomPrefab;
+  [SerializeField] GameObject hallwayPrefab;
+  [SerializeField] GameObject pillarPrefab;
+  [SerializeField] GameObject roomLightPrefab;
 
 
   Random random;
@@ -353,6 +347,16 @@ public class Generator2D : MonoBehaviour
     return go;
   }
 
+  GameObject PlaceRoomLight(Vector2 location)
+  {
+    GameObject go = Instantiate(roomLightPrefab, new Vector3(location.x, 0.7f, location.y), Quaternion.identity);
+    // var prefabSize = go.gameObject.GetComponent<Renderer>().bounds.size;
+    var prefabBounds = getPrefabSize(go);
+    var size = prefabBounds.size;
+    go.GetComponent<Transform>().localScale = new Vector3(1 / (4 * size.x), 1 / (4 * size.y), 1 / (4 * size.z));
+    return go;
+  }
+
   void PlaceRoom(Vector2Int location, Vector2Int size, Room room)
   {
     GameObject[] objs = new GameObject[size.x * size.y];
@@ -393,6 +397,11 @@ public class Generator2D : MonoBehaviour
         statusList[i * size.y + j] = status;
       }
     }
+
+    // try place the room light in the middle of the room and only once
+    PlaceRoomLight(new Vector2(location.x + (size.x) / 2, location.y + (size.y) / 2));
+
+
     room.cells = objs;
     room.statusList = statusList;
   }
@@ -405,7 +414,6 @@ public class Generator2D : MonoBehaviour
     // var size = getPrefabSize(go).size;
     var prefabBounds = getPrefabSize(go);
     var size = prefabBounds.size;
-    var center = prefabBounds.center;
     // Debug.Log(bounds.ToString());
     // go.GetComponent<Transform>().localScale = new Vector3(1, 1, 1);
     //(1,1,1)=localScale*(3,4,5) 
