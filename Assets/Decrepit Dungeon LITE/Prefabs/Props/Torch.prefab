@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 115752}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
   m_LocalPosition: {x: -31.3516, y: 4.228, z: 1.65}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 402428}
@@ -109,6 +109,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 416354}
+  - component: {fileID: 19804880}
+  - component: {fileID: 19980778}
   m_Layer: 0
   m_Name: Flame
   m_TagString: Untagged
@@ -4963,7 +4965,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.9485294, g: 0.59393716, b: 0.27200472, a: 1}
   m_Intensity: 1
-  m_Range: 3
+  m_Range: 1
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.802082
   m_CookieSize: 10
