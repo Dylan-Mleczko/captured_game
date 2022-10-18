@@ -7,33 +7,34 @@
 <!-- [[StartTeamworkPlan]] PLEASE LEAVE THIS LINE UNTOUCHED -->
 
 Sprint 1 (Week 9):
-Thomas - Start floor and wall shaders, floor procedural generation
+Thomas - Start floor shader
 Dylan - Player and piece movement
 Kelsey - First floor map
 
 Sprint 2 (Mid-Sem Break):
-Thomas - Continue work on shaders and floor procedural generation
+Thomas - Continue work on floor shader
 Dylan - Key / door / trapdoor logic and animation
-Kelsey - Torch and dust particle system
+Kelsey - floor procedural generation
 
 Sprint 3 (Week 10):
-Thomas - Continue work on shaders and floor procedural generation
-Dylan - Menu and saving functionality
-Kelsey - Asset sourcing
+Thomas - work on wrinkle floor shader
+Dylan - Menu and saving functionality and Asset sourcing
+Kelsey - Asset sourcing and floor procedural generation
 
 Sprint 4 (Week 11):
 Testing 1
 Evaluation
 Make game play video
-Thomas - Polish lighting
-Dylan - Write letter / journal entries
-Kelsey - Sound design
+Thomas - dust particle system
+Dylan - sound effect sourcing and first floor decoration with functions
+Kelsey - floor procedural generation and lighting
 
 Sprint 5 (Week 12):
 Make changes from evaluation
-Thomas - Post-processing
+Make game play video
+Thomas - Post-processing and Title screen
 Dylan - Title screen
-Kelsey - Environment decoration
+Kelsey - Environment decoration (using procedural generation)
 
 Sprint 6 (SWOT VAC):
 Testing 2
