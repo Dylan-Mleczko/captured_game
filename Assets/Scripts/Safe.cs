@@ -9,7 +9,7 @@ public class Safe : MonoBehaviour, Interaction {
     [SerializeField] GameObject safeScreen;
     [SerializeField] GameObject playerObject;
     Player playerComponent;
-    Animation anim;
+    Animator anim;
     [SerializeField] GameObject[] screenObjects;
     TMP_Text[] screens;
     int[] combination;
@@ -17,7 +17,7 @@ public class Safe : MonoBehaviour, Interaction {
 
     public void Start() {
         playerComponent = playerObject.GetComponent<Player>();
-        anim = gameObject.GetComponent<Animation>();
+        anim = gameObject.GetComponent<Animator>();
         screens = new TMP_Text[4];
         for (int i = 0; i < 4; i++) {
             screens[i] = screenObjects[i].GetComponent<TMP_Text>();
@@ -42,8 +42,8 @@ public class Safe : MonoBehaviour, Interaction {
     public void CheckCode() {
         if (combination[0] == 1 && combination[1] == 8 && combination[2] == 5 && combination[3] == 1) {
             safeScreen.SetActive(false);
-            playerComponent.InteractMode();
-            anim.Play();
+            playerComponent.PlayMode();
+            anim.SetBool("open", true);
         } else {
             ResetCode();
         }

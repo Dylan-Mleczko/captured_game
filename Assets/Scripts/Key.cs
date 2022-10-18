@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class Key : MonoBehaviour, Interaction {
 
+    [SerializeField] int key;
+
     public void InteractWith() {
-        Door.hasKey = true;
+        if (key == 1) {
+            Door.hasKey1 = true;
+        } else {
+            Door.hasKey2 = true;
+        }
         Destroy(gameObject);
     }
 
