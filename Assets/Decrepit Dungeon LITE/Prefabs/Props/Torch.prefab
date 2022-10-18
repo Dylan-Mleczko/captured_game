@@ -34,7 +34,7 @@ Transform:
   - {fileID: 402428}
   - {fileID: 416354}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3304676
 MeshFilter:
@@ -141,7 +141,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119998}
   serializedVersion: 8
-  lengthInSec: 8
+  lengthInSec: 4
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
@@ -702,7 +702,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 0
-    maxNumParticles: 1000
+    maxNumParticles: 500
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -4964,8 +4964,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9485294, g: 0.59393716, b: 0.27200472, a: 1}
-  m_Intensity: 3
-  m_Range: 7
+  m_Intensity: 1
+  m_Range: 3
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.802082
   m_CookieSize: 10
@@ -5006,7 +5006,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 3
+  m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
