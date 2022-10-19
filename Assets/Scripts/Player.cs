@@ -51,7 +51,6 @@ public class Player : MonoBehaviour {
         if (Input.GetKey(KeyCode.Q)) {
             InteractMode();
         }
-        Debug.Log(characterController.transform.position.y);
         rotationX += -Input.GetAxis("Mouse Y") * mouseSensitivity;
         rotationX = Mathf.Clamp(rotationX, -45.0f, 45.0f);
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
@@ -68,7 +67,7 @@ public class Player : MonoBehaviour {
         RaycastHit hit;
         Interactable visibleObject = Physics.Raycast(new Ray(transform.position, transform.forward), out hit) && hit.distance < interactionDistance ? hit.transform.gameObject.GetComponent<Interactable>() : null;
         if (visibleObject != null) {
-            if (visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().isOpen) {
+            if ((visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().isOpen) || (visibleObject.tag == "Safe" && visibleObject.GetComponent<Safe>().isOpen)) {
                 return;
             }
             currentText = visibleObject.text;

@@ -14,8 +14,10 @@ public class Safe : MonoBehaviour, Interaction {
     TMP_Text[] screens;
     int[] combination;
     int pointer;
+    public bool isOpen;
 
     public void Start() {
+        isOpen = false;
         playerComponent = playerObject.GetComponent<Player>();
         anim = gameObject.GetComponent<Animator>();
         screens = new TMP_Text[4];
@@ -44,6 +46,7 @@ public class Safe : MonoBehaviour, Interaction {
             safeScreen.SetActive(false);
             playerComponent.PlayMode();
             anim.SetBool("open", true);
+            isOpen = true;
         } else {
             ResetCode();
         }
