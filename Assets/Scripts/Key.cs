@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Key : MonoBehaviour, Interaction {
 
+    [SerializeField] AudioSource sound;
     [SerializeField] int key;
 
     public void InteractWith() {
+        sound.Play();
         if (key == 1) {
             Door.hasKey1 = true;
         } else {
