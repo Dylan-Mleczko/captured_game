@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Note : MonoBehaviour, Interaction {
 
+    [SerializeField] AudioSource sound;
     [SerializeField] GameObject noteText;
     [SerializeField] GameObject playerObject;
     Player playerComponent;
@@ -13,6 +14,7 @@ public class Note : MonoBehaviour, Interaction {
     }
 
     public void InteractWith() {
+        sound.Play();
         playerComponent.InteractMode();
         noteText.SetActive(true);
     }

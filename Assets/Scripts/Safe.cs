@@ -6,6 +6,10 @@ using TMPro;
 
 public class Safe : MonoBehaviour, Interaction {
     
+    [SerializeField] AudioSource activateSound;
+    [SerializeField] AudioSource clickSound;
+    [SerializeField] AudioSource correctSound;
+    [SerializeField] AudioSource incorrectSound;
     [SerializeField] GameObject safeScreen;
     [SerializeField] GameObject playerObject;
     Player playerComponent;
@@ -29,11 +33,13 @@ public class Safe : MonoBehaviour, Interaction {
     }
 
     public void InteractWith() {
+        activateSound.Play();
         playerComponent.InteractMode();
         safeScreen.SetActive(true);
     }
 
     public void InputNumber(int number) {
+        clickSound.Play();
         if (pointer < 4) {
             combination[pointer] = number;
             screens[pointer].text = number.ToString();
