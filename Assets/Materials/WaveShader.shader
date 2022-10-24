@@ -5,7 +5,7 @@ Shader "Unlit/WaveShader"
         _Texture ("Texture", 2D) = "white" {}
 		// _Ripples ("Ripples", float4[]) = []
 		_Spread ("Spread", Float) = 0.0
-		_FogColour ("Fog Colour", Color) = (0, 0, 0, 1)
+		// _FogColour ("Fog Colour", Color) = (0, 0, 0, 1)
 		// _Glossiness ("Glossiness", Range(0, 1)) = 0.5
 		// _Metallic ("Metallic", Range(0, 1)) = 0
 	}
@@ -41,7 +41,7 @@ Shader "Unlit/WaveShader"
 				float2 uv : TEXCOORD0;
 				float3 worldNormal : TEXCOORD1;
 				float3 worldPosition : TEXCOORD2;
-				UNITY_FOG_COORDS(1)
+				// UNITY_FOG_COORDS(1)
 			};
 
 			// Implementation of the vertex shader
@@ -50,8 +50,8 @@ Shader "Unlit/WaveShader"
 				// Displace the original vertex in model space
 				// for (unit i = 0; i < _Ripples.Length; i++) {
 				// }
-				Float distance = sqrt(pow(v.vertex.x - _Ripples.x, 2) + pow(v.vertex.z - _Ripples.y, 2));
-				Float height = 0.0 * pow(2, -_Spread * distance);
+				Float distance = sqrt(pow(v.vertex.x - 11, 2) + pow(v.vertex.z - 12.5, 2));
+				Float height = 0.2 * pow(2, - 1 * distance);
 				Float period = sin(distance - 10*_Time.y);
 				float4 displacement = float4(0.0f, height * period, 0.0f, 0.0f);
 				v.vertex += displacement;
@@ -66,19 +66,19 @@ Shader "Unlit/WaveShader"
 				o.uv = v.uv;
 				o.worldNormal = UnityObjectToWorldNormal(v.normal);
 				o.worldPosition = mul(unity_ObjectToWorld, v.vertex);
-				UNITY_TRANSFER_FOG(o, o.vertex);
+				// UNITY_TRANSFER_FOG(o, o.vertex);
 				return o;
 			}
 			
 			// Implementation of the fragment shader
 			fixed4 frag(vertOut v) : SV_Target
 			{
-				fixed3 lightDifference = v.worldPosition - _LightPoint.xyz;
-				fixed3 lightDirection = normalize(lightDifference);
-				fixed intensity = -1 * dot(lightDirection, v.worldNormal);
-				fixed4 col = intensity * tex2D(_Texture, v.uv);
+				// fixed3 lightDifference = v.worldPosition - _LightPoint.xyz;
+				// fixed3 lightDirection = normalize(lightDifference);
+				// fixed intensity = -1 * dot(lightDirection, v.worldNormal);
+				// fixed4 col = intensity * tex2D(_Texture, v.uv);
 
-				// fixed4 col = tex2D(_Texture, v.uv);
+				fixed4 col = tex2D(_Texture, v.uv);
 				// UNITY_APPLY_FOG(v.fogCoord, col);
 				return col;
 			}
