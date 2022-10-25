@@ -92,6 +92,7 @@ public class Floor : MonoBehaviour
         mesh.vertices = vertices;
         mesh.triangles = tris;
         mesh.uv = uvs;
+        mesh.RecalculateNormals();
 
         tile.AddComponent<MeshCollider>();
         tile.transform.position = tile.transform.position + new Vector3(0.5f, 0, 0.5f);

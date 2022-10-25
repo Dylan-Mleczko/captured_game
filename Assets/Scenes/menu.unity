@@ -2941,11 +2941,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f61f0af36de45428c2abdb2c4fb0e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileMaterial1: {fileID: 2100000, guid: b0f4f356a33cdd64d9a04cc887da193e, type: 2}
-  tileMaterial2: {fileID: 2100000, guid: 8493663ac447a41468af29424142f442, type: 2}
-  tileSize: 0
+  tileMaterial1: {fileID: 2100000, guid: 6c175050f00eb1e4383884400444c490, type: 2}
+  tileMaterial2: {fileID: 2100000, guid: 364260724c659dc4080db725a453c6cd, type: 2}
+  tileSize: 1
   tileCountX: 100
   tileCountY: 100
+  amplitude: 0
+  spread: 2
+  player: {fileID: 235554151}
 --- !u!4 &1005596624
 Transform:
   m_ObjectHideFlags: 0
