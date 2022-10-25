@@ -5,6 +5,8 @@ using UnityEngine;
 public class Door : MonoBehaviour, Interaction {
 
     [SerializeField] int key;
+    [SerializeField] AudioSource openSound;
+    [SerializeField] AudioSource lockedSound;
 
     public static bool hasKey1;
     public static bool hasKey2;
@@ -20,8 +22,11 @@ public class Door : MonoBehaviour, Interaction {
 
     public void InteractWith() {
         if ((key == 1 && hasKey1) || (key == 2 && hasKey2)) {
+            openSound.Play();
             anim.SetBool("open", true);
             isOpen = true;
+        } else {
+            lockedSound.Play();
         }
     }
 

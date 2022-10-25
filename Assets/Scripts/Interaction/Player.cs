@@ -123,14 +123,7 @@ public class Player : MonoBehaviour
   }
 
     private IEnumerator GameOver() {
-        yield return new WaitForSeconds(3);
-        gameOverSound.Play();
-        ui.GetComponent<Animator>().SetBool("Activate", true);
-        yield return new WaitForSeconds(3);
-        gameOverScreen.SetActive(true);
-    }
-
-    private IEnumerator GameOver() {
+				ui.SetActive(true);
         yield return new WaitForSeconds(3);
         gameOverSound.Play();
         ui.GetComponent<Animator>().SetBool("Activate", true);
