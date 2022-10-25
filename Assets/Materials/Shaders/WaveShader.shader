@@ -50,19 +50,20 @@ Shader "Unlit/WaveShader"
 			// Implementation of the vertex shader
 			vertOut vert(vertIn v)
 			{
+				Float landRippleSpeed = 5;
 				// Displacement according to queen's proximity
 				Float distance = sqrt(pow(v.vertex.x - _RippleOrigin.x, 2) + pow(v.vertex.z - _RippleOrigin.y, 2));
 				Float height = _Amplitude * pow(2, -_Spread * distance);
-				Float period = sin(distance - 5 * _Time.y);
+				Float period = sin(distance - landRippleSpeed * _Time.y);
 				float4 displacement = float4(0.0f, height * period, 0.0f, 0.0f);
 				v.vertex += displacement;
 
 				// Displacement according to landed queen
 				distance = sqrt(pow(v.vertex.x - _LandOrigin.x, 2) + pow(v.vertex.z - _LandOrigin.y, 2));
 				Float lifetime = _Time.y - _LandTime;
-				if (distance < lifetime) {
-					height = 0.5 / (lifetime + 1) * pow(2, -0.05 * distance);
-					period = sin(distance - lifetime);
+				if (distance < landRippleSpeed*lifetime) {
+					height = 1 / (lifetime + 1) * pow(2, -0.4 * distance);
+					period = sin(distance - landRippleSpeed*lifetime);
 					displacement = float4(0.0f, height * period, 0.0f, 0.0f);
 					v.vertex += displacement;
 				}
