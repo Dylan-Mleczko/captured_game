@@ -11,56 +11,43 @@ public class Floor : MonoBehaviour
     [Header("Construction")]
     [SerializeField][Min(0)] private float tileSize;
     [SerializeField][Min(1)] private int tileCountX = 1;
-    [SerializeField][Min(1)] private int tileCountY = 1 ;
+    [SerializeField][Min(1)] private int tileCountY = 1;
 
-    // [Header("Rippling")]
-    // [SerializeField][Min(0)] private int lifetime = 5;
-    // [SerializeField][Min(0)] private float spread = 0.2f;
+    [Header("Rippling")]
+    [SerializeField][Min(0)] private float amplitude = 0.05f;
+    [SerializeField][Min(0)] private float spread = 2f;
 
-    // [Header("Player")]
-    // [SerializeField] private GameObject player = null;
+    [Header("Player")]
+    [SerializeField] private GameObject player = null;
 
     private GameObject[,] tiles;
-    // private List<Vector3> ripples = new List<Vector3>();
-    private Vector2 rippleOrigin = new Vector2(3, 3);
 
     private void Awake()
     {
         GenerateFloorTiles(tileCountX, tileCountY);
         foreach (GameObject tile in tiles)
         {
-            // tile.GetComponent<Renderer>().sharedMaterial.SetVector("_Ripples", new Vector2[] {origin});
-            tile.GetComponent<Renderer>().sharedMaterial.SetVector("_Ripples", rippleOrigin);
-            // tile.GetComponent<Renderer>().sharedMaterial.SetFloat("_Spread", spread);
+            tile.GetComponent<Renderer>().sharedMaterial.SetVector("_RippleOrigin", new Vector2(player.transform.position.x, player.transform.position.z));
+            tile.GetComponent<Renderer>().sharedMaterial.SetFloat("_Spread", spread);
+            tile.GetComponent<Renderer>().sharedMaterial.SetFloat("_Amplitude", amplitude);
         }
-        AddRipple(new Vector2(2, 2));
     }
 
-    // void Update()
-    // {
-        // ensure old ripples disappear
-        // List<Vector3> remainingRipples = new List<Vector3>();
-        // foreach (Vector3 ripple in ripples)
-        // {
-        //     if (ripple.z - Time.time <= lifetime) {
-        //         remainingRipples.Add(ripple);
-        //     }
-        // }
-        // ripples = remainingRipples;
+    void Update()
+    {
+        foreach (GameObject tile in tiles)
+        {
+            tile.GetComponent<Renderer>().sharedMaterial.SetVector("_RippleOrigin", new Vector2(player.transform.position.x, player.transform.position.z));
+        }
 
-        // Debug.Log(player.transform.position.x + ", " + player.transform.position.z);
-        // foreach (GameObject tile in tiles)
-        // {
-        //     tile.GetComponent<Renderer>().sharedMaterial.SetVector("_Ripples", new Vector2(player.transform.position.x, player.transform.position.z));
-        // }
-        // Debug.Log(lifetime);
-
-        // rippleOrigin += new Vector2(1, 1) * (1f * Time.deltaTime);
-        // foreach (GameObject tile in tiles)
-        // {
-        //     tile.GetComponent<Renderer>().sharedMaterial.SetVector("_Ripples", rippleOrigin);
-        // }
-    // }
+        if (Input.GetKeyUp(KeyCode.E)) {
+            foreach (GameObject tile in tiles)
+            {
+                tile.GetComponent<Renderer>().sharedMaterial.SetVector("_LandOrigin", new Vector2(player.transform.position.x, player.transform.position.z));
+                tile.GetComponent<Renderer>().sharedMaterial.SetFloat("_LandTime", Time.time);
+            }
+        }
+    }
 
     private void GenerateFloorTiles(int tileCountX, int tileCountY)
     {
@@ -80,49 +67,44 @@ public class Floor : MonoBehaviour
     {
         // TODO: add tileSize square size transformation
         // CHECK THE ROTATIONS ON THIS OBJECT
-        // GameObject tile = new GameObject(string.Format("X:{0}, Y:{1}", x, y));
+        GameObject tile = new GameObject(string.Format("X:{0}, Y:{1}", x, y));
+        Debug.Log(x + ", " + y);
 
-        // REMOVE THIS LATER
-        GameObject tile = GameObject.CreatePrimitive(PrimitiveType.Plane);
-        tile.transform.localScale = new Vector3(0.1f, 1, 0.1f);
-        tile.transform.position = tile.transform.position + new Vector3(x, 0, y);
-        tile.GetComponent<Renderer>().material = material;
+        Mesh mesh = new Mesh();
+        tile.AddComponent<MeshFilter>().mesh = mesh;
+        tile.AddComponent<MeshRenderer>().material = material;
 
-        // Mesh mesh = new Mesh();
-        // tile.AddComponent<MeshFilter>().mesh = mesh;
-        // tile.AddComponent<MeshRenderer>().material = material;
+        Vector3[] vertices = new Vector3[4];
+        Vector2[] uvs = new Vector2[4];
 
-        // Vector3[] vertices = new Vector3[4];
-        // Vector2[] uvs = new Vector2[vertices.Length];
+        vertices[0] = new Vector3(x * tileSize, 0, y * tileSize);
+        vertices[1] = new Vector3(x * tileSize, 0, (y + 1) * tileSize);
+        vertices[2] = new Vector3((x + 1) * tileSize, 0, y * tileSize);
+        vertices[3] = new Vector3((x + 1) * tileSize, 0, (y + 1) * tileSize);
 
-        // vertices[0] = new Vector3(x * tileSize, 0, y * tileSize);
-        // vertices[1] = new Vector3(x * tileSize, 0, (y + 1) * tileSize);
-        // vertices[2] = new Vector3((x + 1) * tileSize, 0, y * tileSize);
-        // vertices[3] = new Vector3((x + 1) * tileSize, 0, (y + 1) * tileSize);
+        for (int i = 0; i < uvs.Length; i++)
+        {
+            uvs[i] = new Vector2(vertices[i].x, vertices[i].z);
+        }
 
-        // for (int i = 0; i < uvs.Length; i++)
-        // {
-        //     uvs[i] = new Vector2(vertices[i].x, vertices[i].z);
-        // }
+        int[] tris = new int[] { 0, 1, 2, 1, 3, 2 };
 
-        // int[] tris = new int[] { 0, 1, 2, 1, 3, 2 };
+        mesh.vertices = vertices;
+        mesh.triangles = tris;
+        mesh.uv = uvs;
 
-        // mesh.vertices = vertices;
-        // mesh.triangles = tris;
-        // mesh.uv = uvs;
-
-        // tile.AddComponent<MeshCollider>();
-        // tile.transform.position = tile.transform.position + new Vector3(0.5f, 0, 0.5f);
+        tile.AddComponent<MeshCollider>();
+        tile.transform.position = tile.transform.position + new Vector3(0.5f, 0, 0.5f);
 
         return tile;
     }
 
-    public void AddRipple(Vector2 rippleOrigin) {
+    public void landQueen() {
         // create the ripple at the given position using the creation time as the current time
-        // ripples.Add(new Vector3(rippleOrigin.x, rippleOrigin.y, Time.time));
+        foreach (GameObject tile in tiles)
+        {
+            tile.GetComponent<Renderer>().sharedMaterial.SetVector("_LandOrigin", new Vector2(player.transform.position.x, player.transform.position.z));
+            tile.GetComponent<Renderer>().sharedMaterial.SetFloat("_LandTime", Time.time);
+        }
     }
-
-    // public List<Vector3> getRipples() {
-    //     return ripples;
-    // }
 }
