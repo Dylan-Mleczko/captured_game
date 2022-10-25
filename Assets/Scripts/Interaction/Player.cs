@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    [SerializeField] AudioSource ambiance;
+    [SerializeField] GameObject deathScreen;
+    [SerializeField] GameObject gameOverScreen;
+    [SerializeField] AudioSource deathSound;
+    [SerializeField] AudioSource gameOverSound;
+    [SerializeField] GameObject ui;
     [SerializeField] Camera playerCamera;
     [SerializeField] float moveSpeed;
     [SerializeField] float sprintMultipler;
     [SerializeField] float mouseSensitivity;
     [SerializeField] float interactionDistance;
 
+    public bool isAlive;
     private CharacterController characterController;
     private float rotationX;
     public bool playerEnabled;
@@ -23,6 +30,7 @@ public class Player : MonoBehaviour {
         rotationX = 0;
         trail = new Queue<Vector3>();
         isQueenChasing = false;
+        isAlive = true;
     }
 
     void Update() {
@@ -31,6 +39,16 @@ public class Player : MonoBehaviour {
             Look();
         }
         LeaveTrail();
+    }
+
+    void OnTriggerEnter(Collider collider) {
+        if (isAlive && collider.tag == "Enemy") {
+            isAlive = false;
+            ambiance.Stop();
+            deathScreen.SetActive(true);
+            deathSound.Play();
+            StartCoroutine(GameOver());
+        }
     }
 
     void Move() {
@@ -89,6 +107,14 @@ public class Player : MonoBehaviour {
     public void InteractMode() {
         playerEnabled = false;
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    private IEnumerator GameOver() {
+        yield return new WaitForSeconds(3);
+        gameOverSound.Play();
+        ui.GetComponent<Animator>().SetBool("Activate", true);
+        yield return new WaitForSeconds(3);
+        gameOverScreen.SetActive(true);
     }
 
 }
