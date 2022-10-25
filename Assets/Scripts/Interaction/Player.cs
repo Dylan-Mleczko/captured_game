@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour
+{
 
     [SerializeField] AudioSource ambiance;
     [SerializeField] GameObject deathScreen;
@@ -33,13 +34,15 @@ public class Player : MonoBehaviour {
         isAlive = true;
     }
 
-    void Update() {
-        if (playerEnabled) {
-            Move();
-            Look();
-        }
-        LeaveTrail();
+  void Update()
+  {
+    if (playerEnabled)
+    {
+      Move();
+      Look();
     }
+    LeaveTrail();
+  }
 
     void OnTriggerEnter(Collider collider) {
         if (isAlive && collider.tag == "Enemy") {
@@ -75,38 +78,56 @@ public class Player : MonoBehaviour {
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * mouseSensitivity, 0);
     }
 
-    void LeaveTrail() {
-        if (isQueenChasing) {
-            trail.Enqueue(transform.position);
-        }
+  void LeaveTrail()
+  {
+    if (isQueenChasing)
+    {
+      trail.Enqueue(transform.position);
     }
+  }
 
-    void Look() {
-        RaycastHit hit;
-        Interactable visibleObject = Physics.Raycast(new Ray(transform.position, transform.forward), out hit) && hit.distance < interactionDistance ? hit.transform.gameObject.GetComponent<Interactable>() : null;
-        if (visibleObject != null) {
-            if ((visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().isOpen) || (visibleObject.tag == "Safe" && visibleObject.GetComponent<Safe>().isOpen)) {
-                return;
-            }
-            currentText = visibleObject.text;
-            currentText.SetActive(true);
-            if (Input.GetMouseButtonDown(0)) {
-                visibleObject.InteractWith();
-            }
-        } else if (currentText != null) {
-            currentText.SetActive(false);
-            currentText = null;
-        }
+  void Look()
+  {
+    RaycastHit hit;
+    Interactable visibleObject = Physics.Raycast(new Ray(transform.position, transform.forward), out hit) && hit.distance < interactionDistance ? hit.transform.gameObject.GetComponent<Interactable>() : null;
+    if (visibleObject != null)
+    {
+      if (visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().isOpen)
+      {
+        return;
+      }
+      currentText = visibleObject.text;
+      currentText.SetActive(true);
+      if (Input.GetMouseButtonDown(0))
+      {
+        visibleObject.InteractWith();
+      }
     }
-
-    public void PlayMode() {
-        playerEnabled = true;
-        Cursor.lockState = CursorLockMode.Locked;
+    else if (currentText != null)
+    {
+      currentText.SetActive(false);
+      currentText = null;
     }
+  }
 
-    public void InteractMode() {
-        playerEnabled = false;
-        Cursor.lockState = CursorLockMode.None;
+  public void PlayMode()
+  {
+    playerEnabled = true;
+    Cursor.lockState = CursorLockMode.Locked;
+  }
+
+  public void InteractMode()
+  {
+    playerEnabled = false;
+    Cursor.lockState = CursorLockMode.None;
+  }
+
+    private IEnumerator GameOver() {
+        yield return new WaitForSeconds(3);
+        gameOverSound.Play();
+        ui.GetComponent<Animator>().SetBool("Activate", true);
+        yield return new WaitForSeconds(3);
+        gameOverScreen.SetActive(true);
     }
 
     private IEnumerator GameOver() {

@@ -108,6 +108,8 @@ public class Generator2D : MonoBehaviour
   [SerializeField] GameObject hallwayPrefab;
   [SerializeField] GameObject pillarPrefab;
   [SerializeField] GameObject roomLightPrefab;
+  [SerializeField] GameObject[] miniRooms;
+
 
 
   Random random;
@@ -134,10 +136,10 @@ public class Generator2D : MonoBehaviour
     Triangulate();
     CreateHallways();
     PathfindHallways();
-    foreach (Hallway cell in hallwayCells)
-    {
-      Debug.Log(cell.location.ToString());
-    }
+    // foreach (Hallway cell in hallwayCells)
+    // {
+    //   Debug.Log(cell.location.ToString());
+    // }
   }
 
   void PlaceRooms()
@@ -179,6 +181,7 @@ public class Generator2D : MonoBehaviour
 
         if (add)
         {
+
           rooms.Add(newRoom);
           PlaceRoom(newRoom.bounds.position, newRoom.bounds.size, newRoom);
 
@@ -357,8 +360,45 @@ public class Generator2D : MonoBehaviour
     return go;
   }
 
+  void PlaceRoomDecor(Vector2 location, Vector2Int size)
+  {
+    GameObject decor;
+    if (size.x == 1 && size.y == 1)
+    {
+      decor = Instantiate(miniRooms[0], new Vector3(location.x + 0.5f, 0, location.y + 0.5f), Quaternion.identity);
+      var prefabSize = getPrefabSize(decor).size;
+      decor.GetComponent<Transform>().localScale = new Vector3(size.x / (2 * prefabSize.x), 1 / (4 * prefabSize.y), size.y / (2 * prefabSize.z));
+    }
+    else if (size.x == 1 && size.y == 2)
+    {
+      decor = Instantiate(miniRooms[1], new Vector3(location.x, 0.5f, location.y), Quaternion.identity);
+      var prefabSize = getPrefabSize(decor).size;
+      decor.GetComponent<Transform>().localScale = new Vector3(size.x / (2 * prefabSize.x), 1 / (4 * prefabSize.y), size.y / (2 * prefabSize.z));
+      decor.GetComponent<Transform>().position = new Vector3(location.x + size.x / 2, 0f, location.y + size.y / 2);
+    }
+    else if (size.x == 2 && size.y == 1)
+    {
+      decor = Instantiate(miniRooms[2], new Vector3(location.x, 0.5f, location.y), Quaternion.identity);
+      var prefabSize = getPrefabSize(decor).size;
+      decor.GetComponent<Transform>().localScale = new Vector3(size.x / (2 * prefabSize.x), 1 / (4 * prefabSize.y), size.y / (2 * prefabSize.z));
+      decor.GetComponent<Transform>().position = new Vector3(location.x + size.x / 2, 0f, location.y + size.y / 2);
+    }
+    else if (size.x == 2 && size.y == 2)
+    {
+      decor = Instantiate(miniRooms[3], new Vector3(location.x, 0.2f, location.y), Quaternion.identity);
+      var prefabSize = getPrefabSize(decor).size;
+      decor.GetComponent<Transform>().localScale = new Vector3(size.x / (prefabSize.x), 1 / (2 * prefabSize.y), size.y / (prefabSize.z));
+      decor.GetComponent<Transform>().position = new Vector3(location.x + size.x / 2, 0.26f, location.y + size.y / 2);
+      Debug.Log(size.ToString());
+    }
+    // var prefabSize = getPrefabSize(decor).size;
+    // decor.GetComponent<Transform>().localScale = new Vector3(size.x / (4 * prefabSize.x), 1 / (4 * prefabSize.y), size.y / (4 * prefabSize.z));
+  }
+
   void PlaceRoom(Vector2Int location, Vector2Int size, Room room)
   {
+    // Debug.Log(size.ToString());
+    // Debug.Log("hahah");
     GameObject[] objs = new GameObject[size.x * size.y];
     bool[][] statusList = new bool[size.x * size.y][];
     List<Pillar> pillars = new List<Pillar>();
@@ -401,9 +441,12 @@ public class Generator2D : MonoBehaviour
     // try place the room light in the middle of the room and only once
     PlaceRoomLight(new Vector2(location.x + (size.x) / 2, location.y + (size.y) / 2));
 
+    PlaceRoomDecor(new Vector2(location.x, location.y), size);
+
 
     room.cells = objs;
     room.statusList = statusList;
+
   }
 
   GameObject PlaceHallway(Vector2Int location)
