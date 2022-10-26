@@ -18,20 +18,24 @@ public class DataManager : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
+
         handle = this;
         LoadData();
         isNew = false;
+
         if (data.level == 0) {
             isNew = true;
             button1.SetActive(true);
         } else {
             button2.SetActive(true);
         }
+
         DontDestroyOnLoad(gameObject);
     }
 
     public void LoadData() {
         string FILEPATH = Application.persistentDataPath + "/savedata.json";
+
         if (File.Exists(FILEPATH)) {
             data = JsonUtility.FromJson<Data>(File.ReadAllText(FILEPATH));
         } else {
@@ -41,7 +45,7 @@ public class DataManager : MonoBehaviour {
 
     public void NewGame() {
         data.level = 1;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(data.level);
     }
 
     public void Continue() {
@@ -69,5 +73,4 @@ public class DataManager : MonoBehaviour {
         Application.Quit();
         #endif
     }
-
 }
