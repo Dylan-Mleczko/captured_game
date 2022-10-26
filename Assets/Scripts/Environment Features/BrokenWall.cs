@@ -30,6 +30,7 @@ public class BrokenWall : MonoBehaviour, Interaction {
         wall1.SetActive(false);
         wall2.SetActive(true);
         anim.SetBool("Fade", false);
+        source.SetActive(false);
     }
 
 }

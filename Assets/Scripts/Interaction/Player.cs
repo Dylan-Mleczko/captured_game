@@ -5,6 +5,11 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
+    [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject mainMenu;
+    [SerializeField] GameObject settingsMenu;
+    [SerializeField] GameObject exitMenu;
+    [SerializeField] AudioSource pauseSound;
     [SerializeField] AudioSource ambiance;
     [SerializeField] GameObject deathScreen;
     [SerializeField] GameObject gameOverScreen;
@@ -17,12 +22,14 @@ public class Player : MonoBehaviour
     [SerializeField] float mouseSensitivity;
     [SerializeField] float interactionDistance;
 
+    public bool isPaused;
     public bool isAlive;
     private CharacterController characterController;
     private float rotationX;
     public bool playerEnabled;
     public Queue<Vector3> trail;
-    bool isQueenChasing;
+    private bool isQueenChasing;
+    private bool wasQueenChasing;
     GameObject currentText;
 
     void Start() {
@@ -32,17 +39,21 @@ public class Player : MonoBehaviour
         trail = new Queue<Vector3>();
         isQueenChasing = false;
         isAlive = true;
+        isPaused = false;
     }
 
-  void Update()
-  {
-    if (playerEnabled)
-    {
-      Move();
-      Look();
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape) && isAlive) {
+            Pause();
+        }
+        if (!isPaused) {
+            if (playerEnabled) {
+                Move();
+                Look();
+            }
+            LeaveTrail();
+        }
     }
-    LeaveTrail();
-  }
 
     void OnTriggerEnter(Collider collider) {
         if (isAlive && collider.tag == "Enemy") {
@@ -52,6 +63,31 @@ public class Player : MonoBehaviour
             deathSound.Play();
             StartCoroutine(GameOver());
         }
+    }
+
+    void Pause() {
+        if (isPaused) {
+            pauseSound.Play();
+            PlayMode();
+            isPaused = false;
+            Time.timeScale = 1;
+            AudioListener.pause = false;
+            ResetPauseMenu();
+            pauseMenu.SetActive(false);
+        } else if (playerEnabled) {
+            pauseSound.Play();
+            InteractMode();
+            isPaused = true;
+            Time.timeScale = 0;
+            AudioListener.pause = true;
+            pauseMenu.SetActive(true);
+        }
+    }
+
+    void ResetPauseMenu() {
+        settingsMenu.SetActive(false);
+        exitMenu.SetActive(false);
+        mainMenu.SetActive(true);
     }
 
     void Move() {
@@ -78,57 +114,49 @@ public class Player : MonoBehaviour
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * mouseSensitivity, 0);
     }
 
-  void LeaveTrail()
-  {
-    if (isQueenChasing)
-    {
-      trail.Enqueue(transform.position);
+    void LeaveTrail() {
+        if (isQueenChasing) {
+        trail.Enqueue(transform.position);
+        }
     }
-  }
 
-  void Look()
-  {
-    RaycastHit hit;
-    Interactable visibleObject = Physics.Raycast(new Ray(transform.position, transform.forward), out hit) && hit.distance < interactionDistance ? hit.transform.gameObject.GetComponent<Interactable>() : null;
-    if (visibleObject != null)
-    {
-      if (visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().isOpen)
-      {
-        return;
-      }
-      currentText = visibleObject.text;
-      currentText.SetActive(true);
-      if (Input.GetMouseButtonDown(0))
-      {
-        visibleObject.InteractWith();
-      }
+    void Look() {
+        RaycastHit hit;
+        Interactable visibleObject = Physics.Raycast(new Ray(transform.position, transform.forward), out hit) && hit.distance < interactionDistance ? hit.transform.gameObject.GetComponent<Interactable>() : null;
+        if (visibleObject != null) {
+            if (visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().isOpen) {
+                return;
+            }
+            currentText = visibleObject.text;
+            currentText.SetActive(true);
+            if (Input.GetMouseButtonDown(0)) {
+                visibleObject.InteractWith();
+            }
+        }
+        else if (currentText != null) {
+            currentText.SetActive(false);
+            currentText = null;
+        }
     }
-    else if (currentText != null)
-    {
-      currentText.SetActive(false);
-      currentText = null;
+
+    public void PlayMode() {
+        playerEnabled = true;
+        Cursor.lockState = CursorLockMode.Locked;
     }
-  }
 
-  public void PlayMode()
-  {
-    playerEnabled = true;
-    Cursor.lockState = CursorLockMode.Locked;
-  }
-
-  public void InteractMode()
-  {
+    public void InteractMode() {
     playerEnabled = false;
     Cursor.lockState = CursorLockMode.None;
-  }
+    }
 
     private IEnumerator GameOver() {
-				ui.SetActive(true);
+		ui.SetActive(true);
         yield return new WaitForSeconds(3);
         gameOverSound.Play();
         ui.GetComponent<Animator>().SetBool("Activate", true);
         yield return new WaitForSeconds(3);
         gameOverScreen.SetActive(true);
+        InteractMode();
     }
 
 }

@@ -7,6 +7,7 @@ public class Door : MonoBehaviour, Interaction {
     [SerializeField] int key;
     [SerializeField] AudioSource openSound;
     [SerializeField] AudioSource lockedSound;
+    [SerializeField] AudioSource unlockSound;
 
     public static bool hasKey1;
     public static bool hasKey2;
@@ -22,6 +23,7 @@ public class Door : MonoBehaviour, Interaction {
 
     public void InteractWith() {
         if ((key == 1 && hasKey1) || (key == 2 && hasKey2)) {
+            unlockSound.Play();
             openSound.Play();
             anim.SetBool("open", true);
             isOpen = true;
