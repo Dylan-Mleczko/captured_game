@@ -389,7 +389,7 @@ public class Generator2D : MonoBehaviour
       var prefabSize = getPrefabSize(decor).size;
       decor.GetComponent<Transform>().localScale = new Vector3(size.x / (prefabSize.x), 1 / (2 * prefabSize.y), size.y / (prefabSize.z));
       decor.GetComponent<Transform>().position = new Vector3(location.x + size.x / 2, 0.26f, location.y + size.y / 2);
-      Debug.Log(size.ToString());
+      // Debug.Log(size.ToString());
     }
     // var prefabSize = getPrefabSize(decor).size;
     // decor.GetComponent<Transform>().localScale = new Vector3(size.x / (4 * prefabSize.x), 1 / (4 * prefabSize.y), size.y / (4 * prefabSize.z));

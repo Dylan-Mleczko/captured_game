@@ -68,7 +68,6 @@ public class Floor : MonoBehaviour
         // TODO: add tileSize square size transformation
         // CHECK THE ROTATIONS ON THIS OBJECT
         GameObject tile = new GameObject(string.Format("X:{0}, Y:{1}", x, y));
-        Debug.Log(x + ", " + y);
 
         Mesh mesh = new Mesh();
         tile.AddComponent<MeshFilter>().mesh = mesh;

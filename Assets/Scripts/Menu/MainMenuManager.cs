@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ButtonManager : MonoBehaviour {
+public class MainMenuManager : MonoBehaviour {
 
     [SerializeField] bool isContinue;
     [SerializeField] Animator anim;
@@ -22,11 +22,15 @@ public class ButtonManager : MonoBehaviour {
         }   
     }
 
-    public void PlayGame() {
+    public void NewGame() {
         sound.Stop();
         black.SetActive(true);
         anim.SetBool("Fade", true);
         StartCoroutine(Fade(true));
+    }
+
+    public void OpenSettings() {
+        
     }
 
     public void ContinueGame() {
