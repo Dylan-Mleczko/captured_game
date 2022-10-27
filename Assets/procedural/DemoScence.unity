@@ -626,11 +626,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abe681751b364c848bc9da5ed3f09f84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ambiance: {fileID: 0}
+  deathScreen: {fileID: 0}
+  gameOverScreen: {fileID: 0}
+  deathSound: {fileID: 0}
+  gameOverSound: {fileID: 0}
+  ui: {fileID: 0}
   playerCamera: {fileID: 1469898483}
   moveSpeed: 1
   sprintMultipler: 2
   mouseSensitivity: 3
   interactionDistance: 50
+  isAlive: 0
   playerEnabled: 1
 --- !u!4 &1258459448
 Transform:
