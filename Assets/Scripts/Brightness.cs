@@ -7,10 +7,8 @@ using UnityEngine.Rendering.PostProcessing;
 public class Brightness : MonoBehaviour
 {
     public Slider brightnessSlider;
-
     public PostProcessProfile brightness;
     public PostProcessLayer layer;
-
     AutoExposure exposure;
 
     void Start() {
