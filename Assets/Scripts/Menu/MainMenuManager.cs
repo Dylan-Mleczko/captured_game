@@ -49,4 +49,12 @@ public class MainMenuManager : MonoBehaviour {
         }
     }
 
+    public void GiveUp() {
+        SceneManager.LoadScene(0);
+    }
+
+    public void TryAgain() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
 }
