@@ -30,7 +30,7 @@ Shader "Unlit/FloorShader"
 
 		// uniform global parameters
 		half _Spread; 	 // the rate of decay of waves
-		half _Amplitude; // the multiplier for the height of waves
+		uniform half _Amplitude; // the multiplier for the height of waves
 		half _Glossiness;
 		half _Metallic;
 		fixed4 _Color;
@@ -66,7 +66,7 @@ Shader "Unlit/FloorShader"
 			distance = sqrt(pow(v.vertex.x - _LandOrigin.x, 2) + pow(v.vertex.z - _LandOrigin.y, 2));
 			half lifetime = _Time.y - _LandTime;
 			if (distance < landRippleSpeed*lifetime) {
-				height = 1 / (lifetime + 1) * pow(2, -0.4 * distance);
+				height = 0 / (lifetime + 1) * pow(2, -0.4 * distance);
 				period = sin(distance - landRippleSpeed*lifetime);
 				displacement = float4(0.0f, height * period, 0.0f, 0.0f);
 				v.vertex += displacement;
