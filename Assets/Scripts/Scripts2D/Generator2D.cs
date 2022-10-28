@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
+using System.Linq;
 using Graphs;
 
 public class Generator2D : MonoBehaviour
@@ -16,12 +17,14 @@ public class Generator2D : MonoBehaviour
   class Room
   {
     public RectInt bounds;
+    public Vector2Int location;
     public GameObject[] cells;
     public bool[][] statusList;
 
     public Room(Vector2Int location, Vector2Int size)
     {
       bounds = new RectInt(location, size);
+      this.location = location;
       cells = new GameObject[size.x * size.y];
     }
 
@@ -109,6 +112,9 @@ public class Generator2D : MonoBehaviour
   [SerializeField] GameObject pillarPrefab;
   [SerializeField] GameObject roomLightPrefab;
   [SerializeField] GameObject[] miniRooms;
+  [SerializeField] GameObject key;
+  [SerializeField] GameObject exitDoor;
+  // [SerializeField] GameObject door;
 
 
 
@@ -119,6 +125,8 @@ public class Generator2D : MonoBehaviour
   List<Hallway> hallwayCells;
   Delaunay2D delaunay;
   HashSet<Prim.Edge> selectedEdges;
+
+  float ratio;
 
   void Start()
   {
@@ -136,6 +144,10 @@ public class Generator2D : MonoBehaviour
     Triangulate();
     CreateHallways();
     PathfindHallways();
+    PlaceExitDoor();
+    // Debug.Log(rooms[0].statusList.GetLength(0).ToString());
+    // rooms[0].statusList.GetLength(0);
+
     // foreach (Hallway cell in hallwayCells)
     // {
     //   Debug.Log(cell.location.ToString());
@@ -144,6 +156,7 @@ public class Generator2D : MonoBehaviour
 
   void PlaceRooms()
   {
+    var isExit = false;
     for (int i = 0; i < roomCount; i++)
     {
       int attempts = 0;
@@ -184,6 +197,21 @@ public class Generator2D : MonoBehaviour
 
           rooms.Add(newRoom);
           PlaceRoom(newRoom.bounds.position, newRoom.bounds.size, newRoom);
+          if (rooms.Count == 1)
+          {
+            // Handle null or empty list
+            GetRatio(newRoom.cells[0]);
+            PlaceKey(newRoom.bounds.position);
+            Debug.Log("First room is here!");
+            Debug.Log(newRoom.bounds.position.ToString());
+          }
+          // else if (!isExit && newRoom.bounds.size.x == 2 && newRoom.bounds.size.y == 1)
+          // {
+          //   Debug.Log("Exit is here!");
+          //   PlaceExitDoor(newRoom.bounds.position);
+          //   Debug.Log(newRoom.bounds.position.ToString());
+          //   isExit = true;
+          // }
 
           foreach (var pos in newRoom.bounds.allPositionsWithin)
           {
@@ -328,8 +356,6 @@ public class Generator2D : MonoBehaviour
 
         preHallway.UpdateGameObjectStatus();
 
-
-
       }
     }
   }
@@ -348,6 +374,50 @@ public class Generator2D : MonoBehaviour
     var prefabSize = go.gameObject.GetComponent<Renderer>().bounds.size;
     go.GetComponent<Transform>().localScale = new Vector3(1 / (4 * prefabSize.x), 1 / prefabSize.y, 1 / (4 * prefabSize.z));
     return go;
+  }
+
+  GameObject PlaceKey(Vector2 location)
+  {
+    GameObject go = Instantiate(key, new Vector3(location.x, 0.05f, location.y), Quaternion.identity);
+    var prefabSize = go.gameObject.GetComponent<Renderer>().bounds.size;
+    go.GetComponent<Transform>().localScale = new Vector3(3 * ratio, 3 * ratio, 3 * ratio);
+    return go;
+  }
+  void PlaceExitDoor()
+  {
+    var isExit = false;
+    bool[] status = { false, false, false, false };
+
+    foreach (Room room in rooms)
+    {
+      for (int i = room.statusList.GetLength(0) - 1; i >= 0; i--)
+      {
+        for (int j = 0; j < 4; j++)
+        {
+          if (room.statusList[i][j] == true)
+          {
+            // i = row * size.y + column;
+            var posX = Mathf.Floor(i / room.bounds.size.y) + room.location.x;
+            var posY = i % room.bounds.size.y + room.location.y;
+            Debug.Log(posX.ToString());
+            Debug.Log(posY.ToString());
+            GameObject go = Instantiate(exitDoor, new Vector3(posX + 0.4f, 0, posY), Quaternion.identity);
+            var prefabSize = GetWrappedPrefabSize(go).size;
+            go.GetComponent<Transform>().localScale = new Vector3(1 / (prefabSize.x), 1 / (prefabSize.y), 1 / (prefabSize.z));
+            status[j] = true;
+            go.GetComponent<CellBehavior>().UpdateCell(status);
+            // go.GetComponent<Transform>().position = new Vector3(posX, 0, posY);
+
+            isExit = true;
+            break;
+          }
+
+        }
+        if (isExit) break;
+      }
+      if (isExit) break;
+
+    }
   }
 
   GameObject PlaceRoomLight(Vector2 location)
@@ -369,26 +439,28 @@ public class Generator2D : MonoBehaviour
       var prefabSize = getPrefabSize(decor).size;
       decor.GetComponent<Transform>().localScale = new Vector3(size.x / (2 * prefabSize.x), 1 / (4 * prefabSize.y), size.y / (2 * prefabSize.z));
     }
-    else if (size.x == 1 && size.y == 2)
-    {
-      decor = Instantiate(miniRooms[1], new Vector3(location.x, 0.5f, location.y), Quaternion.identity);
-      var prefabSize = getPrefabSize(decor).size;
-      decor.GetComponent<Transform>().localScale = new Vector3(size.x / (2 * prefabSize.x), 1 / (4 * prefabSize.y), size.y / (2 * prefabSize.z));
-      decor.GetComponent<Transform>().position = new Vector3(location.x + size.x / 2, 0f, location.y + size.y / 2);
-    }
-    else if (size.x == 2 && size.y == 1)
-    {
-      decor = Instantiate(miniRooms[2], new Vector3(location.x, 0.5f, location.y), Quaternion.identity);
-      var prefabSize = getPrefabSize(decor).size;
-      decor.GetComponent<Transform>().localScale = new Vector3(size.x / (2 * prefabSize.x), 1 / (4 * prefabSize.y), size.y / (2 * prefabSize.z));
-      decor.GetComponent<Transform>().position = new Vector3(location.x + size.x / 2, 0f, location.y + size.y / 2);
-    }
+    // else if (size.x == 1 && size.y == 2)
+    // {
+    //   decor = Instantiate(miniRooms[1], new Vector3(location.x, 0.5f, location.y), Quaternion.identity);
+    //   var prefabSize = getPrefabSize(decor).size;
+    //   decor.GetComponent<Transform>().localScale = new Vector3(size.x / (2 * prefabSize.x), 1 / (4 * prefabSize.y), size.y / (2 * prefabSize.z));
+    //   decor.GetComponent<Transform>().position = new Vector3(location.x + size.x / 2, 0f, location.y + size.y / 2);
+    // }
+    // else if (size.x == 2 && size.y == 1)
+    // {
+    //   decor = Instantiate(miniRooms[2], new Vector3(location.x, 0.5f, location.y), Quaternion.identity);
+    //   var prefabSize = getPrefabSize(decor).size;
+    //   decor.GetComponent<Transform>().localScale = new Vector3(size.x / (2 * prefabSize.x), 1 / (4 * prefabSize.y), size.y / (2 * prefabSize.z));
+    //   decor.GetComponent<Transform>().position = new Vector3(location.x + size.x / 2, 0f, location.y + size.y / 2);
+    // }
     else if (size.x == 2 && size.y == 2)
     {
       decor = Instantiate(miniRooms[3], new Vector3(location.x, 0.2f, location.y), Quaternion.identity);
       var prefabSize = getPrefabSize(decor).size;
       decor.GetComponent<Transform>().localScale = new Vector3(size.x / (prefabSize.x), 1 / (2 * prefabSize.y), size.y / (prefabSize.z));
+      // decor.GetComponent<Transform>().localScale = new Vector3(ratio, ratio, ratio);
       decor.GetComponent<Transform>().position = new Vector3(location.x + size.x / 2, 0.26f, location.y + size.y / 2);
+      // decor.GetComponent<Transform>().position = new Vector3(location.x + size.x / 2, size.y * ratio, location.y + size.y / 2);
       // Debug.Log(size.ToString());
     }
     // var prefabSize = getPrefabSize(decor).size;
@@ -529,6 +601,54 @@ public class Generator2D : MonoBehaviour
       bounds.Encapsulate(child.gameObject.GetComponent<Renderer>().bounds);
     }
     return bounds;
+  }
+
+  Bounds GetWrappedPrefabSize(GameObject obj)
+  {
+    Vector3 center = new Vector3(0, 0, 0);
+    List<GameObject> objs = GetGameObjects(obj);
+
+    foreach (GameObject child in objs)
+    {
+      center += child.GetComponent<Renderer>().bounds.center;
+    }
+    center /= objs.Count(); //center is average center of children
+
+    //Now you have a center, calculate the bounds by creating a zero sized 'Bounds', 
+    Bounds bounds = new Bounds(center, Vector3.zero);
+    foreach (GameObject child in objs)
+    {
+      bounds.Encapsulate(child.GetComponent<Renderer>().bounds);
+    }
+    return bounds;
+  }
+
+  List<GameObject> GetGameObjects(GameObject obj)
+  {
+
+    List<GameObject> currentList = new List<GameObject>();
+    if (obj.transform.childCount == 0 && obj.GetComponent<Renderer>())
+    {
+      currentList.Add(obj);
+      Debug.Log("Add a child");
+      return currentList;
+    }
+    else if (obj.transform.childCount != 0)
+    {
+      foreach (Transform child in obj.transform)
+      {
+        List<GameObject> childrenList = GetGameObjects(child.gameObject);
+        currentList = currentList.Concat(childrenList).ToList();
+      }
+    }
+    return currentList;
+
+  }
+
+  void GetRatio(GameObject obj)
+  {
+    var prefabSize = getPrefabSize(obj).size;
+    this.ratio = 1 / prefabSize.x;
 
   }
 }
