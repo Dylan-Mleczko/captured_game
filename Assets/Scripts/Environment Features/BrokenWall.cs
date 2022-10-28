@@ -9,6 +9,7 @@ public class BrokenWall : MonoBehaviour, Interaction {
     [SerializeField] GameObject wall2;
     [SerializeField] AudioSource sound;
     [SerializeField] GameObject source;
+    [SerializeField] GameObject newText;
     private Animator anim;
 
     void Start() {

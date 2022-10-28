@@ -6,11 +6,12 @@ public class Player : MonoBehaviour
 {
 
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject prebrokenText;
+    [SerializeField] GameObject lockedText;
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject settingsMenu;
     [SerializeField] GameObject exitMenu;
     [SerializeField] AudioSource pauseSound;
-    [SerializeField] AudioSource ambiance;
     [SerializeField] GameObject deathScreen;
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] AudioSource deathSound;
@@ -28,17 +29,17 @@ public class Player : MonoBehaviour
     private float rotationX;
     public bool playerEnabled;
     public Queue<Vector3> trail;
-    private bool isQueenChasing;
+    public bool isQueenChasing;
     private bool wasQueenChasing;
     GameObject currentText;
 
     void Start() {
-        PlayMode();
+        FrozenMode();
         characterController = GetComponent<CharacterController>();
         rotationX = 0;
         trail = new Queue<Vector3>();
         isQueenChasing = false;
-        isAlive = true;
+        isAlive = false;
         isPaused = false;
     }
 
@@ -57,8 +58,8 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider collider) {
         if (isAlive && collider.tag == "Enemy") {
+            AudioListener.pause = true;
             isAlive = false;
-            ambiance.Stop();
             deathScreen.SetActive(true);
             deathSound.Play();
             StartCoroutine(GameOver());
@@ -74,6 +75,7 @@ public class Player : MonoBehaviour
             AudioListener.pause = false;
             ResetPauseMenu();
             pauseMenu.SetActive(false);
+            isQueenChasing = wasQueenChasing;
         } else if (playerEnabled) {
             pauseSound.Play();
             InteractMode();
@@ -81,6 +83,8 @@ public class Player : MonoBehaviour
             Time.timeScale = 0;
             AudioListener.pause = true;
             pauseMenu.SetActive(true);
+            wasQueenChasing = isQueenChasing;
+            isQueenChasing = false;
         }
     }
 
@@ -124,10 +128,16 @@ public class Player : MonoBehaviour
         RaycastHit hit;
         Interactable visibleObject = Physics.Raycast(new Ray(transform.position, transform.forward), out hit) && hit.distance < interactionDistance ? hit.transform.gameObject.GetComponent<Interactable>() : null;
         if (visibleObject != null) {
-            if (visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().isOpen) {
+            if ((visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().isOpen) || (visibleObject.tag == "Lever" && visibleObject.GetComponent<Lever>().isUp)) {
                 return;
             }
-            currentText = visibleObject.text;
+            if (visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().IsLocked()) {
+                currentText = lockedText;
+            } else if (visibleObject.tag == "Wall" && !BrokenWall.hasPickaxe) {
+                currentText = prebrokenText;
+            } else {
+                currentText = visibleObject.text;
+            }
             currentText.SetActive(true);
             if (Input.GetMouseButtonDown(0)) {
                 visibleObject.InteractWith();
@@ -137,6 +147,11 @@ public class Player : MonoBehaviour
             currentText.SetActive(false);
             currentText = null;
         }
+    }
+
+    public void FrozenMode() {
+        playerEnabled = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void PlayMode() {
