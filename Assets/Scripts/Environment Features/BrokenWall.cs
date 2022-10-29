@@ -5,6 +5,7 @@ using UnityEngine;
 public class BrokenWall : MonoBehaviour, Interaction {
 
     public static bool hasPickaxe;
+    [SerializeField] Player player;
     [SerializeField] GameObject wall1;
     [SerializeField] GameObject wall2;
     [SerializeField] AudioSource sound;
@@ -19,6 +20,7 @@ public class BrokenWall : MonoBehaviour, Interaction {
 
     public void InteractWith() {
         if (hasPickaxe) {
+            player.playerEnabled = false;
             source.SetActive(true);
             sound.Play();
             anim.SetBool("Fade", true);
@@ -32,6 +34,7 @@ public class BrokenWall : MonoBehaviour, Interaction {
         wall2.SetActive(true);
         anim.SetBool("Fade", false);
         source.SetActive(false);
+        player.playerEnabled = true;
     }
 
 }
