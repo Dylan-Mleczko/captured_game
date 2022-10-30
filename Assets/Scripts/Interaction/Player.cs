@@ -22,6 +22,10 @@ public class Player : MonoBehaviour
     [SerializeField] float sprintMultipler;
     [SerializeField] float mouseSensitivity;
     [SerializeField] float interactionDistance;
+    [SerializeField] Knight knight1;
+    [SerializeField] Knight knight2;
+    [SerializeField] Knight knight3;
+    [SerializeField] Knight knight4;
 
     public bool isPaused;
     public bool isAlive;
@@ -63,6 +67,16 @@ public class Player : MonoBehaviour
             deathScreen.SetActive(true);
             deathSound.Play();
             StartCoroutine(GameOver());
+        } else if (collider.tag == "KnightManager1") {
+            knight1.enabled = true;
+            knight2.enabled = true;
+            knight3.enabled = true;
+            knight4.enabled = true;
+        } else if (collider.tag == "KnightManager2") {
+            knight1.enabled = false;
+            knight2.enabled = false;
+            knight3.enabled = false;
+            knight4.enabled = false;
         }
     }
 
@@ -128,7 +142,7 @@ public class Player : MonoBehaviour
         RaycastHit hit;
         Interactable visibleObject = Physics.Raycast(new Ray(transform.position, transform.forward), out hit) && hit.distance < interactionDistance ? hit.transform.gameObject.GetComponent<Interactable>() : null;
         if (visibleObject != null) {
-            if ((visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().isOpen) || (visibleObject.tag == "Lever" && visibleObject.GetComponent<Lever>().isUp)) {
+            if ((visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().isOpen) || (visibleObject.tag == "Safe" && visibleObject.GetComponent<Safe>().isOpen) ||(visibleObject.tag == "Lever" && visibleObject.GetComponent<Lever>().isUp)) {
                 return;
             }
             if (visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().IsLocked()) {
