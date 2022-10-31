@@ -1,3 +1,5 @@
+using System;
+using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,6 +48,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && isAlive) {
             Pause();
         }
+
         if (!isPaused) {
             if (playerEnabled) {
                 Move();
@@ -53,6 +56,17 @@ public class Player : MonoBehaviour
             }
             LeaveTrail();
         }
+
+        float minDistance = float.MaxValue;
+        Type[] pieceTypes = new Type[]{typeof(Bishop), typeof(King), typeof(Knight), typeof(Queen), typeof(Rook)};
+        foreach (Type type in pieceTypes) {
+            foreach (GameObject piece in FindObjectsOfType(type))
+            {
+                minDistance = min(minDistance, Distance(transform.position, piece.transform.position));
+            }
+        }
+        Debug.Log(minDistance);
+        // tile.GetComponent<Renderer>().sharedMaterial.SetFloat("_Spread", spread);
     }
 
     void OnTriggerEnter(Collider collider) {
