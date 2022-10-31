@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
         foreach (Type type in pieceTypes) {
             foreach (GameObject piece in FindObjectsOfType(type))
             {
-                minDistance = min(minDistance, Distance(transform.position, piece.transform.position));
+                minDistance = Math.Min(minDistance, Vector3.Distance(transform.position, piece.transform.position));
             }
         }
         Debug.Log(minDistance);
