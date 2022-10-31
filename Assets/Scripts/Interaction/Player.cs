@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     private bool isQueenChasing;
     private bool wasQueenChasing;
     GameObject currentText;
+    public List<GameObject> pieces;
 
     void Start() {
         PlayMode();
@@ -58,12 +59,9 @@ public class Player : MonoBehaviour
         }
 
         float minDistance = float.MaxValue;
-        Type[] pieceTypes = new Type[]{typeof(Bishop), typeof(King), typeof(Knight), typeof(Queen), typeof(Rook)};
-        foreach (Type type in pieceTypes) {
-            foreach (GameObject piece in FindObjectsOfType(type))
-            {
-                minDistance = Math.Min(minDistance, Vector3.Distance(transform.position, piece.transform.position));
-            }
+        foreach (GameObject piece in pieces)
+        {
+            minDistance = Math.Min(minDistance, Vector3.Distance(transform.position, piece.transform.position));
         }
         Debug.Log(minDistance);
         // tile.GetComponent<Renderer>().sharedMaterial.SetFloat("_Spread", spread);
@@ -159,8 +157,8 @@ public class Player : MonoBehaviour
     }
 
     public void InteractMode() {
-    playerEnabled = false;
-    Cursor.lockState = CursorLockMode.None;
+        playerEnabled = false;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     private IEnumerator GameOver() {
