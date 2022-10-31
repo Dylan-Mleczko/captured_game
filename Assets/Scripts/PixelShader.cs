@@ -41,8 +41,8 @@ public class PixelShader : MonoBehaviour {
             return;
         }
 
-        material.SetFloat("_Proximity", 0.5f);
-        material.SetFloat("_Strength", 0.5f);
+        // material.SetFloat("_Proximity", 0.5f);
+        // material.SetFloat("_Strength", 0.5f);
         Graphics.Blit (source, destination, material);
     }
 }

@@ -68,16 +68,21 @@ Shader "Hidden/PixelShader"
 
             fixed4 frag (v2f i) : COLOR
             {
+                fixed4 c = tex2D(_MainTex, i.uv);
+                // return tex;
+
                 // float dist = length(i.vertex);
-                fixed4 tex = tex2D(_MainTex, i.uv);
                 // float k = length(i.pos);
                 // col.a *= k;
-                return tex;
-                // float lum = c.r * 0.3 + c.g * 0.59 + c.b * 0.11;
-                // float3 bw = float3(lum, lum, lum);
-                // float4 result = c;
-                // result.rgb = lerp(c.rgb, bw, _Strength);
-                // return result;
+
+                float lum = c.r + c.g + c.b;
+                float3 bw = float3(lum, lum, lum);
+                float4 result = c;
+
+                float effectDistance = 12;
+                float multiplier = saturate(1.0 - min(effectDistance, _Proximity)/effectDistance);
+                result.rgb = lerp(c.rgb, bw, multiplier);
+                return result;
             }
             ENDCG
         }
