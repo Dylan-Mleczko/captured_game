@@ -1,5 +1,3 @@
-using System;
-using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,7 +31,6 @@ public class Player : MonoBehaviour
     private bool isQueenChasing;
     private bool wasQueenChasing;
     GameObject currentText;
-    public List<GameObject> pieces;
 
     void Start() {
         PlayMode();
@@ -57,14 +54,6 @@ public class Player : MonoBehaviour
             }
             LeaveTrail();
         }
-
-        float minDistance = float.MaxValue;
-        foreach (GameObject piece in pieces)
-        {
-            minDistance = Math.Min(minDistance, Vector3.Distance(transform.position, piece.transform.position));
-        }
-        Debug.Log(minDistance);
-        // tile.GetComponent<Renderer>().sharedMaterial.SetFloat("_Spread", spread);
     }
 
     void OnTriggerEnter(Collider collider) {
