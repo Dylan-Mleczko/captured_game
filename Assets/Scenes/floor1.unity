@@ -26974,9 +26974,9 @@ MonoBehaviour:
   gameOverSound: {fileID: 1653184392}
   ui: {fileID: 1880046444}
   playerCamera: {fileID: 1006586628}
-  moveSpeed: 10
+  moveSpeed: 6
   sprintMultipler: 2
-  mouseSensitivity: 5
+  mouseSensitivity: 3
   interactionDistance: 5
   knight1: {fileID: 0}
   knight2: {fileID: 0}
@@ -26986,6 +26986,7 @@ MonoBehaviour:
   isAlive: 0
   playerEnabled: 0
   isQueenChasing: 0
+  initialAnimation: 1
 --- !u!4 &965600656
 Transform:
   m_ObjectHideFlags: 0

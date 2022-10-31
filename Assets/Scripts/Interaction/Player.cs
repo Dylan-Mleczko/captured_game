@@ -36,9 +36,12 @@ public class Player : MonoBehaviour
     public bool isQueenChasing;
     private bool wasQueenChasing;
     GameObject currentText;
+    public bool initialAnimation;
 
     void Start() {
-        FrozenMode();
+        if (initialAnimation) {
+            FrozenMode();
+        }
         characterController = GetComponent<CharacterController>();
         rotationX = 0;
         trail = new Queue<Vector3>();
@@ -174,8 +177,8 @@ public class Player : MonoBehaviour
     }
 
     public void InteractMode() {
-    playerEnabled = false;
-    Cursor.lockState = CursorLockMode.None;
+        playerEnabled = false;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     private IEnumerator GameOver() {
