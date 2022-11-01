@@ -9,11 +9,15 @@ public class PixelShader : MonoBehaviour {
     
     // values for distance to closest piece
     public List<GameObject> pieces;
-    private float minDistance;
 
-    void Awake ()
+    void Awake()
     {
         material = new Material(Shader.Find("Hidden/PixelShader"));
+    }
+
+    void Start() {
+        material.SetInt("_ScreenWidth", Screen.width);
+        material.SetInt("_ScreenHeight", Screen.height);
     }
 
     public static Vector2 xz(Vector3 vec) {
@@ -28,7 +32,6 @@ public class PixelShader : MonoBehaviour {
             minDistance = Math.Min(minDistance, Vector2.Distance(xz(transform.position), xz(piece.transform.position)));
         }
 
-        Debug.Log(minDistance);
         material.SetFloat("_Proximity", minDistance);
     }
     
@@ -41,8 +44,6 @@ public class PixelShader : MonoBehaviour {
             return;
         }
 
-        // material.SetFloat("_Proximity", 0.5f);
-        // material.SetFloat("_Strength", 0.5f);
         Graphics.Blit (source, destination, material);
     }
 }
