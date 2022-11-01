@@ -32,4 +32,8 @@ public class Door : MonoBehaviour, Interaction {
         }
     }
 
+    public bool IsLocked() {
+        return !((key == 1 && hasKey1) || (key == 2 && hasKey2));
+    }
+
 }

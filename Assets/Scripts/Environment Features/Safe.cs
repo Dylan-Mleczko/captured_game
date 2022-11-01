@@ -6,6 +6,7 @@ using TMPro;
 
 public class Safe : MonoBehaviour, Interaction {
     
+    [SerializeField] GameObject pickaxe;
     [SerializeField] AudioSource activateSound;
     [SerializeField] AudioSource clickSound;
     [SerializeField] AudioSource correctSound;
@@ -50,10 +51,13 @@ public class Safe : MonoBehaviour, Interaction {
     public void CheckCode() {
         if (combination[0] == 1 && combination[1] == 8 && combination[2] == 5 && combination[3] == 1) {
             safeScreen.SetActive(false);
+            correctSound.Play();
             playerComponent.PlayMode();
             anim.SetBool("open", true);
             isOpen = true;
+            pickaxe.SetActive(true);
         } else {
+            incorrectSound.Play();
             ResetCode();
         }
     }
