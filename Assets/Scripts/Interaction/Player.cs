@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && isAlive) {
             Pause();
         }
+
         if (!isPaused) {
             if (playerEnabled) {
                 Move();
