@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] AudioSource pauseSound;
     [SerializeField] GameObject deathScreen;
     [SerializeField] GameObject gameOverScreen;
+    [SerializeField] GameObject pickupText;
     [SerializeField] AudioSource deathSound;
     [SerializeField] AudioSource gameOverSound;
     [SerializeField] GameObject ui;
@@ -146,7 +147,10 @@ public class Player : MonoBehaviour
         RaycastHit hit;
         Interactable visibleObject = Physics.Raycast(new Ray(transform.position, transform.forward), out hit) && hit.distance < interactionDistance ? hit.transform.gameObject.GetComponent<Interactable>() : null;
         if (visibleObject != null) {
-            if ((visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().isOpen) || (visibleObject.tag == "Safe" && visibleObject.GetComponent<Safe>().isOpen) ||(visibleObject.tag == "Lever" && visibleObject.GetComponent<Lever>().isUp)) {
+            if (visibleObject.tag == "Key") {
+                lockedText.SetActive(false);
+            } else if ((visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().isOpen) || (visibleObject.tag == "Safe" && visibleObject.GetComponent<Safe>().isOpen) ||(visibleObject.tag == "Lever" && visibleObject.GetComponent<Lever>().isUp) || pickupText.activeSelf) {
+                visibleObject.text.SetActive(false);
                 return;
             }
             if (visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().IsLocked()) {

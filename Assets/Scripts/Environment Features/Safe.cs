@@ -11,6 +11,7 @@ public class Safe : MonoBehaviour, Interaction {
     [SerializeField] AudioSource clickSound;
     [SerializeField] AudioSource correctSound;
     [SerializeField] AudioSource incorrectSound;
+    [SerializeField] AudioSource openSound;
     [SerializeField] GameObject safeScreen;
     [SerializeField] GameObject playerObject;
     Player playerComponent;
@@ -52,6 +53,7 @@ public class Safe : MonoBehaviour, Interaction {
         if (combination[0] == 1 && combination[1] == 8 && combination[2] == 5 && combination[3] == 1) {
             safeScreen.SetActive(false);
             correctSound.Play();
+            openSound.Play();
             playerComponent.PlayMode();
             anim.SetBool("open", true);
             isOpen = true;
