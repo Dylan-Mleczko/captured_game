@@ -423,9 +423,7 @@ public class Generator2D : MonoBehaviour
           {
             AddPillar(new Vector2(preLocation1.x + 0.45f, preLocation1.y + 0.45f));
           }
-
         }
-
       }
     }
   }
@@ -433,7 +431,7 @@ public class Generator2D : MonoBehaviour
   void AddPillar(Vector2 location)
   {
 
-    var pillar = pillars.Find(x => x.location == location || x.location.x - location.x <= 0.2f || x.location.y - location.y <= 0.2f);
+    var pillar = pillars.Find(x => x.location == location || x.location.x - location.x <= 0.01f || x.location.y - location.y <= 0.01f);
     // var pillar = pillars.Find(x => x.location == location);
     if (pillar == null)
     {
