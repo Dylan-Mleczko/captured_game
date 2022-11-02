@@ -29,10 +29,6 @@ public class MainMenuManager : MonoBehaviour {
         StartCoroutine(Fade(true));
     }
 
-    public void OpenSettings() {
-        
-    }
-
     public void ContinueGame() {
         sound.Stop();
         black.SetActive(true);

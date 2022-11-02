@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject lockedText;
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject settingsMenu;
+    [SerializeField] GameObject controlsMenu;
     [SerializeField] GameObject exitMenu;
     [SerializeField] AudioSource pauseSound;
     [SerializeField] GameObject deathScreen;
@@ -108,7 +109,9 @@ public class Player : MonoBehaviour
     }
 
     void ResetPauseMenu() {
+        pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
+        controlsMenu.SetActive(false);
         exitMenu.SetActive(false);
         mainMenu.SetActive(true);
     }
@@ -132,7 +135,7 @@ public class Player : MonoBehaviour
             InteractMode();
         }
         rotationX += -Input.GetAxis("Mouse Y") * mouseSensitivity;
-        rotationX = Mathf.Clamp(rotationX, -45.0f, 45.0f);
+        rotationX = Mathf.Clamp(rotationX, -75.0f, 75.0f);
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * mouseSensitivity, 0);
     }
@@ -161,7 +164,7 @@ public class Player : MonoBehaviour
                 currentText = visibleObject.text;
             }
             currentText.SetActive(true);
-            if (Input.GetMouseButtonDown(0)) {
+            if (Input.GetKey(KeyCode.E)) {
                 visibleObject.InteractWith();
             }
         }
