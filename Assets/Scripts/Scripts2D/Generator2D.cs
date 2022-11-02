@@ -149,7 +149,7 @@ public class Generator2D : MonoBehaviour
     CreateHallways();
     PathfindHallways();
     PlaceExitDoor();
-    // PlaceEnemy();
+    PlaceEnemy();
     // Debug.Log(rooms[0].statusList.GetLength(0).ToString());
     // rooms[0].statusList.GetLength(0);
 
@@ -172,22 +172,22 @@ public class Generator2D : MonoBehaviour
     var rookLocation = rooms[rookIndex].location;
     var rookRange = rooms[rookIndex].bounds.size.x;
     GameObject rook = Instantiate(RookPrefab, new Vector3(rookLocation.x, 0, rookLocation.y), Quaternion.identity);
-    var prefabSize = rook.gameObject.GetComponent<Renderer>().bounds.size;
-    rook.GetComponent<Transform>().localScale = new Vector3(1 / prefabSize.x, 1 / prefabSize.y, 1 / prefabSize.z);
-    rook.transform.Rotate(-90.0f, 0.0f, 0.0f, Space.Self);
+    var prefabSize = getPrefabSize(rook).size;
+    rook.GetComponent<Transform>().localScale = new Vector3(1 / (5 * prefabSize.x), 1 / (5 * prefabSize.y), 1 / (5 * prefabSize.z));
+    // rook.transform.Rotate(-90.0f, 0.0f, 0.0f, Space.Self);
     rook.GetComponent<Rook>().UpdateRange(rookRange);
 
     Debug.Log(rookLocation.ToString());
 
-    var knightLocation = rooms[knightIndex].location;
-    GameObject knight = Instantiate(KnightPrefab, new Vector3(rookLocation.x, 0, rookLocation.y), Quaternion.identity);
-    prefabSize = knight.gameObject.GetComponent<Renderer>().bounds.size;
-    knight.GetComponent<Transform>().localScale = new Vector3(1 / prefabSize.x, 1 / prefabSize.y, 1 / prefabSize.z);
-    knight.transform.Rotate(-90.0f, 0.0f, 0.0f, Space.Self);
+    // var knightLocation = rooms[knightIndex].location;
+    // GameObject knight = Instantiate(KnightPrefab, new Vector3(rookLocation.x, 0, rookLocation.y), Quaternion.identity);
+    // prefabSize = knight.gameObject.GetComponent<Renderer>().bounds.size;
+    // knight.GetComponent<Transform>().localScale = new Vector3(1 / prefabSize.x, 1 / prefabSize.y, 1 / prefabSize.z);
+    // knight.transform.Rotate(-90.0f, 0.0f, 0.0f, Space.Self);
 
 
 
-    Debug.Log(knightLocation.ToString());
+    // Debug.Log(knightLocation.ToString());
 
 
   }
