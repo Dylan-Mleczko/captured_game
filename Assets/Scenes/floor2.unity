@@ -322,7 +322,7 @@ MonoBehaviour:
   pauseSound: {fileID: 2020768222}
   deathScreen: {fileID: 0}
   gameOverScreen: {fileID: 0}
-  pickupText: {fileID: 0}
+  pickupText: {fileID: 1648165905}
   deathSound: {fileID: 902915314}
   gameOverSound: {fileID: 272919759}
   ui: {fileID: 0}
@@ -330,7 +330,7 @@ MonoBehaviour:
   moveSpeed: 1
   sprintMultipler: 2
   mouseSensitivity: 3
-  interactionDistance: 5
+  interactionDistance: 3
   knight1: {fileID: 1873074049}
   knight2: {fileID: 0}
   knight3: {fileID: 0}
@@ -2139,7 +2139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 344800238451855891, guid: 02463a93806174a64b021d7967d543a7, type: 3}
       propertyPath: orthographic size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 344800238451855892, guid: 02463a93806174a64b021d7967d543a7, type: 3}
       propertyPath: m_RootOrder
