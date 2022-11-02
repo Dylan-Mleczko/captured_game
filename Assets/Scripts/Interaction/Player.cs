@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject lockedText;
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject settingsMenu;
+    [SerializeField] GameObject controlsMenu;
     [SerializeField] GameObject exitMenu;
     [SerializeField] AudioSource pauseSound;
     [SerializeField] GameObject deathScreen;
@@ -108,7 +109,9 @@ public class Player : MonoBehaviour
     }
 
     void ResetPauseMenu() {
+        pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
+        controlsMenu.SetActive(false);
         exitMenu.SetActive(false);
         mainMenu.SetActive(true);
     }

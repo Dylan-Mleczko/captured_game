@@ -27956,7 +27956,8 @@ MonoBehaviour:
   prebrokenText: {fileID: 1709386061}
   lockedText: {fileID: 1305629299}
   mainMenu: {fileID: 2072407512}
-  settingsMenu: {fileID: 0}
+  settingsMenu: {fileID: 1332910696}
+  controlsMenu: {fileID: 1830262288}
   exitMenu: {fileID: 1329773435}
   pauseSound: {fileID: 1521002006}
   deathScreen: {fileID: 1958849398}
