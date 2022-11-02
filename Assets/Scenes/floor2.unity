@@ -327,7 +327,7 @@ MonoBehaviour:
   gameOverSound: {fileID: 272919759}
   ui: {fileID: 0}
   playerCamera: {fileID: 181921425}
-  moveSpeed: 3
+  moveSpeed: 1
   sprintMultipler: 2
   mouseSensitivity: 3
   interactionDistance: 5
@@ -662,7 +662,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 50
   orthographic: 0
@@ -2139,7 +2139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 344800238451855891, guid: 02463a93806174a64b021d7967d543a7, type: 3}
       propertyPath: orthographic size
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 344800238451855892, guid: 02463a93806174a64b021d7967d543a7, type: 3}
       propertyPath: m_RootOrder
