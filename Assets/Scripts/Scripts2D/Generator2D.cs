@@ -423,9 +423,7 @@ public class Generator2D : MonoBehaviour
           {
             AddPillar(new Vector2(preLocation1.x + 0.45f, preLocation1.y + 0.45f));
           }
-
         }
-
       }
     }
   }
