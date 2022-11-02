@@ -106,7 +106,7 @@ public class Generator2D : MonoBehaviour
   [SerializeField] Vector2Int size;
   [SerializeField] int roomCount;
   [SerializeField] Vector2Int roomMaxSize;
-  [SerializeField] GameObject cubePrefab;
+  // [SerializeField] GameObject cubePrefab;
   [SerializeField] GameObject roomPrefab;
   [SerializeField] GameObject hallwayPrefab;
   [SerializeField] GameObject pillarPrefab;
@@ -114,6 +114,8 @@ public class Generator2D : MonoBehaviour
   [SerializeField] GameObject[] miniRooms;
   [SerializeField] GameObject key;
   [SerializeField] GameObject exitDoor;
+  [SerializeField] GameObject RookPrefab;
+  [SerializeField] GameObject KnightPrefab;
   // [SerializeField] GameObject door;
 
 
@@ -123,6 +125,7 @@ public class Generator2D : MonoBehaviour
   List<Room> rooms;
 
   List<Hallway> hallwayCells;
+  List<Pillar> pillars;
   Delaunay2D delaunay;
   HashSet<Prim.Edge> selectedEdges;
 
@@ -139,12 +142,14 @@ public class Generator2D : MonoBehaviour
     grid = new Grid2D<CellType>(size, Vector2Int.zero);
     rooms = new List<Room>();
     hallwayCells = new List<Hallway>();
+    pillars = new List<Pillar>();
 
     PlaceRooms();
     Triangulate();
     CreateHallways();
     PathfindHallways();
     PlaceExitDoor();
+    PlaceEnemy();
     // Debug.Log(rooms[0].statusList.GetLength(0).ToString());
     // rooms[0].statusList.GetLength(0);
 
@@ -152,6 +157,39 @@ public class Generator2D : MonoBehaviour
     // {
     //   Debug.Log(cell.location.ToString());
     // }
+  }
+
+  void PlaceEnemy()
+  {
+    var rookIndex = random.Next(0, rooms.Count - 1);
+    var knightIndex = random.Next(0, rooms.Count - 1);
+
+    while (rooms[rookIndex].bounds.size.x <= 1)
+    {
+      rookIndex = random.Next(0, rooms.Count - 1);
+    }
+
+    var rookLocation = rooms[rookIndex].location;
+    var rookRange = rooms[rookIndex].bounds.size.x;
+    GameObject rook = Instantiate(RookPrefab, new Vector3(rookLocation.x, 0, rookLocation.y), Quaternion.identity);
+    var prefabSize = getPrefabSize(rook).size;
+    rook.GetComponent<Transform>().localScale = new Vector3(1 / (5 * prefabSize.x), 1 / (5 * prefabSize.y), 1 / (5 * prefabSize.z));
+    // rook.transform.Rotate(-90.0f, 0.0f, 0.0f, Space.Self);
+    rook.GetComponent<Rook>().UpdateRange(rookRange);
+
+    Debug.Log(rookLocation.ToString());
+
+    // var knightLocation = rooms[knightIndex].location;
+    // GameObject knight = Instantiate(KnightPrefab, new Vector3(rookLocation.x, 0, rookLocation.y), Quaternion.identity);
+    // prefabSize = knight.gameObject.GetComponent<Renderer>().bounds.size;
+    // knight.GetComponent<Transform>().localScale = new Vector3(1 / prefabSize.x, 1 / prefabSize.y, 1 / prefabSize.z);
+    // knight.transform.Rotate(-90.0f, 0.0f, 0.0f, Space.Self);
+
+
+
+    // Debug.Log(knightLocation.ToString());
+
+
   }
 
   void PlaceRooms()
@@ -339,9 +377,32 @@ public class Generator2D : MonoBehaviour
               curHallway.GetIntersectStatus(preHallway);
               preHallway.GetIntersectStatus(curHallway);
               preHallway.UpdateGameObjectStatus();
+
+              var preLocation = preHallway.location;
+
+
+              if (preHallway.status[0])
+              {
+                AddPillar(new Vector2(preLocation.x + 0.45f, preLocation.y + 0.45f));
+              }
+              else if (preHallway.status[1])
+              {
+                AddPillar(new Vector2(preLocation.x + 0.45f, preLocation.y - 0.45f));
+              }
+              else if (preHallway.status[2])
+              {
+                AddPillar(new Vector2(preLocation.x - 0.45f, preLocation.y - 0.45f));
+              }
+              else if (preHallway.status[3])
+              {
+                AddPillar(new Vector2(preLocation.x - 0.45f, preLocation.y + 0.45f));
+              }
+
+
             }
 
             preHallway = curHallway;
+
             if (!started)
             {
               started = true;
@@ -355,11 +416,32 @@ public class Generator2D : MonoBehaviour
         curHallway.cell.name = "pathEnd";
 
         preHallway.UpdateGameObjectStatus();
+        var preLocation1 = preHallway.location;
+        for (int k = 0; k < 4; k++)
+        {
+          if (preHallway.status[k])
+          {
+            AddPillar(new Vector2(preLocation1.x + 0.45f, preLocation1.y + 0.45f));
+          }
+
+        }
 
       }
     }
   }
 
+  void AddPillar(Vector2 location)
+  {
+
+    var pillar = pillars.Find(x => x.location == location || x.location.x - location.x <= 0.2f || x.location.y - location.y <= 0.2f);
+    // var pillar = pillars.Find(x => x.location == location);
+    if (pillar == null)
+    {
+      PlacePillar(location);
+      pillars.Add(new Pillar(location));
+    }
+
+  }
   GameObject PlaceCube(Vector2Int location)
   {
     GameObject go = Instantiate(roomPrefab, new Vector3(location.x, 0, location.y), Quaternion.identity);
@@ -491,16 +573,22 @@ public class Generator2D : MonoBehaviour
         if (i == size.x - 1)
         {
           PlacePillar(new Vector2(location.x + i + 0.45f, location.y + j + 0.45f));
+
           status[0] = true;
         }
         if (j == 0)
         {
           PlacePillar(new Vector2(location.x + i + 0.45f, location.y + j - 0.45f));
+
+
           status[1] = true;
         }
         if (j == size.y - 1)
         {
           PlacePillar(new Vector2(location.x + i - 0.45f, location.y + j + 0.45f));
+          // PlacePillar(new Vector2(location.x + i + 0.45f, location.y + j - 0.45f));
+
+
           status[3] = true;
         }
 
