@@ -23,7 +23,7 @@ public class King : MonoBehaviour
     if (collider.name == "Player")
     {
       GameObject player = collider.gameObject;
-      rb.AddForce(new Vector3(1f, 0, 0));
+      rb.AddForce(new Vector3(3f, 0, 0));
       rb.velocity = (new Vector3(transform.position.x - player.transform.position.x, 0.0f, transform.position.z - player.transform.position.z)).normalized * speed;
       Debug.Log(rb.velocity.ToString());
     }
