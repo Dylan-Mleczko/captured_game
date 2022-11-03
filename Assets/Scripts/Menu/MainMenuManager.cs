@@ -64,6 +64,7 @@ public class MainMenuManager : MonoBehaviour {
     }
 
     public void TryAgain() {
+        AudioListener.pause = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

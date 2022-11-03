@@ -49,6 +49,13 @@ public class Floor : MonoBehaviour
         }
     }
 
+    public void HitFloor() {
+        foreach (GameObject tile in tiles) {
+            tile.GetComponent<Renderer>().sharedMaterial.SetVector("_LandOrigin", new Vector2(player.transform.position.x, player.transform.position.z));
+            tile.GetComponent<Renderer>().sharedMaterial.SetFloat("_LandTime", Time.time);
+        }
+    }
+
     private void GenerateFloorTiles(int tileCountX, int tileCountY)
     {
         tiles = new GameObject[tileCountX, tileCountY];

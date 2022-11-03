@@ -28,7 +28,8 @@ public class Player : MonoBehaviour
     [SerializeField] Knight knight2;
     [SerializeField] Knight knight3;
     [SerializeField] Knight knight4;
-
+    
+    public bool queenCanKill = true;
     public bool isPaused;
     public bool isAlive;
     private CharacterController characterController;
@@ -44,11 +45,12 @@ public class Player : MonoBehaviour
         if (initialAnimation) {
             FrozenMode();
         }
+        PlayMode();
         characterController = GetComponent<CharacterController>();
         rotationX = 0;
         trail = new Queue<Vector3>();
         isQueenChasing = false;
-        isAlive = false;
+        isAlive = true;
         isPaused = false;
     }
 
@@ -67,7 +69,7 @@ public class Player : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider collider) {
-        if (isAlive && collider.tag == "Enemy") {
+        if (isAlive && (collider.tag == "Enemy" || (collider.tag == "Queen" && queenCanKill))) {
             AudioListener.pause = true;
             isAlive = false;
             deathScreen.SetActive(true);
@@ -137,10 +139,6 @@ public class Player : MonoBehaviour
         direction.Normalize();
         characterController.Move(transform.TransformDirection(direction) * currentSpeed * Time.deltaTime);
 
-        // if (Input.GetKey(KeyCode.Q)) {
-        //     InteractMode();
-        // }
-
         rotationX += -Input.GetAxis("Mouse Y") * mouseSensitivity;
         rotationX = Mathf.Clamp(rotationX, -75.0f, 75.0f);
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
@@ -149,7 +147,7 @@ public class Player : MonoBehaviour
 
     void LeaveTrail() {
         if (isQueenChasing) {
-        trail.Enqueue(transform.position);
+            trail.Enqueue(transform.position);
         }
     }
 
@@ -159,7 +157,7 @@ public class Player : MonoBehaviour
         if (visibleObject != null) {
             if (visibleObject.tag == "Key") {
                 lockedText.SetActive(false);
-            } else if ((visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().isOpen) || (visibleObject.tag == "Safe" && visibleObject.GetComponent<Safe>().isOpen) ||(visibleObject.tag == "Lever" && visibleObject.GetComponent<Lever>().isUp) || pickupText.activeSelf) {
+            } else if ((visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().isOpen) || (visibleObject.tag == "Safe" && visibleObject.GetComponent<Safe>().isOpen) ||(visibleObject.tag == "Lever" && visibleObject.GetComponent<Lever>().isUp) || (visibleObject.tag == "Queen" && (!visibleObject.GetComponent<Queen>().canKill || !visibleObject.GetComponent<Queen>().isAlive)) || (pickupText != null && pickupText.activeSelf)) {
                 visibleObject.text.SetActive(false);
                 return;
             }

@@ -12324,7 +12324,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &250559289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12710,7 +12710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4aa5a7ef56dd26f4d8cdad18e6dd51d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 49.99
+      value: 51.23
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4aa5a7ef56dd26f4d8cdad18e6dd51d2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -34953,6 +34953,7 @@ MonoBehaviour:
   knight2: {fileID: 0}
   knight3: {fileID: 0}
   knight4: {fileID: 0}
+  queenCanKill: 1
   isPaused: 0
   isAlive: 0
   playerEnabled: 0
@@ -35093,7 +35094,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4aa5a7ef56dd26f4d8cdad18e6dd51d2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 157.71
+      value: 157.63
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4aa5a7ef56dd26f4d8cdad18e6dd51d2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -35917,7 +35918,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
       propertyPath: m_RootOrder
@@ -35929,7 +35930,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
       propertyPath: m_LocalScale.z
-      value: 33.05028
+      value: 25.469145
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
       propertyPath: m_LocalPosition.x
@@ -35941,7 +35942,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 68.2494
+      value: 90.2327
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
       propertyPath: m_LocalRotation.w
@@ -67255,8 +67256,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ead7a500fc0d294ca8ac6b42225f231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 965600653}
+  player: {fileID: 965600655}
   speed: 15
+  death: {fileID: 0}
+  chase: {fileID: 0}
+  black: {fileID: 0}
+  text: {fileID: 0}
+  blood: {fileID: 0}
+  speech: {fileID: 0}
+  door1: {fileID: 0}
+  door2: {fileID: 0}
+  doorSound: {fileID: 0}
+  canKill: 0
+  isAlive: 1
 --- !u!65 &1951815764
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -67282,7 +67294,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
