@@ -1,4 +1,4 @@
-// Credit to https://www.youtube.com/watch?time_continue=161&v=XiJ-kb-NvV4&feature=emb_title&ab_channel=JTAGames
+// Partial credit to https://www.youtube.com/watch?time_continue=161&v=XiJ-kb-NvV4&feature=emb_title&ab_channel=JTAGames
 
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +15,7 @@ public class Brightness : MonoBehaviour
 
     void Start() {
         brightness.TryGetSettings(out exposure);
+        exposure.keyValue.value = 1;
     }
 
     void Update() {
