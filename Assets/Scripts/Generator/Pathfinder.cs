@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using BlueRaja;
 
-public class DungeonPathfinder2D
+// a* algorithm to find path between rooms
+// https://dotnetcoretutorials.com/2020/07/25/a-search-pathfinding-algorithm-in-c/
+// https://stackoverflow.com/questions/2138642/how-to-implement-an-a-algorithm
+public class Pathfinder
 {
   public class Node
   {
@@ -13,13 +16,13 @@ public class DungeonPathfinder2D
 
     public Node(Vector2Int position)
     {
-      Position = position;
+      this.Position = position;
     }
   }
 
   public struct PathCost
   {
-    public bool traversable;
+    public bool isTraversable;
     public float cost;
   }
 
@@ -30,18 +33,15 @@ public class DungeonPathfinder2D
         new Vector2Int(0, -1),
     };
 
-  Grid2D<Node> grid;
-  SimplePriorityQueue<Node, float> queue;
-  HashSet<Node> closed;
-  Stack<Vector2Int> stack;
+  Grid<Node> grid;
+  // HashSet<Node> visited;
 
-  public DungeonPathfinder2D(Vector2Int size)
+  public Pathfinder(Vector2Int size)
   {
-    grid = new Grid2D<Node>(size, Vector2Int.zero);
+    grid = new Grid<Node>(size, Vector2Int.zero);
 
-    queue = new SimplePriorityQueue<Node, float>();
-    closed = new HashSet<Node>();
-    stack = new Stack<Vector2Int>();
+    // queue = new SimplePriorityQueue<Node, float>();
+    // visited = new HashSet<Node>();
 
     for (int x = 0; x < size.x; x++)
     {
@@ -52,7 +52,7 @@ public class DungeonPathfinder2D
     }
   }
 
-  void ResetNodes()
+  void InitGrid()
   {
     var size = grid.Size;
 
@@ -69,12 +69,9 @@ public class DungeonPathfinder2D
 
   public List<Vector2Int> FindPath(Vector2Int start, Vector2Int end, Func<Node, Node, PathCost> costFunction)
   {
-    ResetNodes();
-    queue.Clear();
-    closed.Clear();
-
-    queue = new SimplePriorityQueue<Node, float>();
-    closed = new HashSet<Node>();
+    InitGrid();
+    SimplePriorityQueue<Node, float> queue = new SimplePriorityQueue<Node, float>();
+    HashSet<Node> visited = new HashSet<Node>();
 
     grid[start].Cost = 0;
     queue.Enqueue(grid[start], 0);
@@ -82,21 +79,21 @@ public class DungeonPathfinder2D
     while (queue.Count > 0)
     {
       Node node = queue.Dequeue();
-      closed.Add(node);
+      visited.Add(node);
 
       if (node.Position == end)
       {
-        return ReconstructPath(node);
+        return ConstructPath(node);
       }
 
       foreach (var offset in neighbors)
       {
         if (!grid.InBounds(node.Position + offset)) continue;
         var neighbor = grid[node.Position + offset];
-        if (closed.Contains(neighbor)) continue;
+        if (visited.Contains(neighbor)) continue;
 
         var pathCost = costFunction(node, neighbor);
-        if (!pathCost.traversable) continue;
+        if (!pathCost.isTraversable) continue;
 
         float newCost = node.Cost + pathCost.cost;
 
@@ -120,19 +117,20 @@ public class DungeonPathfinder2D
     return null;
   }
 
-  List<Vector2Int> ReconstructPath(Node node)
+  List<Vector2Int> ConstructPath(Node node)
   {
+    Stack<Vector2Int> currentPath = new Stack<Vector2Int>();
     List<Vector2Int> result = new List<Vector2Int>();
 
     while (node != null)
     {
-      stack.Push(node.Position);
+      currentPath.Push(node.Position);
       node = node.Previous;
     }
 
-    while (stack.Count > 0)
+    while (currentPath.Count > 0)
     {
-      result.Add(stack.Pop());
+      result.Add(currentPath.Pop());
     }
 
     return result;
