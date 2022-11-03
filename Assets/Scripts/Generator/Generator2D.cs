@@ -126,12 +126,12 @@ public class Generator2D : MonoBehaviour
 
 
   Random random;
-  Grid2D<CellType> grid;
+  Grid<CellType> grid;
   List<Room> rooms;
 
   List<Hallway> hallwayCells;
   List<Pillar> pillars;
-  Delaunay2D delaunay;
+  Delaunator delaunay;
   HashSet<Prim.Edge> selectedEdges;
 
   float ratio;
@@ -144,7 +144,7 @@ public class Generator2D : MonoBehaviour
   void Generate()
   {
     random = new Random(0);
-    grid = new Grid2D<CellType>(size, Vector2Int.zero);
+    grid = new Grid<CellType>(size, Vector2Int.zero);
     rooms = new List<Room>();
     hallwayCells = new List<Hallway>();
     pillars = new List<Pillar>();
@@ -152,7 +152,7 @@ public class Generator2D : MonoBehaviour
     PlaceRooms();
     Triangulate();
     CreateHallways();
-    PathfindHallways();
+    PathFindHallways();
     PlaceExitDoor();
     PlaceEnemy();
     // Debug.Log(rooms[0].statusList.GetLength(0).ToString());
@@ -291,7 +291,7 @@ public class Generator2D : MonoBehaviour
       vertices.Add(new Vertex<Room>((Vector2)room.bounds.position + ((Vector2)room.bounds.size) / 2, room));
     }
 
-    delaunay = Delaunay2D.Triangulate(vertices);
+    delaunay = Delaunator.Triangulate(vertices);
   }
 
   void CreateHallways()
@@ -303,12 +303,13 @@ public class Generator2D : MonoBehaviour
       edges.Add(new Prim.Edge(edge.U, edge.V));
     }
 
-    List<Prim.Edge> mst = Prim.MinimumSpanningTree(edges, edges[0].U);
+    List<Prim.Edge> mst = Prim.MST(edges, edges[0].U);
 
     selectedEdges = new HashSet<Prim.Edge>(mst);
     var remainingEdges = new HashSet<Prim.Edge>(edges);
     remainingEdges.ExceptWith(selectedEdges);
 
+    // adding some looping cooridors here
     foreach (var edge in remainingEdges)
     {
       if (random.NextDouble() < 0.125)
@@ -318,9 +319,9 @@ public class Generator2D : MonoBehaviour
     }
   }
 
-  void PathfindHallways()
+  void PathFindHallways()
   {
-    DungeonPathfinder2D aStar = new DungeonPathfinder2D(size);
+    Pathfinder aStar = new Pathfinder(size);
 
     foreach (var edge in selectedEdges)
     {
@@ -332,9 +333,9 @@ public class Generator2D : MonoBehaviour
       var startPos = new Vector2Int((int)startPosf.x, (int)startPosf.y);
       var endPos = new Vector2Int((int)endPosf.x, (int)endPosf.y);
 
-      var path = aStar.FindPath(startPos, endPos, (DungeonPathfinder2D.Node a, DungeonPathfinder2D.Node b) =>
+      var path = aStar.FindPath(startPos, endPos, (Pathfinder.Node a, Pathfinder.Node b) =>
       {
-        var pathCost = new DungeonPathfinder2D.PathCost();
+        var pathCost = new Pathfinder.PathCost();
 
         pathCost.cost = Vector2Int.Distance(b.Position, endPos);    //heuristic
         pathCost.cost += Mathf.Min(Mathf.Abs(b.Position.x - startPos.x), Mathf.Abs(b.Position.x - endPos.x));
@@ -353,7 +354,7 @@ public class Generator2D : MonoBehaviour
           pathCost.cost += 1;
         }
 
-        pathCost.traversable = true;
+        pathCost.isTraversable = true;
 
         return pathCost;
       });

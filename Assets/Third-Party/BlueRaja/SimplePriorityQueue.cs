@@ -510,35 +510,6 @@ namespace BlueRaja
       return GetEnumerator();
     }
 
-    public bool IsValidQueue()
-    {
-      lock (_queue)
-      {
-        // Check all items in cache are in the queue
-        foreach (IList<SimpleNode> nodes in _itemToNodesCache.Values)
-        {
-          foreach (SimpleNode node in nodes)
-          {
-            if (!_queue.Contains(node))
-            {
-              return false;
-            }
-          }
-        }
-
-        // Check all items in queue are in cache
-        foreach (SimpleNode node in _queue)
-        {
-          if (GetExistingNode(node.Data) == null)
-          {
-            return false;
-          }
-        }
-
-        // Check queue structure itself
-        return _queue.IsValidQueue();
-      }
-    }
   }
 
   /// <summary>
