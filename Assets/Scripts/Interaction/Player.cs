@@ -100,21 +100,21 @@ public class Player : MonoBehaviour
   }
 
   //"FixedUpdate" is better to calculate more frames:::*/
-  private void FixedUpdate()
-  {
-    transform.Translate(Vector3.right * 4f * Time.deltaTime * Input.GetAxis("Horizontal"));
-    if (Input.GetAxis("Vertical") != 0)
-    {
-      transform.Translate(Vector3.forward * 3f * Time.deltaTime * Input.GetAxis("Vertical"));
-    }
-    else
-    {
-      if (Input.GetAxis("Vertical") < 0)
-      {
-        transform.Translate(Vector3.forward * 3f * Time.deltaTime * Input.GetAxis("Vertical"));
-      }
-    }
-  }
+  // private void FixedUpdate()
+  // {
+  //   transform.Translate(Vector3.right * 4f * Time.deltaTime * Input.GetAxis("Horizontal"));
+  //   if (Input.GetAxis("Vertical") != 0)
+  //   {
+  //     transform.Translate(Vector3.forward * 3f * Time.deltaTime * Input.GetAxis("Vertical"));
+  //   }
+  //   else
+  //   {
+  //     if (Input.GetAxis("Vertical") < 0)
+  //     {
+  //       transform.Translate(Vector3.forward * 3f * Time.deltaTime * Input.GetAxis("Vertical"));
+  //     }
+  //   }
+  // }
   void Pause()
   {
     if (isPaused)
