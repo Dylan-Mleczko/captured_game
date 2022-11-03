@@ -64,10 +64,6 @@ public class Player : MonoBehaviour
             if (playerEnabled) {
                 Move();
                 Look();
-            } else {
-                if (Input.GetKey(KeyCode.E)) {
-
-                }
             }
             LeaveTrail();
         }
