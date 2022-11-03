@@ -32,6 +32,10 @@ public class Player : MonoBehaviour
     [SerializeField] AudioSource music;
     [SerializeField] GameObject black;
     [SerializeField] AudioSource kill;
+    [SerializeField] GameObject title;
+    [SerializeField] AudioSource boom;
+    [SerializeField] GameObject endingText;
+    [SerializeField] AudioSource endingMusic;
     
     public bool queenCanKill = true;
     public bool isPaused;
@@ -225,11 +229,19 @@ public class Player : MonoBehaviour
     }
 
     private IEnumerator PlayEnding() {
+        isAlive = false;
         music.Stop();
         kingText.SetActive(false);
         black.SetActive(true);
         kill.Play();
         yield return new WaitForSeconds(3);
+        title.SetActive(true);
+        boom.Play();
+        yield return new WaitForSeconds(3);
+        title.SetActive(false);
+        endingText.SetActive(true);
+        endingMusic.Play();
+        Cursor.lockState = CursorLockMode.None;
     }
 
 }
