@@ -40,18 +40,21 @@ public class Floor : MonoBehaviour
             tile.GetComponent<Renderer>().sharedMaterial.SetVector("_RippleOrigin", new Vector2(player.transform.position.x, player.transform.position.z));
         }
 
-        if (Input.GetKeyUp(KeyCode.E)) {
-            foreach (GameObject tile in tiles)
-            {
-                tile.GetComponent<Renderer>().sharedMaterial.SetVector("_LandOrigin", new Vector2(player.transform.position.x, player.transform.position.z));
-                tile.GetComponent<Renderer>().sharedMaterial.SetFloat("_LandTime", Time.time);
-            }
-        }
+        // Debug landing ripple effect by pressing E
+        // if (Input.GetKeyUp(KeyCode.E)) {
+        //     foreach (GameObject tile in tiles)
+        //     {
+        //         tile.GetComponent<Renderer>().sharedMaterial.SetVector("_LandOrigin", new Vector2(player.transform.position.x, player.transform.position.z));
+        //         tile.GetComponent<Renderer>().sharedMaterial.SetFloat("_LandTime", Time.time);
+        //     }
+        // }
     }
 
     public void HitFloor() {
+        Vector3 offset = new Vector3(-0.7f, 0f, -0.4f);
         foreach (GameObject tile in tiles) {
-            tile.GetComponent<Renderer>().sharedMaterial.SetVector("_LandOrigin", new Vector2(player.transform.position.x, player.transform.position.z));
+            tile.GetComponent<Renderer>().sharedMaterial.SetVector("_LandOrigin", 
+                new Vector2(player.transform.position.x + offset.x, player.transform.position.z + offset.z));
             tile.GetComponent<Renderer>().sharedMaterial.SetFloat("_LandTime", Time.time);
         }
     }
@@ -112,6 +115,14 @@ public class Floor : MonoBehaviour
         {
             tile.GetComponent<Renderer>().sharedMaterial.SetVector("_LandOrigin", new Vector2(player.transform.position.x, player.transform.position.z));
             tile.GetComponent<Renderer>().sharedMaterial.SetFloat("_LandTime", Time.time);
+        }
+    }
+
+    public void StopRipple() {
+        foreach (GameObject tile in tiles)
+        {
+            tile.GetComponent<Renderer>().sharedMaterial.SetFloat("_LandTime", 10000);
+            tile.GetComponent<Renderer>().sharedMaterial.SetFloat("_Amplitude", 0);
         }
     }
 }

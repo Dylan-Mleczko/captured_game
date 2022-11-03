@@ -94,6 +94,7 @@ public class Opening : MonoBehaviour {
     private void FinishOpening() {
         text1.SetActive(false);
         text2.SetActive(false);
+        skipCutscene.SetActive(false);
         black.SetActive(false);
         player.PlayMode();
         player.isAlive = true;

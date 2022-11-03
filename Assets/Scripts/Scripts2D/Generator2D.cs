@@ -109,12 +109,17 @@ public class Generator2D : MonoBehaviour
   // [SerializeField] GameObject cubePrefab;
   [SerializeField] GameObject roomPrefab;
   [SerializeField] GameObject hallwayPrefab;
+
+  [SerializeField] GameObject noLightHallPrefab;
+
   [SerializeField] GameObject pillarPrefab;
   [SerializeField] GameObject roomLightPrefab;
   [SerializeField] GameObject[] miniRooms;
   [SerializeField] GameObject key;
   [SerializeField] GameObject exitDoor;
   [SerializeField] GameObject RookPrefab;
+
+  [SerializeField] int RookNumber;
   [SerializeField] GameObject KnightPrefab;
   // [SerializeField] GameObject door;
 
@@ -161,23 +166,39 @@ public class Generator2D : MonoBehaviour
 
   void PlaceEnemy()
   {
-    var rookIndex = random.Next(0, rooms.Count - 1);
-    var knightIndex = random.Next(0, rooms.Count - 1);
+    // var knightIndex = random.Next(0, rooms.Count - 1);
 
-    while (rooms[rookIndex].bounds.size.x <= 1)
+    for (int i = 0; i < RookNumber; i++)
     {
-      rookIndex = random.Next(0, rooms.Count - 1);
+      var rookIndex = random.Next(0, rooms.Count - 1);
+      // grid[b.Position] == CellType.Hallway
+      while (rooms[rookIndex].bounds.size.x <= 1 || rooms[rookIndex].bounds.size.y <= 1)
+      {
+        rookIndex = random.Next(0, rooms.Count - 1);
+      }
+
+      var currentRoom = rooms[rookIndex];
+      var rookLocation = currentRoom.location + currentRoom.bounds.size / 2;
+      if (grid[rookLocation] == CellType.Hallway || grid[rookLocation] == CellType.Room)
+      {
+        // var rookLocation = rooms[rookIndex].location;
+        var rookRange = currentRoom.bounds.size.x;
+
+
+        if (currentRoom.bounds.size.x < currentRoom.bounds.size.y)
+        {
+          rookRange = currentRoom.bounds.size.y;
+          Debug.Log("rook go direction y");
+        }
+        GameObject rook = Instantiate(RookPrefab, new Vector3(rookLocation.x, 0, rookLocation.y), Quaternion.identity);
+        var prefabSize = getPrefabSize(rook).size;
+        rook.GetComponent<Transform>().localScale = new Vector3(1 / (5 * prefabSize.x), 2 / (5 * prefabSize.y), 1 / (5 * prefabSize.z));
+        // rook.transform.Rotate(-90.0f, 0.0f, 0.0f, Space.Self);
+        rook.GetComponent<Rook>().UpdateRange(rookRange);
+
+        Debug.Log(rookLocation.ToString());
+      }
     }
-
-    var rookLocation = rooms[rookIndex].location;
-    var rookRange = rooms[rookIndex].bounds.size.x;
-    GameObject rook = Instantiate(RookPrefab, new Vector3(rookLocation.x, 0, rookLocation.y), Quaternion.identity);
-    var prefabSize = getPrefabSize(rook).size;
-    rook.GetComponent<Transform>().localScale = new Vector3(1 / (5 * prefabSize.x), 1 / (5 * prefabSize.y), 1 / (5 * prefabSize.z));
-    // rook.transform.Rotate(-90.0f, 0.0f, 0.0f, Space.Self);
-    rook.GetComponent<Rook>().UpdateRange(rookRange);
-
-    Debug.Log(rookLocation.ToString());
 
     // var knightLocation = rooms[knightIndex].location;
     // GameObject knight = Instantiate(KnightPrefab, new Vector3(rookLocation.x, 0, rookLocation.y), Quaternion.identity);
@@ -357,6 +378,7 @@ public class Generator2D : MonoBehaviour
 
         Hallway preHallway = null;
         Hallway curHallway = null;
+        bool isLight = true;
 
         var started = false;
         foreach (var pos in path)
@@ -370,7 +392,8 @@ public class Generator2D : MonoBehaviour
             {
               curHallway = new Hallway(pos, new Vector2Int(1, 1));
               hallwayCells.Add(curHallway);
-              curHallway.cell = PlaceHallway(pos);
+              curHallway.cell = PlaceHallway(pos, isLight);
+              isLight = !isLight;
             }
             if (preHallway != null)
             {
@@ -431,7 +454,7 @@ public class Generator2D : MonoBehaviour
   void AddPillar(Vector2 location)
   {
 
-    var pillar = pillars.Find(x => x.location == location || x.location.x - location.x <= 0.01f || x.location.y - location.y <= 0.01f);
+    var pillar = pillars.Find(x => x.location == location || (x.location.x - location.x <= 0.001f && x.location.y - location.y <= 0.001f));
     // var pillar = pillars.Find(x => x.location == location);
     if (pillar == null)
     {
@@ -607,10 +630,20 @@ public class Generator2D : MonoBehaviour
 
   }
 
-  GameObject PlaceHallway(Vector2Int location)
+  GameObject PlaceHallway(Vector2Int location, bool isLight)
   {
     // PlaceCube(location, new Vector2Int(1, 1), blueMaterial);
-    GameObject go = Instantiate(hallwayPrefab, new Vector3(location.x, 0, location.y), Quaternion.identity);
+    GameObject go;
+    if (isLight)
+    {
+
+      go = Instantiate(hallwayPrefab, new Vector3(location.x, 0, location.y), Quaternion.identity);
+    }
+    else
+    {
+      go = Instantiate(noLightHallPrefab, new Vector3(location.x, 0, location.y), Quaternion.identity);
+
+    }
 
     // var size = getPrefabSize(go).size;
     var prefabBounds = getPrefabSize(go);

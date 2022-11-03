@@ -19,6 +19,7 @@ public class Queen : MonoBehaviour, Interaction {
     public bool isAlive = true;
     Rigidbody rb;
     Queue<Vector3> trail;
+    public GameObject floor;
 
     void Start() {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -42,6 +43,7 @@ public class Queen : MonoBehaviour, Interaction {
     }
 
     IEnumerator Kill() {
+        floor.GetComponent<Floor>().StopRipple();
         rb.velocity = Vector3.zero;
         player.queenCanKill = false;
         text.SetActive(false);
@@ -57,6 +59,7 @@ public class Queen : MonoBehaviour, Interaction {
         black.SetActive(false);
         yield return new WaitForSeconds(2);
         player.playerEnabled = true;
+
         foreach (Transform child in speech.transform) {
             GameObject text = child.gameObject;
             text.SetActive(true);
@@ -64,9 +67,9 @@ public class Queen : MonoBehaviour, Interaction {
             text.SetActive(false);
             yield return new WaitForSeconds(2);
         }
+
         doorSound.Play();
         door1.SetBool("Open", true);
         door2.SetBool("Open", true);
     }
-
 }
