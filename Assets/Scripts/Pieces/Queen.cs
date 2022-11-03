@@ -2,25 +2,71 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Queen : MonoBehaviour {
+public class Queen : MonoBehaviour, Interaction {
 
-    [SerializeField] GameObject player;
+    [SerializeField] Player player;
     [SerializeField] float speed;
+    [SerializeField] AudioSource death;
+    [SerializeField] AudioSource chase;
+    [SerializeField] GameObject black;
+    [SerializeField] GameObject text;
+    [SerializeField] GameObject blood;
+    [SerializeField] GameObject speech;
+    [SerializeField] Animator door1;
+    [SerializeField] Animator door2;
+    [SerializeField] AudioSource doorSound;
+    public bool canKill = false;
+    public bool isAlive = true;
     Rigidbody rb;
     Queue<Vector3> trail;
 
     void Start() {
         rb = gameObject.GetComponent<Rigidbody>();
-        trail = player.GetComponent<Player>().trail;
+        trail = player.trail;
     }
 
     void Update() {
-        Move();
+        if (isAlive) {
+            Move();
+        }
     }
 
     void Move() {
-        Vector3 position = trail.Dequeue();
-        rb.velocity = (new Vector3(position.x - transform.position.x, 0.0f, position.z - transform.position.z)).normalized * speed;
+        //Vector3 position = trail.Dequeue();
+        //rb.velocity = (new Vector3(position.x - transform.position.x, 0.0f, position.z - transform.position.z)).normalized * speed;
+    }
+
+    public void InteractWith() {
+        if (canKill) {
+            StartCoroutine(Kill());
+        }
+    }
+
+    IEnumerator Kill() {
+        player.queenCanKill = false;
+        text.SetActive(false);
+        isAlive = false;
+        player.isQueenChasing = false;
+        chase.Stop();
+        player.playerEnabled = false;
+        black.SetActive(true);
+        transform.Rotate(Vector3.right, 90);
+        blood.SetActive(true);
+        death.Play();
+        yield return new WaitForSeconds(3);
+        black.SetActive(false);
+        yield return new WaitForSeconds(2);
+        player.playerEnabled = true;
+        foreach (Transform child in speech.transform) {
+            GameObject text = child.gameObject;
+            text.SetActive(true);
+            yield return new WaitForSeconds(3);
+            text.SetActive(false);
+            yield return new WaitForSeconds(2);
+        }
+        doorSound.Play();
+        door1.SetBool("Open", true);
+        door2.SetBool("Open", true);
     }
 
 }

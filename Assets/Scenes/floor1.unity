@@ -55224,8 +55224,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ead7a500fc0d294ca8ac6b42225f231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 965600653}
+  player: {fileID: 965600655}
   speed: 15
+  death: {fileID: 0}
+  chase: {fileID: 0}
+  black: {fileID: 0}
+  canKill: 0
 --- !u!65 &1951815764
 BoxCollider:
   m_ObjectHideFlags: 0
