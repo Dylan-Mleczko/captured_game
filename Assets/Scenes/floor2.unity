@@ -1793,7 +1793,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1186634785
 Transform:
   m_ObjectHideFlags: 0
@@ -2241,6 +2241,7 @@ MonoBehaviour:
   roomMaxSize: {x: 3, y: 2}
   roomPrefab: {fileID: 2869665108007887526, guid: 607ee4f71ce13d74aa8f4b0ecc3826ca, type: 3}
   hallwayPrefab: {fileID: 312182705375698465, guid: f3c3822e8060346ae900c1ebb15121f4, type: 3}
+  noLightHallPrefab: {fileID: 312182705375698465, guid: b38482990e5d9423ca6236d7a4e4f44e, type: 3}
   pillarPrefab: {fileID: 100000, guid: b93fbb2e189612641be84b2521736734, type: 3}
   roomLightPrefab: {fileID: 3685455785965242589, guid: 8c1186c70053b407bb55b2ae5b7fd355, type: 3}
   miniRooms:

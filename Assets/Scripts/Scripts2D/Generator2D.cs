@@ -110,7 +110,7 @@ public class Generator2D : MonoBehaviour
   [SerializeField] GameObject roomPrefab;
   [SerializeField] GameObject hallwayPrefab;
 
-  [SerializeField] GameObject Prefab;
+  [SerializeField] GameObject noLightHallPrefab;
 
   [SerializeField] GameObject pillarPrefab;
   [SerializeField] GameObject roomLightPrefab;
@@ -360,6 +360,7 @@ public class Generator2D : MonoBehaviour
 
         Hallway preHallway = null;
         Hallway curHallway = null;
+        bool isLight = true;
 
         var started = false;
         foreach (var pos in path)
@@ -373,7 +374,8 @@ public class Generator2D : MonoBehaviour
             {
               curHallway = new Hallway(pos, new Vector2Int(1, 1));
               hallwayCells.Add(curHallway);
-              curHallway.cell = PlaceHallway(pos);
+              curHallway.cell = PlaceHallway(pos, isLight);
+              isLight = !isLight;
             }
             if (preHallway != null)
             {
@@ -610,10 +612,20 @@ public class Generator2D : MonoBehaviour
 
   }
 
-  GameObject PlaceHallway(Vector2Int location)
+  GameObject PlaceHallway(Vector2Int location, bool isLight)
   {
     // PlaceCube(location, new Vector2Int(1, 1), blueMaterial);
-    GameObject go = Instantiate(hallwayPrefab, new Vector3(location.x, 0, location.y), Quaternion.identity);
+    GameObject go;
+    if (isLight)
+    {
+
+      go = Instantiate(hallwayPrefab, new Vector3(location.x, 0, location.y), Quaternion.identity);
+    }
+    else
+    {
+      go = Instantiate(noLightHallPrefab, new Vector3(location.x, 0, location.y), Quaternion.identity);
+
+    }
 
     // var size = getPrefabSize(go).size;
     var prefabBounds = getPrefabSize(go);
