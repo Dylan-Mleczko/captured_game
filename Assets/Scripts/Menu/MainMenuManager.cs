@@ -11,6 +11,11 @@ public class MainMenuManager : MonoBehaviour {
     [SerializeField] GameObject black;
     [SerializeField] bool initialControls = true;
     public GameObject mainScreen;
+    public GameObject initialControlsScreen;
+
+    void Start() {
+        AssignScreen();
+    }
 
     void Update() {
         if (initialControls && Input.anyKey) {
@@ -21,7 +26,7 @@ public class MainMenuManager : MonoBehaviour {
 
     void AssignScreen() {
         mainScreen.SetActive(!initialControls);
-        GameObject.Find("Initial Controls").SetActive(initialControls);
+        initialControlsScreen.SetActive(initialControls);
     }
 
     public void PointerEnter() {
