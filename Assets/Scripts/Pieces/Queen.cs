@@ -20,6 +20,7 @@ public class Queen : MonoBehaviour, Interaction {
     Rigidbody rb;
     Queue<Vector3> trail;
     public GameObject floor;
+    public GameObject camera;
 
     void Start() {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -44,6 +45,7 @@ public class Queen : MonoBehaviour, Interaction {
 
     IEnumerator Kill() {
         floor.GetComponent<Floor>().StopRipple();
+        camera.GetComponent<PixelShader>().active = false;
         rb.velocity = Vector3.zero;
         player.queenCanKill = false;
         text.SetActive(false);
