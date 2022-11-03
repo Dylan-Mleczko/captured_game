@@ -9,6 +9,20 @@ public class MainMenuManager : MonoBehaviour {
     [SerializeField] Animator anim;
     [SerializeField] AudioSource sound;
     [SerializeField] GameObject black;
+    [SerializeField] bool initialControls = true;
+    public GameObject mainScreen;
+
+    void Update() {
+        if (initialControls && Input.anyKey) {
+            initialControls = false;
+            AssignScreen();
+        }
+    }
+
+    void AssignScreen() {
+        mainScreen.SetActive(!initialControls);
+        GameObject.Find("Initial Controls").SetActive(initialControls);
+    }
 
     public void PointerEnter() {
         if (!isContinue || !DataManager.handle.isNew) {
