@@ -134,6 +134,7 @@ public class Player : MonoBehaviour
             direction += Vector3.right;
         }
 
+        direction.Normalize();
         characterController.Move(transform.TransformDirection(direction) * currentSpeed * Time.deltaTime);
 
         // if (Input.GetKey(KeyCode.Q)) {
