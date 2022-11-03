@@ -195,6 +195,7 @@ public class Player : MonoBehaviour
                 currentText = visibleObject.text;
             }
             currentText.SetActive(true);
+            Debug.Log("HELLO");
             if (Input.GetKey(KeyCode.E)) {
                 visibleObject.InteractWith();
             }
