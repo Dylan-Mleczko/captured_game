@@ -28,6 +28,10 @@ public class Player : MonoBehaviour
     [SerializeField] Knight knight2;
     [SerializeField] Knight knight3;
     [SerializeField] Knight knight4;
+    [SerializeField] GameObject kingText;
+    [SerializeField] AudioSource music;
+    [SerializeField] GameObject black;
+    [SerializeField] AudioSource kill;
     
     public bool queenCanKill = true;
     public bool isPaused;
@@ -86,6 +90,20 @@ public class Player : MonoBehaviour
             knight2.enabled = false;
             knight3.enabled = false;
             knight4.enabled = false;
+        } else if (collider.tag == "King") {
+            kingText.SetActive(true);
+        }
+    }
+
+    void OnTriggerExit(Collider collider) {
+        if (collider.tag == "King") {
+            kingText.SetActive(false);
+        }
+    }
+
+    void OnTriggerStay(Collider collider) {
+        if (collider.tag == "King" && Input.GetKey(KeyCode.E)) {
+            StartCoroutine(PlayEnding());
         }
     }
 
@@ -156,6 +174,7 @@ public class Player : MonoBehaviour
         RaycastHit hit;
         Interactable visibleObject = Physics.Raycast(new Ray(transform.position, transform.forward), out hit) && hit.distance < interactionDistance ? hit.transform.gameObject.GetComponent<Interactable>() : null;
         if (visibleObject != null) {
+            Debug.Log("HELLO");
             if (visibleObject.tag == "Key") {
                 lockedText.SetActive(false);
             } else if ((visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().isOpen) || (visibleObject.tag == "Safe" && visibleObject.GetComponent<Safe>().isOpen) ||(visibleObject.tag == "Lever" && visibleObject.GetComponent<Lever>().isUp) || (visibleObject.tag == "Queen" && (!visibleObject.GetComponent<Queen>().canKill || !visibleObject.GetComponent<Queen>().isAlive)) || (pickupText != null && pickupText.activeSelf)) {
@@ -203,6 +222,14 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(3);
         gameOverScreen.SetActive(true);
         InteractMode();
+    }
+
+    private IEnumerator PlayEnding() {
+        music.Stop();
+        kingText.SetActive(false);
+        black.SetActive(true);
+        kill.Play();
+        yield return new WaitForSeconds(3);
     }
 
 }
