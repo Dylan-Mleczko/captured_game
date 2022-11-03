@@ -3198,9 +3198,9 @@ MonoBehaviour:
   tileSize: 1
   tileCountX: 60
   tileCountY: 60
-  amplitude: 0.02
-  spread: 0.09
-  player: {fileID: 870041757}
+  amplitude: 0.05
+  spread: 0.1
+  player: {fileID: 1809241066}
 --- !u!4 &383144469
 Transform:
   m_ObjectHideFlags: 0
@@ -13127,6 +13127,10 @@ MonoBehaviour:
   knight2: {fileID: 0}
   knight3: {fileID: 0}
   knight4: {fileID: 0}
+  kingText: {fileID: 0}
+  music: {fileID: 0}
+  black: {fileID: 0}
+  kill: {fileID: 0}
   queenCanKill: 1
   isPaused: 0
   isAlive: 1
@@ -14091,6 +14095,7 @@ MonoBehaviour:
   doorSound: {fileID: 1069063613}
   canKill: 0
   isAlive: 1
+  floor: {fileID: 383144467}
 --- !u!82 &1809241071
 AudioSource:
   m_ObjectHideFlags: 0

@@ -19,6 +19,7 @@ public class Queen : MonoBehaviour, Interaction {
     public bool isAlive = true;
     Rigidbody rb;
     Queue<Vector3> trail;
+    public GameObject floor;
 
     void Start() {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -42,6 +43,7 @@ public class Queen : MonoBehaviour, Interaction {
     }
 
     IEnumerator Kill() {
+        floor.GetComponent<Floor>().StopRipple();
         rb.velocity = Vector3.zero;
         player.queenCanKill = false;
         text.SetActive(false);

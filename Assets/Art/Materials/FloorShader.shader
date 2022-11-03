@@ -54,7 +54,7 @@ Shader "Unlit/FloorShader"
 
 		void vert(inout appdata_full v)
 		{
-			half landRippleSpeed = 5;
+			half landRippleSpeed = 6;
 			// Displacement according to queen's proximity
 			half distance = sqrt(pow(v.vertex.x - _RippleOrigin.x, 2) + pow(v.vertex.z - _RippleOrigin.y, 2));
 			half height = _Amplitude * pow(2, -_Spread * distance);
@@ -66,7 +66,7 @@ Shader "Unlit/FloorShader"
 			distance = sqrt(pow(v.vertex.x - _LandOrigin.x, 2) + pow(v.vertex.z - _LandOrigin.y, 2));
 			half lifetime = _Time.y - _LandTime;
 			if (distance < landRippleSpeed*lifetime) {
-				height = 1 / (lifetime + 1) * pow(2, -0.4 * distance);
+				height = 1 / (lifetime + 1) * pow(2, -0.6 * distance);
 				period = sin(distance - landRippleSpeed*lifetime);
 				displacement = float4(0.0f, height * period, 0.0f, 0.0f);
 				v.vertex += displacement;
