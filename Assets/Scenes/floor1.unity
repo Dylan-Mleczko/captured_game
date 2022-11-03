@@ -487,7 +487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 27
-  speed: 20
+  speed: 15
 --- !u!1 &26809324
 GameObject:
   m_ObjectHideFlags: 0
@@ -5728,6 +5728,8 @@ MonoBehaviour:
   anim: {fileID: 0}
   sound: {fileID: 0}
   black: {fileID: 0}
+  initialControls: 1
+  mainScreen: {fileID: 0}
 --- !u!114 &52083670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10517,7 +10519,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &250559289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10777,7 +10779,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4aa5a7ef56dd26f4d8cdad18e6dd51d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 49.99
+      value: 51.23
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4aa5a7ef56dd26f4d8cdad18e6dd51d2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11319,6 +11321,8 @@ MonoBehaviour:
   anim: {fileID: 0}
   sound: {fileID: 0}
   black: {fileID: 0}
+  initialControls: 1
+  mainScreen: {fileID: 0}
 --- !u!114 &277725944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13530,6 +13534,8 @@ MonoBehaviour:
   anim: {fileID: 0}
   sound: {fileID: 0}
   black: {fileID: 0}
+  initialControls: 1
+  mainScreen: {fileID: 0}
 --- !u!114 &362723461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25184,6 +25190,8 @@ MonoBehaviour:
   anim: {fileID: 0}
   sound: {fileID: 0}
   black: {fileID: 0}
+  initialControls: 1
+  mainScreen: {fileID: 0}
 --- !u!114 &828138278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28054,6 +28062,7 @@ MonoBehaviour:
   knight2: {fileID: 0}
   knight3: {fileID: 0}
   knight4: {fileID: 0}
+  queenCanKill: 1
   isPaused: 0
   isAlive: 0
   playerEnabled: 0
@@ -28127,7 +28136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4aa5a7ef56dd26f4d8cdad18e6dd51d2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 157.71
+      value: 157.63
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4aa5a7ef56dd26f4d8cdad18e6dd51d2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -28894,7 +28903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
       propertyPath: m_RootOrder
@@ -28906,7 +28915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
       propertyPath: m_LocalScale.z
-      value: 33.05028
+      value: 25.469145
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28918,7 +28927,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 68.2494
+      value: 90.2327
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
       propertyPath: m_LocalRotation.w
@@ -31650,6 +31659,8 @@ MonoBehaviour:
   anim: {fileID: 0}
   sound: {fileID: 0}
   black: {fileID: 0}
+  initialControls: 1
+  mainScreen: {fileID: 0}
 --- !u!114 &1091936219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33784,6 +33795,8 @@ MonoBehaviour:
   anim: {fileID: 0}
   sound: {fileID: 0}
   black: {fileID: 0}
+  initialControls: 1
+  mainScreen: {fileID: 0}
 --- !u!114 &1168834369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34522,6 +34535,8 @@ MonoBehaviour:
   anim: {fileID: 0}
   sound: {fileID: 0}
   black: {fileID: 0}
+  initialControls: 1
+  mainScreen: {fileID: 0}
 --- !u!114 &1187976310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36763,6 +36778,8 @@ MonoBehaviour:
   anim: {fileID: 0}
   sound: {fileID: 0}
   black: {fileID: 0}
+  initialControls: 1
+  mainScreen: {fileID: 0}
 --- !u!114 &1266570540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40960,6 +40977,8 @@ MonoBehaviour:
   anim: {fileID: 0}
   sound: {fileID: 0}
   black: {fileID: 0}
+  initialControls: 1
+  mainScreen: {fileID: 0}
 --- !u!114 &1403670049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42417,6 +42436,77 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.7119028, y: 5.8016376, z: 5.8597717}
   m_Center: {x: 0.065020725, y: 2.9008174, z: 0}
+--- !u!1001 &1472303310
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 100000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
+      propertyPath: m_Name
+      value: Ceiling (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
+      propertyPath: m_RootOrder
+      value: 469
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 7.8061333
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 8.066078
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 82.4331
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 25.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.6307
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9947a6e7e8c8208469c1c86e15f5c089, type: 3}
 --- !u!1001 &1472846985
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43561,6 +43651,8 @@ MonoBehaviour:
   anim: {fileID: 0}
   sound: {fileID: 0}
   black: {fileID: 0}
+  initialControls: 1
+  mainScreen: {fileID: 0}
 --- !u!114 &1512777672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46232,6 +46324,8 @@ MonoBehaviour:
   anim: {fileID: 0}
   sound: {fileID: 0}
   black: {fileID: 0}
+  initialControls: 1
+  mainScreen: {fileID: 0}
 --- !u!114 &1602355140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55230,7 +55324,14 @@ MonoBehaviour:
   death: {fileID: 0}
   chase: {fileID: 0}
   black: {fileID: 0}
+  text: {fileID: 0}
+  blood: {fileID: 0}
+  speech: {fileID: 0}
+  door1: {fileID: 0}
+  door2: {fileID: 0}
+  doorSound: {fileID: 0}
   canKill: 0
+  isAlive: 1
 --- !u!65 &1951815764
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55256,7 +55357,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0

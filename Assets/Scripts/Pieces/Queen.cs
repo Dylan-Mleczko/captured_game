@@ -22,7 +22,6 @@ public class Queen : MonoBehaviour, Interaction {
 
     void Start() {
         rb = gameObject.GetComponent<Rigidbody>();
-        trail = player.trail;
     }
 
     void Update() {
@@ -32,8 +31,8 @@ public class Queen : MonoBehaviour, Interaction {
     }
 
     void Move() {
-        //Vector3 position = trail.Dequeue();
-        //rb.velocity = (new Vector3(position.x - transform.position.x, 0.0f, position.z - transform.position.z)).normalized * speed;
+        Vector3 position = player.trail.Dequeue();
+        rb.velocity = (new Vector3(position.x - transform.position.x, 0.0f, position.z - transform.position.z)).normalized * speed;
     }
 
     public void InteractWith() {
@@ -43,6 +42,7 @@ public class Queen : MonoBehaviour, Interaction {
     }
 
     IEnumerator Kill() {
+        rb.velocity = Vector3.zero;
         player.queenCanKill = false;
         text.SetActive(false);
         isAlive = false;

@@ -45,11 +45,12 @@ public class Player : MonoBehaviour
         if (initialAnimation) {
             FrozenMode();
         }
+        PlayMode();
         characterController = GetComponent<CharacterController>();
         rotationX = 0;
         trail = new Queue<Vector3>();
         isQueenChasing = false;
-        isAlive = false;
+        isAlive = true;
         isPaused = false;
     }
 
@@ -137,10 +138,6 @@ public class Player : MonoBehaviour
 
         direction.Normalize();
         characterController.Move(transform.TransformDirection(direction) * currentSpeed * Time.deltaTime);
-
-        // if (Input.GetKey(KeyCode.Q)) {
-        //     InteractMode();
-        // }
 
         rotationX += -Input.GetAxis("Mouse Y") * mouseSensitivity;
         rotationX = Mathf.Clamp(rotationX, -75.0f, 75.0f);

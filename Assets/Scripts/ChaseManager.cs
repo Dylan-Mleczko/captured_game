@@ -5,7 +5,8 @@ using UnityEngine;
 public class ChaseManager : MonoBehaviour {
 
     [SerializeField] Player player;
-    [SerializeField] Queen queen;
+    [SerializeField] GameObject queen1;
+    [SerializeField] GameObject queen2;
     [SerializeField] Floor floor;
     [SerializeField] AudioSource chase;
     [SerializeField] AudioSource crash;
@@ -26,7 +27,8 @@ public class ChaseManager : MonoBehaviour {
         yield return new WaitForSeconds(1);
         player.playerEnabled = true;
         player.isQueenChasing = true;
-        queen.enabled = true;
+        queen1.SetActive(false);
+        queen2.SetActive(true);
     }
 
 }
