@@ -15,18 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/floor1.unity
     guid: 982103333fc234d89a48025b8f7a3b89
   - enabled: 1
-    path: Assets/Scenes/Floor2.unity
+    path: Assets/Scenes/floor2.unity
     guid: 58aff45845ab10a4bab9616fa0db42be
   - enabled: 1
-    path: Assets/Scenes/floor3.unity
-    guid: 1e3db362239470a4185445079d7f586b
+    path: Assets/Scenes/QueenFloor.unity
+    guid: ba649c7c29ce242b8a406a8f4437f815
   - enabled: 1
-    path: Assets/Scenes/floor4.unity
-    guid: 4dd6f5f8bd2edd14884d5377d91ad0e1
-  - enabled: 1
-    path: Assets/Scenes/floor5.unity
-    guid: 12fa811e0d35b134496008c0bbaf02bc
-  - enabled: 1
-    path: Assets/Scenes/credits.unity
-    guid: 14959a7ee644b444da924f5e4ccdac3c
+    path: Assets/Scenes/KingFloor.unity
+    guid: 58b1db9d6e0f2490e9bbe10639f8d6ad
   m_configObjects: {}

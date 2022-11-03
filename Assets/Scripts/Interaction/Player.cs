@@ -178,7 +178,6 @@ public class Player : MonoBehaviour
         RaycastHit hit;
         Interactable visibleObject = Physics.Raycast(new Ray(transform.position, transform.forward), out hit) && hit.distance < interactionDistance ? hit.transform.gameObject.GetComponent<Interactable>() : null;
         if (visibleObject != null) {
-            Debug.Log("HELLO");
             if (visibleObject.tag == "Key") {
                 lockedText.SetActive(false);
             } else if ((visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().isOpen) || (visibleObject.tag == "Safe" && visibleObject.GetComponent<Safe>().isOpen) ||(visibleObject.tag == "Lever" && visibleObject.GetComponent<Lever>().isUp) || (visibleObject.tag == "Queen" && (!visibleObject.GetComponent<Queen>().canKill || !visibleObject.GetComponent<Queen>().isAlive)) || (pickupText != null && pickupText.activeSelf)) {
@@ -193,6 +192,7 @@ public class Player : MonoBehaviour
                 currentText = visibleObject.text;
             }
             currentText.SetActive(true);
+            Debug.Log("HELLO");
             if (Input.GetKey(KeyCode.E)) {
                 visibleObject.InteractWith();
             }
