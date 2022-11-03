@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
     private bool wasQueenChasing;
     GameObject currentText;
     public bool initialAnimation;
+    public GameObject queen;
 
     void Start() {
         if (initialAnimation) {
@@ -96,6 +97,8 @@ public class Player : MonoBehaviour
             knight4.enabled = false;
         } else if (collider.tag == "King") {
             kingText.SetActive(true);
+        } else if (collider.tag == "Trigger") {
+            queen.SetActive(false);
         }
     }
 

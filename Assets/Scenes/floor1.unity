@@ -6075,6 +6075,7 @@ MonoBehaviour:
   black: {fileID: 0}
   initialControls: 1
   mainScreen: {fileID: 0}
+  initialControlsScreen: {fileID: 0}
 --- !u!114 &52083670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13612,6 +13613,7 @@ MonoBehaviour:
   black: {fileID: 0}
   initialControls: 1
   mainScreen: {fileID: 0}
+  initialControlsScreen: {fileID: 0}
 --- !u!114 &277725944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16347,6 +16349,7 @@ MonoBehaviour:
   black: {fileID: 0}
   initialControls: 1
   mainScreen: {fileID: 0}
+  initialControlsScreen: {fileID: 0}
 --- !u!114 &362723461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31725,6 +31728,7 @@ MonoBehaviour:
   black: {fileID: 0}
   initialControls: 1
   mainScreen: {fileID: 0}
+  initialControlsScreen: {fileID: 0}
 --- !u!114 &828138278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35099,12 +35103,17 @@ MonoBehaviour:
   music: {fileID: 0}
   black: {fileID: 0}
   kill: {fileID: 0}
+  title: {fileID: 0}
+  boom: {fileID: 0}
+  endingText: {fileID: 0}
+  endingMusic: {fileID: 0}
   queenCanKill: 1
   isPaused: 0
   isAlive: 0
   playerEnabled: 0
   isQueenChasing: 0
   initialAnimation: 1
+  queen: {fileID: 1951815759}
 --- !u!4 &965600656
 Transform:
   m_ObjectHideFlags: 0
@@ -39636,6 +39645,7 @@ MonoBehaviour:
   black: {fileID: 0}
   initialControls: 1
   mainScreen: {fileID: 0}
+  initialControlsScreen: {fileID: 0}
 --- !u!114 &1091936219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42352,6 +42362,7 @@ MonoBehaviour:
   black: {fileID: 0}
   initialControls: 1
   mainScreen: {fileID: 0}
+  initialControlsScreen: {fileID: 0}
 --- !u!114 &1168834369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43226,6 +43237,7 @@ MonoBehaviour:
   black: {fileID: 0}
   initialControls: 1
   mainScreen: {fileID: 0}
+  initialControlsScreen: {fileID: 0}
 --- !u!114 &1187976310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46461,6 +46473,7 @@ MonoBehaviour:
   black: {fileID: 0}
   initialControls: 1
   mainScreen: {fileID: 0}
+  initialControlsScreen: {fileID: 0}
 --- !u!114 &1266570540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51154,6 +51167,7 @@ MonoBehaviour:
   black: {fileID: 0}
   initialControls: 1
   mainScreen: {fileID: 0}
+  initialControlsScreen: {fileID: 0}
 --- !u!114 &1403670049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54252,6 +54266,7 @@ MonoBehaviour:
   black: {fileID: 0}
   initialControls: 1
   mainScreen: {fileID: 0}
+  initialControlsScreen: {fileID: 0}
 --- !u!114 &1512777672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57124,6 +57139,7 @@ MonoBehaviour:
   black: {fileID: 0}
   initialControls: 1
   mainScreen: {fileID: 0}
+  initialControlsScreen: {fileID: 0}
 --- !u!114 &1602355140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58473,6 +58489,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1636798923}
   m_CullTransparentMesh: 1
+--- !u!1 &1636944490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1636944492}
+  - component: {fileID: 1636944491}
+  m_Layer: 0
+  m_Name: Deactivate Queen
+  m_TagString: Trigger
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1636944491
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636944490}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.29401, y: 6, z: 3.496212}
+  m_Center: {x: -0.31111908, y: 0, z: 1.248106}
+--- !u!4 &1636944492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636944490}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 29.43, y: 23.343, z: 23.88}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 657
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1637844809
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67495,6 +67556,7 @@ MonoBehaviour:
   canKill: 0
   isAlive: 1
   floor: {fileID: 0}
+  camera: {fileID: 0}
 --- !u!65 &1951815764
 BoxCollider:
   m_ObjectHideFlags: 0
