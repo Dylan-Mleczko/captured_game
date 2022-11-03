@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
     }
   }
 
-"FixedUpdate" is better to calculate more frames:::*/
+  //"FixedUpdate" is better to calculate more frames:::*/
   private void FixedUpdate()
   {
     transform.Translate(Vector3.right * 4f * Time.deltaTime * Input.GetAxis("Horizontal"));
@@ -186,84 +186,86 @@ public class Player : MonoBehaviour
       playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
       transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * mouseSensitivity, 0);
     }
-
-    void LeaveTrail()
-    {
-      if (isQueenChasing)
-      {
-        trail.Enqueue(transform.position);
-      }
-    }
-
-    void Look()
-    {
-      RaycastHit hit;
-      Interactable visibleObject = Physics.Raycast(new Ray(transform.position, transform.forward), out hit) && hit.distance < interactionDistance ? hit.transform.gameObject.GetComponent<Interactable>() : null;
-      if (visibleObject != null)
-      {
-        if (visibleObject.tag == "Key")
-        {
-          lockedText.SetActive(false);
-        }
-        else if ((visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().isOpen) || (visibleObject.tag == "Safe" && visibleObject.GetComponent<Safe>().isOpen) || (visibleObject.tag == "Lever" && visibleObject.GetComponent<Lever>().isUp) || (visibleObject.tag == "Queen" && (!visibleObject.GetComponent<Queen>().canKill || !visibleObject.GetComponent<Queen>().isAlive)) || (pickupText != null && pickupText.activeSelf)
-       )
-        {
-          visibleObject.text.SetActive(false);
-          return;
-        }
-        if (visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().IsLocked())
-        {
-          currentText = lockedText;
-        }
-        else if (visibleObject.tag == "Wall" && !BrokenWall.hasPickaxe)
-        {
-          currentText = prebrokenText;
-        }
-        else
-        {
-          currentText = visibleObject.text;
-        }
-        currentText.SetActive(true);
-        if (Input.GetKey(KeyCode.E))
-        {
-          visibleObject.InteractWith();
-        }
-      }
-      else if (currentText != null)
-      {
-        currentText.SetActive(false);
-        currentText = null;
-      }
-    }
-
-    public void FrozenMode()
-    {
-      playerEnabled = false;
-      Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    public void PlayMode()
-    {
-      playerEnabled = true;
-      Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    public void InteractMode()
-    {
-      playerEnabled = false;
-      Cursor.lockState = CursorLockMode.None;
-    }
-
-    private IEnumerator GameOver()
-    {
-      ui.SetActive(true);
-      yield return new WaitForSeconds(3);
-      gameOverSound.Play();
-      ui.GetComponent<Animator>().SetBool("Activate", true);
-      yield return new WaitForSeconds(3);
-      gameOverScreen.SetActive(true);
-      InteractMode();
-    }
-
-
   }
+
+  void LeaveTrail()
+  {
+    if (isQueenChasing)
+    {
+      trail.Enqueue(transform.position);
+    }
+  }
+
+  void Look()
+  {
+    RaycastHit hit;
+    Interactable visibleObject = Physics.Raycast(new Ray(transform.position, transform.forward), out hit) && hit.distance < interactionDistance ? hit.transform.gameObject.GetComponent<Interactable>() : null;
+    if (visibleObject != null)
+    {
+      if (visibleObject.tag == "Key")
+      {
+        lockedText.SetActive(false);
+      }
+      else if ((visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().isOpen) || (visibleObject.tag == "Safe" && visibleObject.GetComponent<Safe>().isOpen) || (visibleObject.tag == "Lever" && visibleObject.GetComponent<Lever>().isUp) || (visibleObject.tag == "Queen" && (!visibleObject.GetComponent<Queen>().canKill || !visibleObject.GetComponent<Queen>().isAlive)) || (pickupText != null && pickupText.activeSelf)
+     )
+      {
+        visibleObject.text.SetActive(false);
+        return;
+      }
+      if (visibleObject.tag == "Door" && visibleObject.GetComponent<Door>().IsLocked())
+      {
+        currentText = lockedText;
+      }
+      else if (visibleObject.tag == "Wall" && !BrokenWall.hasPickaxe)
+      {
+        currentText = prebrokenText;
+      }
+      else
+      {
+        currentText = visibleObject.text;
+      }
+      currentText.SetActive(true);
+      if (Input.GetKey(KeyCode.E))
+      {
+        visibleObject.InteractWith();
+      }
+    }
+    else if (currentText != null)
+    {
+      currentText.SetActive(false);
+      currentText = null;
+    }
+  }
+
+
+  public void FrozenMode()
+  {
+    playerEnabled = false;
+    Cursor.lockState = CursorLockMode.Locked;
+  }
+
+  public void PlayMode()
+  {
+    playerEnabled = true;
+    Cursor.lockState = CursorLockMode.Locked;
+  }
+
+  public void InteractMode()
+  {
+    playerEnabled = false;
+    Cursor.lockState = CursorLockMode.None;
+  }
+
+  private IEnumerator GameOver()
+  {
+    ui.SetActive(true);
+    yield return new WaitForSeconds(3);
+    gameOverSound.Play();
+    ui.GetComponent<Animator>().SetBool("Activate", true);
+    yield return new WaitForSeconds(3);
+    gameOverScreen.SetActive(true);
+    InteractMode();
+  }
+
+
+}
