@@ -262,7 +262,6 @@ GameObject:
   - component: {fileID: 10789509}
   - component: {fileID: 10789508}
   - component: {fileID: 10789507}
-  - component: {fileID: 10789506}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -270,19 +269,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &10789506
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 10789505}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!143 &10789507
 CharacterController:
   m_ObjectHideFlags: 0
@@ -318,6 +304,7 @@ MonoBehaviour:
   lockedText: {fileID: 0}
   mainMenu: {fileID: 0}
   settingsMenu: {fileID: 0}
+  controlsMenu: {fileID: 0}
   exitMenu: {fileID: 0}
   pauseSound: {fileID: 2020768222}
   deathScreen: {fileID: 0}
@@ -335,6 +322,7 @@ MonoBehaviour:
   knight2: {fileID: 0}
   knight3: {fileID: 0}
   knight4: {fileID: 0}
+  queenCanKill: 1
   isPaused: 0
   isAlive: 0
   playerEnabled: 1
@@ -2266,6 +2254,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1135190265}
+  - component: {fileID: 1135190266}
+  - component: {fileID: 1135190267}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -2288,6 +2278,35 @@ Transform:
   m_Father: {fileID: 10789509}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1135190266
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135190264}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!65 &1135190267
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135190264}
+  m_Material: {fileID: 13400000, guid: 0f3bcf6b7c3404cde9d839291c509029, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1186634784
 GameObject:
   m_ObjectHideFlags: 0
@@ -3044,6 +3063,35 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 441673692619378453, guid: 92937d3fd35ff46f8807bce67952c527, type: 3}
   m_PrefabInstance: {fileID: 441673694156673111}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1575051075
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575051074}
+  m_Material: {fileID: 13400000, guid: 0f3bcf6b7c3404cde9d839291c509029, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1575051076
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575051074}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &1648165905
 GameObject:
   m_ObjectHideFlags: 0
