@@ -48,8 +48,9 @@ public class Player : MonoBehaviour
     void Start() {
         if (initialAnimation) {
             FrozenMode();
+        } else {
+            PlayMode();
         }
-        PlayMode();
         characterController = GetComponent<CharacterController>();
         rotationX = 0;
         trail = new Queue<Vector3>();
@@ -67,6 +68,10 @@ public class Player : MonoBehaviour
             if (playerEnabled) {
                 Move();
                 Look();
+            } else {
+                if (Input.GetKey(KeyCode.E)) {
+
+                }
             }
             LeaveTrail();
         }

@@ -9,6 +9,7 @@ public class Opening : MonoBehaviour {
     [SerializeField] GameObject black;
     [SerializeField] GameObject text1;
     [SerializeField] GameObject text2;
+    [SerializeField] GameObject skipCutscene;
     [SerializeField] GameObject guardObject1;
     [SerializeField] GameObject guardObject2;
     [SerializeField] GameObject prisonerObject;
@@ -20,18 +21,30 @@ public class Opening : MonoBehaviour {
     [SerializeField] AudioSource torture;
     [SerializeField] AudioSource keySound;
 
+    private IEnumerator coroutine;
+
     private void Start() {
-        StartCoroutine(Title());
+        coroutine = Title();
+        StartCoroutine(coroutine);
+    }
+
+    void Update() {
+        if (Input.GetKey(KeyCode.E)) {
+            FinishOpening();
+            StopCoroutine(coroutine);
+        }
     }
 
     private IEnumerator Title() {
         // Animations - PART 0
         player.FrozenMode();
         yield return new WaitForSeconds(2);
+        skipCutscene.SetActive(true);
         text1.SetActive(true);
         yield return new WaitForSeconds(3);
         text1.SetActive(false);
         yield return new WaitForSeconds(2);
+        skipCutscene.SetActive(false);
         text2.SetActive(true);
         yield return new WaitForSeconds(3);
         text2.SetActive(false);
@@ -78,4 +91,16 @@ public class Opening : MonoBehaviour {
         guardObject2.SetActive(false);
     }
 
+    private void FinishOpening() {
+        text1.SetActive(false);
+        text2.SetActive(false);
+        black.SetActive(false);
+        player.PlayMode();
+        player.isAlive = true;
+        prisonerObject.SetActive(false);
+        guardObject1.SetActive(false);
+        guardObject2.SetActive(false);
+        key.SetActive(true);
+        keySound.Play();
+    }
 }
