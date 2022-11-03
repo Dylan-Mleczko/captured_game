@@ -28152,8 +28152,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 5.243065, z: 0.9411886}
+  m_Center: {x: -1.3921142e-14, y: 2.1215324, z: -3.0203857}
 --- !u!82 &754961668
 AudioSource:
   m_ObjectHideFlags: 0
@@ -35075,6 +35075,10 @@ MonoBehaviour:
   knight2: {fileID: 0}
   knight3: {fileID: 0}
   knight4: {fileID: 0}
+  kingText: {fileID: 0}
+  music: {fileID: 0}
+  black: {fileID: 0}
+  kill: {fileID: 0}
   queenCanKill: 1
   isPaused: 0
   isAlive: 0
@@ -67458,7 +67462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 965600655}
-  speed: 15
+  speed: 10
   death: {fileID: 0}
   chase: {fileID: 0}
   black: {fileID: 0}
