@@ -68,4 +68,8 @@ public class MainMenuManager : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void Return() {
+        DataManager.handle.FinishGame();
+    }
+
 }
