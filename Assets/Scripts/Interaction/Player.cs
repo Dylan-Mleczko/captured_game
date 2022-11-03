@@ -119,21 +119,27 @@ public class Player : MonoBehaviour
     void Move() {
         float speedMultipler = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) ? sprintMultipler : 1;
         float currentSpeed = moveSpeed * speedMultipler;
+
+        Vector3 direction = new Vector3();
         if (Input.GetKey(KeyCode.W)) {
-            characterController.Move(transform.TransformDirection(Vector3.forward) * currentSpeed * Time.deltaTime);
+            direction += Vector3.forward;
         }
         if (Input.GetKey(KeyCode.S)) {
-            characterController.Move(transform.TransformDirection(Vector3.back) * currentSpeed * Time.deltaTime);
+            direction += Vector3.back;
         }
         if (Input.GetKey(KeyCode.A)) {
-            characterController.Move(transform.TransformDirection(Vector3.left) * currentSpeed * Time.deltaTime);
+            direction += Vector3.left;
         }
         if (Input.GetKey(KeyCode.D)) {
-            characterController.Move(transform.TransformDirection(Vector3.right) * currentSpeed * Time.deltaTime);
+            direction += Vector3.right;
         }
-        if (Input.GetKey(KeyCode.Q)) {
-            InteractMode();
-        }
+
+        characterController.Move(transform.TransformDirection(direction) * currentSpeed * Time.deltaTime);
+
+        // if (Input.GetKey(KeyCode.Q)) {
+        //     InteractMode();
+        // }
+
         rotationX += -Input.GetAxis("Mouse Y") * mouseSensitivity;
         rotationX = Mathf.Clamp(rotationX, -75.0f, 75.0f);
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
