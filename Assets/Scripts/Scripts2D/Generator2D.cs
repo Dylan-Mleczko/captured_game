@@ -109,6 +109,9 @@ public class Generator2D : MonoBehaviour
   // [SerializeField] GameObject cubePrefab;
   [SerializeField] GameObject roomPrefab;
   [SerializeField] GameObject hallwayPrefab;
+
+  [SerializeField] GameObject Prefab;
+
   [SerializeField] GameObject pillarPrefab;
   [SerializeField] GameObject roomLightPrefab;
   [SerializeField] GameObject[] miniRooms;
@@ -431,7 +434,7 @@ public class Generator2D : MonoBehaviour
   void AddPillar(Vector2 location)
   {
 
-    var pillar = pillars.Find(x => x.location == location || x.location.x - location.x <= 0.01f || x.location.y - location.y <= 0.01f);
+    var pillar = pillars.Find(x => x.location == location || (x.location.x - location.x <= 0.001f && x.location.y - location.y <= 0.001f));
     // var pillar = pillars.Find(x => x.location == location);
     if (pillar == null)
     {
