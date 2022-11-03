@@ -28255,6 +28255,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: 4f13c956f2c771542a07a197a4d6fdf5, type: 3}
   m_PrefabInstance: {fileID: 946236453}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &754961670
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754961662}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a69be755055b362438b81f100112fe9d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &754991598
 GameObject:
   m_ObjectHideFlags: 0
@@ -67474,6 +67494,7 @@ MonoBehaviour:
   doorSound: {fileID: 0}
   canKill: 0
   isAlive: 1
+  floor: {fileID: 0}
 --- !u!65 &1951815764
 BoxCollider:
   m_ObjectHideFlags: 0
