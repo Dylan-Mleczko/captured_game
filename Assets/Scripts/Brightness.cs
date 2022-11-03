@@ -1,3 +1,5 @@
+// Partial credit to https://www.youtube.com/watch?time_continue=161&v=XiJ-kb-NvV4&feature=emb_title&ab_channel=JTAGames
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,13 +8,24 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class Brightness : MonoBehaviour
 {
-    public Slider brightnessSlider;
+    public GameObject brightnessSlider;
     public PostProcessProfile brightness;
-    public PostProcessLayer layer;
+    public GameObject layer;
     AutoExposure exposure;
 
     void Start() {
         brightness.TryGetSettings(out exposure);
+        exposure.keyValue.value = 1;
+    }
+
+    void Update() {
+        if (brightnessSlider == null) {
+            brightnessSlider = GameObject.Find("BrightnessSlider");
+        }
+
+        if (layer == null) {
+            layer = GameObject.Find("Main Camera");
+        }
     }
 
     public void AdjustBrightness(float value) {
