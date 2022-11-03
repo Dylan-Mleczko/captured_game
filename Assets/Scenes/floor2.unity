@@ -2252,6 +2252,7 @@ MonoBehaviour:
   key: {fileID: 1384524684}
   exitDoor: {fileID: 1761545143}
   RookPrefab: {fileID: 1575051074}
+  RookNumber: 3
   KnightPrefab: {fileID: 0}
 --- !u!4 &1475736440
 Transform:
@@ -2340,6 +2341,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!65 &1575051079
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575051074}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1648165905
 GameObject:
   m_ObjectHideFlags: 0
@@ -7814,6 +7828,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 441673692619378451, guid: 92937d3fd35ff46f8807bce67952c527, type: 3}
+      propertyPath: speed
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 441673692619378452, guid: 92937d3fd35ff46f8807bce67952c527, type: 3}
       propertyPath: m_RootOrder
       value: 8

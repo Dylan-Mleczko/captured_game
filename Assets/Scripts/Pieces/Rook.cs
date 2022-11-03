@@ -25,6 +25,16 @@ public class Rook : MonoBehaviour
 
   }
 
+  void OnCollisionEnter(Collision collision)
+  {
+    if (collision.collider.name == "WallA" || collision.collider.name == "WallB" || collision.collider.name == "WallC" || collision.collider.name == "WallD")
+    {
+      direction = -direction;
+      Debug.Log("Collide!");
+      Debug.Log(collision.collider.name);
+    }
+  }
+
   void Move()
   {
     if (transform.localPosition.z > range)

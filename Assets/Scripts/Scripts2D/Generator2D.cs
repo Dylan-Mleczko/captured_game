@@ -118,6 +118,8 @@ public class Generator2D : MonoBehaviour
   [SerializeField] GameObject key;
   [SerializeField] GameObject exitDoor;
   [SerializeField] GameObject RookPrefab;
+
+  [SerializeField] int RookNumber;
   [SerializeField] GameObject KnightPrefab;
   // [SerializeField] GameObject door;
 
@@ -164,23 +166,39 @@ public class Generator2D : MonoBehaviour
 
   void PlaceEnemy()
   {
-    var rookIndex = random.Next(0, rooms.Count - 1);
-    var knightIndex = random.Next(0, rooms.Count - 1);
+    // var knightIndex = random.Next(0, rooms.Count - 1);
 
-    while (rooms[rookIndex].bounds.size.x <= 1)
+    for (int i = 0; i < RookNumber; i++)
     {
-      rookIndex = random.Next(0, rooms.Count - 1);
+      var rookIndex = random.Next(0, rooms.Count - 1);
+      // grid[b.Position] == CellType.Hallway
+      while (rooms[rookIndex].bounds.size.x <= 1 || rooms[rookIndex].bounds.size.y <= 1)
+      {
+        rookIndex = random.Next(0, rooms.Count - 1);
+      }
+
+      var currentRoom = rooms[rookIndex];
+      var rookLocation = currentRoom.location + currentRoom.bounds.size / 2;
+      if (grid[rookLocation] == CellType.Hallway || grid[rookLocation] == CellType.Room)
+      {
+        // var rookLocation = rooms[rookIndex].location;
+        var rookRange = currentRoom.bounds.size.x;
+
+
+        if (currentRoom.bounds.size.x < currentRoom.bounds.size.y)
+        {
+          rookRange = currentRoom.bounds.size.y;
+          Debug.Log("rook go direction y");
+        }
+        GameObject rook = Instantiate(RookPrefab, new Vector3(rookLocation.x, 0, rookLocation.y), Quaternion.identity);
+        var prefabSize = getPrefabSize(rook).size;
+        rook.GetComponent<Transform>().localScale = new Vector3(1 / (5 * prefabSize.x), 2 / (5 * prefabSize.y), 1 / (5 * prefabSize.z));
+        // rook.transform.Rotate(-90.0f, 0.0f, 0.0f, Space.Self);
+        rook.GetComponent<Rook>().UpdateRange(rookRange);
+
+        Debug.Log(rookLocation.ToString());
+      }
     }
-
-    var rookLocation = rooms[rookIndex].location;
-    var rookRange = rooms[rookIndex].bounds.size.x;
-    GameObject rook = Instantiate(RookPrefab, new Vector3(rookLocation.x, 0, rookLocation.y), Quaternion.identity);
-    var prefabSize = getPrefabSize(rook).size;
-    rook.GetComponent<Transform>().localScale = new Vector3(1 / (5 * prefabSize.x), 1 / (5 * prefabSize.y), 1 / (5 * prefabSize.z));
-    // rook.transform.Rotate(-90.0f, 0.0f, 0.0f, Space.Self);
-    rook.GetComponent<Rook>().UpdateRange(rookRange);
-
-    Debug.Log(rookLocation.ToString());
 
     // var knightLocation = rooms[knightIndex].location;
     // GameObject knight = Instantiate(KnightPrefab, new Vector3(rookLocation.x, 0, rookLocation.y), Quaternion.identity);
